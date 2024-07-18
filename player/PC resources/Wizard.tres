@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PCResource" load_steps=2 format=3 uid="uid://10qy4oful0rp"]
+
+[ext_resource type="Script" path="res://character/character resource/CharacterResource.gd" id="1_bcqc2"]
+
+[resource]
+script = ExtResource("1_bcqc2")
+character_name = "wizard"
+hp = 0.0
+ap = 0.0
+accuracy = 0.0
+cirtical_rate = 0.0

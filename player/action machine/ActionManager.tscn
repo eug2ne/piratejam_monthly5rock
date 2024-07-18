@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://djoofq7j1umnj"]
+
+[ext_resource type="Script" path="res://player/action machine/ActionManager.gd" id="1_mkt6o"]
+
+[node name="ActionManager" type="Node"]
+script = ExtResource("1_mkt6o")

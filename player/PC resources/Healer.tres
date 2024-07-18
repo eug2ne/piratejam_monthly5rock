@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PCResource" load_steps=2 format=3 uid="uid://dwuj7frrx4j6s"]
+
+[ext_resource type="Script" path="res://character/character resource/CharacterResource.gd" id="1_8lj1d"]
+
+[resource]
+script = ExtResource("1_8lj1d")
+character_name = "healer"
+hp = 0.0
+ap = 0.0
+accuracy = 0.0
+cirtical_rate = 0.0
