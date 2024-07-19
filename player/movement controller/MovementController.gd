@@ -1,17 +1,19 @@
 extends Node
 class_name MovementController
 
-@export var parent: CharacterBody2D
+@export var parent: Character
 @export var anim: AnimationPlayer
 
 var direction: Vector2
-const SPEED:= 300
+@onready var SPEED: float = parent.character_resource.move_speed
 
 func _input(event):
 	# handle input event
 	var directionX = Input.get_axis("move_left", "move_right")
 	var directionY = Input.get_axis("move_up", "move_down")
 	direction = Vector2(directionX, directionY)
+	
+	# TODO: handle dash event
 
 func _physics_process(_delta):
 	parent.velocity = direction * SPEED

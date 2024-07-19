@@ -1,12 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bje8xclox6jiu"]
+[gd_scene load_steps=4 format=3 uid="uid://bje8xclox6jiu"]
 
 [ext_resource type="PackedScene" uid="uid://b15kbyg7k4fwd" path="res://map/bar_map.tscn" id="1_yokby"]
-[ext_resource type="PackedScene" uid="uid://dhjyjxc2sam4v" path="res://player/PC.tscn" id="2_0n5pi"]
+[ext_resource type="PackedScene" uid="uid://dvpthewkuttia" path="res://player/PCs/Gladiator.tscn" id="2_l72q6"]
+[ext_resource type="PackedScene" uid="uid://dr4d5i7gefy27" path="res://enemy/enemy.tscn" id="3_8o57m"]
 
 [node name="Main" type="Node2D"]
 
 [node name="BarMap" parent="." instance=ExtResource("1_yokby")]
 position = Vector2(568, -112)
 
-[node name="PC" parent="." instance=ExtResource("2_0n5pi")]
-position = Vector2(592, 368)
+[node name="Gladiator" parent="." instance=ExtResource("2_l72q6")]
+position = Vector2(560, 400)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" groups=["enemy"] instance=ExtResource("3_8o57m")]
+position = Vector2(528, 328)

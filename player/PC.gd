@@ -1,4 +1,2 @@
-extends CharacterBody2D
+extends Character
 class_name PlayableCharacter
-
-@export var pc_resource: CharacterResource

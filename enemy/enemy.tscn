@@ -1,0 +1,126 @@
+[gd_scene load_steps=14 format=3 uid="uid://dr4d5i7gefy27"]
+
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_goek2"]
+[ext_resource type="Texture2D" uid="uid://ckk50b1g4byk4" path="res://assets/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png" id="1_ps2qc"]
+[ext_resource type="Resource" uid="uid://cow7glarm0pg6" path="res://enemy/enemy resource/enemy_resource.tres" id="2_7ruep"]
+[ext_resource type="Script" path="res://enemy/enemy actions/EnemyActionManager.gd" id="4_oya4b"]
+[ext_resource type="PackedScene" uid="uid://blvlehvuw5oji" path="res://enemy/enemy actions/enemy_attack.tscn" id="5_c24k4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sv66i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k75u8"]
+atlas = ExtResource("1_ps2qc")
+region = Rect2(64, 120, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d43cf"]
+atlas = ExtResource("1_ps2qc")
+region = Rect2(64, 144, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kg1wi"]
+atlas = ExtResource("1_ps2qc")
+region = Rect2(64, 168, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3x00m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k75u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d43cf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kg1wi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_hjdij"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vh3k3"]
+resource_name = "default"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6cjlg"]
+_data = {
+"RESET": SubResource("Animation_hjdij"),
+"default": SubResource("Animation_vh3k3")
+}
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_goek2")
+character_resource = ExtResource("2_7ruep")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sv66i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3x00m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6cjlg")
+}
+
+[node name="ActionManager" type="Node" parent="." node_paths=PackedStringArray("parent", "basic_action")]
+script = ExtResource("4_oya4b")
+parent = NodePath("..")
+auto = true
+basic_action = NodePath("EnemyAttack")
+
+[node name="EnemyAttack" parent="ActionManager" node_paths=PackedStringArray("parent") instance=ExtResource("5_c24k4")]
+parent = NodePath("../..")
+target_group = "pc"
+cool_time = 0.7

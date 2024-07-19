@@ -5,7 +5,10 @@
 [resource]
 script = ExtResource("1_5qdn7")
 character_name = "gladiator"
-hp = 0.0
-ap = 0.0
-accuracy = 0.0
-cirtical_rate = 0.0
+hp = 200.0
+ap = 50.0
+move_speed = 200.0
+defense = 20.0
+agility = 15.0
+accuracy = 15.0
+critical_rate = 0.0

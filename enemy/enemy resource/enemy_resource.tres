@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=2 format=3 uid="uid://cow7glarm0pg6"]
+
+[ext_resource type="Script" path="res://character/character resource/CharacterResource.gd" id="1_w0he3"]
+
+[resource]
+script = ExtResource("1_w0he3")
+character_name = "enemy"
+hp = 100.0
+ap = 50.0
+accuracy = 25.0
+cirtical_rate = 10.0
