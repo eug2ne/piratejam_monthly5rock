@@ -24,10 +24,18 @@ func _start_action() -> void:
 	# set cool-time
 	action_available = false
 	timer.start(cool_time)
+	
+func _stop_action() -> void:
+	# stop action animation
+	anim.stop()
+	# disable target_area
+	target_area.visible = false
+	target_area.get_node("CollisionShape2D").disabled = true
+	timer.start(cool_time)
 
 func _on_timer_timeout() -> void:
 	# reset action_available
 	action_available = true
 
-func _on_target_area_body_entered(body) -> void:
+func _on_target_area_body_entered(_body) -> void:
 	pass

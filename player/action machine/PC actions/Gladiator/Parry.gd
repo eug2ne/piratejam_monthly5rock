@@ -12,4 +12,6 @@ func _on_target_area_area_entered(area: Area2D) -> void:
 	# get target
 	var enemy_attack: Action = area.get_parent()
 	# parry enemy attack
-	enemy_attack._call_parry()
+	if enemy_attack.has_method("_parry"):
+		# pass parry damage
+		enemy_attack._parry(parent.character_resource._deal_parry_damage())
