@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://bftq7opuyn0au"]
 
-[ext_resource type="Script" path="res://player/action machine/PC actions/Gladiator/Parry.gd" id="1_k34d6"]
-[ext_resource type="Texture2D" uid="uid://c3ml64aexbnx6" path="res://assets/vfx/SP400_nyknck/SP401_nyknck/SP401_01.png" id="2_ipxfs"]
-[ext_resource type="Texture2D" uid="uid://cvpiwn2oobiyy" path="res://assets/vfx/SP400_nyknck/SP401_nyknck/SP401_02.png" id="3_4bvqm"]
-[ext_resource type="Texture2D" uid="uid://cdd7bgdclvtlc" path="res://assets/vfx/SP400_nyknck/SP401_nyknck/SP401_03.png" id="4_locgj"]
-[ext_resource type="Texture2D" uid="uid://cdrkvsamblksq" path="res://assets/vfx/SP400_nyknck/SP401_nyknck/SP401_04.png" id="5_kxgk3"]
-[ext_resource type="Texture2D" uid="uid://fto0yerbhn6b" path="res://assets/vfx/SP400_nyknck/SP401_nyknck/SP401_05.png" id="6_0dwux"]
+[ext_resource type="Script" path="res://player/PC actions/Gladiator/Parry.gd" id="1_1uanw"]
+[ext_resource type="Texture2D" uid="uid://c3ml64aexbnx6" path="res://assets/vfx/SP400_nyknck/SP401_nyknck/SP401_01.png" id="2_xy0ho"]
+[ext_resource type="Texture2D" uid="uid://cvpiwn2oobiyy" path="res://assets/vfx/SP400_nyknck/SP401_nyknck/SP401_02.png" id="3_tc2hk"]
+[ext_resource type="Texture2D" uid="uid://cdd7bgdclvtlc" path="res://assets/vfx/SP400_nyknck/SP401_nyknck/SP401_03.png" id="4_xici4"]
+[ext_resource type="Texture2D" uid="uid://cdrkvsamblksq" path="res://assets/vfx/SP400_nyknck/SP401_nyknck/SP401_04.png" id="5_naqaa"]
+[ext_resource type="Texture2D" uid="uid://fto0yerbhn6b" path="res://assets/vfx/SP400_nyknck/SP401_nyknck/SP401_05.png" id="6_gcj20"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yqhu"]
 size = Vector2(40, 32)
@@ -14,19 +14,19 @@ size = Vector2(40, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ipxfs")
+"texture": ExtResource("2_xy0ho")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_4bvqm")
+"texture": ExtResource("3_tc2hk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_locgj")
+"texture": ExtResource("4_xici4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_kxgk3")
+"texture": ExtResource("5_naqaa")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_0dwux")
+"texture": ExtResource("6_gcj20")
 }],
 "loop": true,
 "name": &"action",
@@ -143,7 +143,7 @@ _data = {
 }
 
 [node name="Parry" type="Node"]
-script = ExtResource("1_k34d6")
+script = ExtResource("1_1uanw")
 
 [node name="Area2D" type="Area2D" parent="."]
 z_index = 5

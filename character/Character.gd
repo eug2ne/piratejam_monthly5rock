@@ -3,9 +3,11 @@ class_name Character
 
 @export var character_resource: CharacterResource
 
+@onready var action_manager: ActionManager = $ActionManager
+@onready var state_manager: StateManager = $StateManager
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
-func _take_damage(damage: float) -> void:
+func _take_damage(damage: float, _from: Character) -> void:
 	# apply damage to character hp
 	character_resource._apply_damage(damage)
 	# play damage animation
@@ -18,8 +20,7 @@ func _take_damage(damage: float) -> void:
 func _take_death() -> void:
 	# stop character
 	velocity = Vector2(0,0)
-	# play death animation
-	anim.play("death")
+	action_manager._stop_current_action()
 	# TODO: disable character / remove characer from scene after death animation
-	pass
+	state_manager._set_current_state("dead")
 	

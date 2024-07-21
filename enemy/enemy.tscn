@@ -1,11 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://dr4d5i7gefy27"]
+[gd_scene load_steps=21 format=3 uid="uid://dr4d5i7gefy27"]
 
 [ext_resource type="Material" uid="uid://cb32io5ggyuly" path="res://character/character shaders/enemy_material.tres" id="1_eecfb"]
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_goek2"]
 [ext_resource type="Texture2D" uid="uid://ckk50b1g4byk4" path="res://assets/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png" id="1_ps2qc"]
 [ext_resource type="Resource" uid="uid://cow7glarm0pg6" path="res://enemy/enemy resource/enemy_resource.tres" id="2_7ruep"]
-[ext_resource type="Script" path="res://enemy/enemy actions/EnemyActionManager.gd" id="4_oya4b"]
+[ext_resource type="Script" path="res://enemy/enemy states/Idle.gd" id="2_hvxsh"]
+[ext_resource type="Script" path="res://character/action machine/ActionManager.gd" id="5_27nab"]
 [ext_resource type="PackedScene" uid="uid://blvlehvuw5oji" path="res://enemy/enemy actions/enemy_attack.tscn" id="5_c24k4"]
+[ext_resource type="Script" path="res://character/state machine/State Manager.gd" id="6_ksiyd"]
+[ext_resource type="Script" path="res://enemy/enemy states/Attack.gd" id="8_qspbk"]
+[ext_resource type="Script" path="res://character/state machine/character states/Dead.gd" id="10_b7h0l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sv66i"]
 
@@ -224,12 +228,30 @@ libraries = {
 }
 
 [node name="ActionManager" type="Node" parent="." node_paths=PackedStringArray("parent", "basic_action")]
-script = ExtResource("4_oya4b")
+script = ExtResource("5_27nab")
 parent = NodePath("..")
-auto = true
+input_disabled = true
 basic_action = NodePath("EnemyAttack")
 
 [node name="EnemyAttack" parent="ActionManager" node_paths=PackedStringArray("parent") instance=ExtResource("5_c24k4")]
 parent = NodePath("../..")
 target_group = "pc"
 cool_time = 1.4
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent")]
+script = ExtResource("6_ksiyd")
+initial_state = NodePath("Idle")
+parent = NodePath("..")
+
+[node name="Idle" type="Node" parent="StateManager"]
+script = ExtResource("2_hvxsh")
+anim_key = "default"
+
+[node name="Attack" type="Node" parent="StateManager"]
+script = ExtResource("8_qspbk")
+anim_key = "default"
+
+[node name="Dead" type="Node" parent="StateManager"]
+script = ExtResource("10_b7h0l")
+
+[connection signal="action_end" from="ActionManager/EnemyAttack" to="ActionManager" method="_on_current_action_end"]

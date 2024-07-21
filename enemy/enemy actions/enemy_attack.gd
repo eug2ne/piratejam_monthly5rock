@@ -12,10 +12,14 @@ func _on_target_area_body_entered(body) -> void:
 		var target_defense = body.character_resource.defense
 		body.character_resource._take_damage(parent.character_resource._deal_damage(target_agility, target_defense))
 
-func _parry(parry_damage: float):
-	print("parry damage: ", parry_damage)
-	# TODO: apply parry effect on enemy
+func _parry(parry_damage: float, from: Character):
+	# apply parry effect on enemy
 	# disable attack
-	_stop_action()
+	_stop()
 	# apply parry damage to parent
-	parent._take_damage(parry_damage)
+	parent._take_damage(parry_damage, from)
+
+
+func _on_animation_finished(anim_name: String) -> void:
+	# disable attack
+	_stop()

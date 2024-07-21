@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://djoofq7j1umnj"]
+
+[sub_resource type="GDScript" id="GDScript_kg7i4"]
+script/source = "extends Node
+class_name ActionManager
+
+@export var parent: CharacterBody2D
+@export var input_disabled: bool
+
+# actions
+@export var basic_action: Action
+@export var secondary_action: Action
+@export var special_action: Action
+var current_action: Action
+
+# TODO: track current action
+
+func _input(event):
+	if input_disabled:
+		return
+	
+	# deal input
+	if event.is_action_pressed(\"basic_action\") && basic_action.action_available:
+		basic_action._start()
+	
+	if event.is_action_pressed(\"secondary_action\") && secondary_action.action_available:
+		secondary_action._start()
+		
+	if event.is_action_pressed(\"special_action\") && special_action.action_available:
+		special_action._start()
+		
+func _stop_current_action():
+	# stop current_action
+	current_action._stop()
+	
+func _on_current_action_end(action: Action):
+	if current_action == action:
+		# remove action from current_action
+		current_action = null
+"
+
+[node name="ActionManager" type="Node"]
+script = SubResource("GDScript_kg7i4")
+auto = null
