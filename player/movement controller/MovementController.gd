@@ -17,7 +17,7 @@ func _handle_input(event) -> void:
 	# handle input event
 	var directionX = Input.get_axis("move_left", "move_right")
 	var directionY = Input.get_axis("move_up", "move_down")
-	direction = Vector2(directionX, directionY)
+	direction = Vector2(directionX, directionY).normalized()
 
 func _handle_physics(_delta) -> void:
 	parent.velocity = direction * SPEED

@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bje8xclox6jiu"]
+[gd_scene load_steps=8 format=3 uid="uid://bje8xclox6jiu"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_tuq5s"]
 [ext_resource type="PackedScene" uid="uid://b15kbyg7k4fwd" path="res://map/bar_map.tscn" id="1_yokby"]
 [ext_resource type="PackedScene" uid="uid://dvpthewkuttia" path="res://player/PCs/Gladiator.tscn" id="2_l72q6"]
 [ext_resource type="PackedScene" uid="uid://dr4d5i7gefy27" path="res://enemy/enemy.tscn" id="3_8o57m"]
@@ -18,11 +19,13 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_tuq5s")
 
 [node name="BarMap" parent="." instance=ExtResource("1_yokby")]
-position = Vector2(568, -112)
 
-[node name="Gladiator" parent="." instance=ExtResource("2_l72q6")]
+[node name="PCs" type="Node2D" parent="."]
+
+[node name="Gladiator" parent="PCs" groups=["pc"] instance=ExtResource("2_l72q6")]
 material = SubResource("ShaderMaterial_4gvr3")
 position = Vector2(560, 400)
 

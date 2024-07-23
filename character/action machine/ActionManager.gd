@@ -8,8 +8,14 @@ class_name ActionManager
 @export var basic_action: Action
 @export var secondary_action: Action
 @export var special_action: Action
-# track current action
-var current_action: Action
+var actions: Dictionary = {}
+
+func _ready():
+	for child in get_children():
+		if child is Action:
+			actions[child.name.to_lower()] = child
+		else:
+			push_warning("WARNING: " + child.name + " is not State.")
 
 func _input(event):
 	if input_disabled:
@@ -24,13 +30,24 @@ func _input(event):
 		
 	if event.is_action_pressed("special_action") && special_action.action_available:
 		special_action._start()
+
+func _start_action(action_key: String, direction: Vector2i = Vector2i(0,0)):
+	if !actions.get(action_key):
+		# action_key unavailable
+		return
 		
-func _stop_current_action():
-	# stop current_action
-	if current_action:
-		current_action._stop()
+	var new_action: Action = actions.get(action_key)
+	if new_action.action_available:
+		if new_action.has_method("_lock_on"):
+			# start lockon
+			new_action._lock_on(direction)
+		else:
+			# start action
+			new_action._start()
 	
-func _on_current_action_end(action: Action):
-	if current_action == action:
-		# remove action from current_action
-		current_action = null
+func _stop_action(action_key: String):
+	if !actions.get(action_key):
+		# action_key unavailable
+		return
+		
+	actions.get(action_key)._stop()

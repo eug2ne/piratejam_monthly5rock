@@ -2,10 +2,10 @@ extends State
 class_name EnemyState
 
 # physics property
-var SPEED = 50
+var SPEED = 30
 
-const IDLE_SPEED = 50
-const MOVE_SPEED = 80
+const IDLE_SPEED = 30
+const MOVE_SPEED = 50
 
 func _on_enter() -> void:
 	# play state animation

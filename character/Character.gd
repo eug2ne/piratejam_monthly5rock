@@ -20,7 +20,5 @@ func _take_damage(damage: float, _from: Character) -> void:
 func _take_death() -> void:
 	# stop character
 	velocity = Vector2(0,0)
-	action_manager._stop_current_action()
-	# TODO: disable character / remove characer from scene after death animation
 	state_manager._set_current_state("dead")
 	

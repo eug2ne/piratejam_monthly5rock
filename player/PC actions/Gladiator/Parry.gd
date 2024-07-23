@@ -13,9 +13,9 @@ func _process(_delta) -> void:
 		target_area.get_node("AnimatedSprite2D").flip_h = false
 
 func _on_target_area_area_entered(area: Area2D) -> void:
+	# FIXME: make character not take damage when parry successful
 	# get target
-	var enemy_attack: Action = area.get_parent()
-	# parry enemy attack
-	if enemy_attack.has_method("_parry"):
-		# pass parry damage
+	if area.get_parent() is EnemyAction:
+		var enemy_attack: EnemyAction = area.get_parent()
+		# parry enemy attack
 		enemy_attack._parry(parent.character_resource._deal_parry_damage(), parent)
