@@ -1,0 +1,273 @@
+[gd_scene load_steps=16 format=3 uid="uid://coo8juutpxbgw"]
+
+[ext_resource type="Script" path="res://character/character indicator/Indicator.gd" id="1_ah0u0"]
+[ext_resource type="Texture2D" uid="uid://bsw2hdeh2m6h5" path="res://assets/vfx/Blinker.png" id="1_iu7w1"]
+[ext_resource type="Texture2D" uid="uid://s06jkb3dov23" path="res://assets/vfx/Exclamation mark.png" id="2_yvh4y"]
+[ext_resource type="FontFile" uid="uid://0lbcqeg82nea" path="res://assets/fonts/Silver.ttf" id="3_0d2eq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkpog"]
+atlas = ExtResource("1_iu7w1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdvpa"]
+atlas = ExtResource("1_iu7w1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hr15d"]
+atlas = ExtResource("1_iu7w1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6xls"]
+atlas = ExtResource("1_iu7w1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qm1q"]
+atlas = ExtResource("1_iu7w1")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msnu6"]
+atlas = ExtResource("2_yvh4y")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q0nbl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kkpog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdvpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hr15d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6xls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qm1q")
+}],
+"loop": true,
+"name": &"alert",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msnu6")
+}],
+"loop": true,
+"name": &"lockon",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_uoirg"]
+resource_name = "alert"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridContainer/MarginContainer/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"alert"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GridContainer/MarginContainer/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GridContainer/MarginContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_82ulu"]
+resource_name = "lockon"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridContainer/MarginContainer/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"lockon"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GridContainer/MarginContainer/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GridContainer/MarginContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_rn2y0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridContainer/MarginContainer/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GridContainer/MarginContainer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ngnn"]
+_data = {
+"RESET": SubResource("Animation_rn2y0"),
+"alert": SubResource("Animation_uoirg"),
+"lockon": SubResource("Animation_82ulu")
+}
+
+[node name="Indicator" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -648.0
+offset_right = -576.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_ah0u0")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/MarginContainer"]
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_q0nbl")
+animation = &"lockon"
+
+[node name="DamageContainer" type="VBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="Damage" type="Label" parent="GridContainer/DamageContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.199732, 0.199732, 0.199732, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_0d2eq")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Parry" type="Label" parent="GridContainer/DamageContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.199732, 0.199732, 0.199732, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_0d2eq")
+theme_override_font_sizes/font_size = 20
+text = "Parry"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="States" type="VBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="Buff" type="Label" parent="GridContainer/States"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.199732, 0.199732, 0.199732, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_0d2eq")
+theme_override_font_sizes/font_size = 20
+text = "Buff
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Debuff" type="Label" parent="GridContainer/States"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.199732, 0.199732, 0.199732, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_0d2eq")
+theme_override_font_sizes/font_size = 20
+text = "Debuff
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4ngnn")
+}
