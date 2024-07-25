@@ -16,25 +16,36 @@ class_name CharacterResource
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-func _deal_damage(target_agility: float, target_defense: float) -> float:
-	# get damage according to ap + accuracy + critical_rate + target_agility + target_defense
-	if rng.randi_range(0,100) > accuracy:
-		# miss deal
-		return roundf(ap * rng.randf_range(0,accuracy) / 20)
-	
+func _check_miss(target_agility: float) -> bool:
+	# check miss
+	if rng.randi_range(0,30) < target_agility:
+		return true
+	return false
+
+func _check_critical() -> bool:
+	# check critical
 	if rng.randi_range(0,40) < critical_rate:
+		return true
+	return false
+
+func _deal_damage(target_defense: float, critical: bool) -> float:
+	# get damage according to ap + accuracy + critical_rate + target_agility + target_defense
+	if critical:
 		# critical deal >> do not apply target_agility + target_defense
+		# TODO: pass critical to indicator
 		return snappedf(ap * rng.randf_range(1,2), 0.1)
 		
-	if rng.randi_range(0,30) < target_agility:
+	if rng.randi_range(0,100) > accuracy:
 		# miss deal
-		return 0
+		## pass miss to indicator?
+		return roundf(ap * rng.randf_range(0,accuracy) / 20)
+	
 	else:
 		# hit deal >> apply target_defense
 		return roundf(ap - rng.randf_range(0,target_defense))
 		
-func _deal_parry_damage() -> float:
-	if rng.randi_range(0,40) < critical_rate:
+func _deal_parry_damage(critical: bool) -> float:
+	if critical:
 		# critical deal
 		return snappedf(parry_damage * rng.randf_range(1.5,2), 0.1)
 	else:

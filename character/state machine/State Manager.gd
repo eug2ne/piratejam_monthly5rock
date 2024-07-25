@@ -8,6 +8,7 @@ var current_state: State
 # imported from parent
 @export var parent: Character
 @export var action_manager: ActionManager
+@export var indicator: CharacterIndicator
 
 func _ready():
 	for child in get_children():
@@ -17,6 +18,7 @@ func _ready():
 			child.parent = parent
 			child.anim = parent.get_node("AnimationPlayer")
 			child.action_manager = action_manager
+			child.indicator = indicator
 		else:
 			push_warning("WARNING: " + child.name + " is not State.")
 	

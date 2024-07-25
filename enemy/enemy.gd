@@ -5,8 +5,8 @@ extends Character
 func _physics_process(_delta) -> void:
 	move_and_slide()
 	
-func _take_damage(damage: float, from: Character) -> void:
-	super(damage, from)
+func _take_damage(damage: float, critical: bool, from: Character) -> void:
+	super(damage, critical, from)
 	
 	if character_resource.hp != 0:
 		# change state to attack + set target

@@ -1,12 +1,54 @@
 extends Control
 class_name CharacterIndicator
 
+var parent: Character
+@onready var anim: AnimationPlayer = $AnimationPlayer
 
-# Called when the node enters the scene tree for the first time.
+var label: PackedScene = preload("res://character/character indicator/label/IndicatorLabel.tscn")
+@onready var states_container: BoxContainer = $GridContainer/States
+
+# labels
+@onready var critical_label: IndicatorLabel = $DamageContainer/Critical
+@onready var damage_label: IndicatorLabel = $DamageContainer/Damage
+@onready var parry_label: IndicatorLabel = $DamageContainer/Parry
+
+signal _end_alert
+
 func _ready():
-	pass # Replace with function body.
+	parent = get_parent()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	global_position = parent.global_position
+
+func _start_alert():
+	anim.play("alert")
+	
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "alert":
+		# emit end_alert signal
+		emit_signal("_end_alert")
+
+func _start_lockon():
+	anim.play("lockon")
+	
+func _show_critical():
+	critical_label._show()
+	
+func _show_damage(damage: float):
+	# TODO: create CharacterIndicatorLabel class + add timer/animation to each label
+	# TODO: show critical
+	# show damage label
+	damage_label._show(str(damage).pad_decimals(1))
+	
+func _show_parry():
+	# TODO: show parry label
+	parry_label._show()
+
+func _add_state(state_name: String, state_show_time: float):
+	# add state label to states container
+	var new_label: IndicatorLabel = label.instantiate()
+	# pass state_time to new_label
+	new_label.show_time = state_show_time
+	# show new_label
+	states_container.add_child(new_label)
+	new_label._show(state_name)

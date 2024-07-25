@@ -140,6 +140,9 @@ _data = {
 
 [node name="EnemyAttack" type="Node"]
 script = ExtResource("1_dbar0")
+distance = 50.0
+target_group = "pc"
+cool_time = 3.5
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false

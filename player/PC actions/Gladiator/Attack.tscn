@@ -144,6 +144,7 @@ _data = {
 
 [node name="Attack" type="Node"]
 script = ExtResource("1_uma2o")
+target_group = "enemy"
 cool_time = 0.5
 
 [node name="Area2D" type="Area2D" parent="."]

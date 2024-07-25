@@ -2,6 +2,7 @@ extends Node
 class_name ActionManager
 
 @export var parent: CharacterBody2D
+@export var indicator: CharacterIndicator
 @export var input_disabled: bool # if true, do not deal input
 
 # actions
@@ -14,6 +15,8 @@ func _ready():
 	for child in get_children():
 		if child is Action:
 			actions[child.name.to_lower()] = child
+			child.parent = parent
+			child.indicator = indicator
 		else:
 			push_warning("WARNING: " + child.name + " is not State.")
 

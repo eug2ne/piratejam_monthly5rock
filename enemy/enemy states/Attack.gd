@@ -8,7 +8,10 @@ var attack_direction: Vector2i
 func _on_enter() -> void:
 	super()
 	# play alert animation
-	anim.play("alert")
+	lockon = true
+	indicator._start_alert()
+	await indicator._end_alert
+	lockon = false
 	# set speed to moving speed
 	SPEED = MOVE_SPEED
 

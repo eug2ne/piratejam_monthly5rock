@@ -24,6 +24,8 @@ func _handle_physics(_delta) -> void:
 	parent.move_and_slide()
 	
 func _handle_process(_delta) -> void:
+	# FIXME: when player take damage, damage animation interrupted by movement animation
+		## need to play both animations at the same time
 	# handle parent animation according to parent.velocity	
 	if parent.velocity.x == 0 && parent.velocity.y > 0:
 		# move down

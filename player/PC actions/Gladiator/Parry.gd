@@ -18,4 +18,7 @@ func _on_target_area_area_entered(area: Area2D) -> void:
 	if area.get_parent() is EnemyAction:
 		var enemy_attack: EnemyAction = area.get_parent()
 		# parry enemy attack
-		enemy_attack._parry(parent.character_resource._deal_parry_damage(), parent)
+		var critical: bool = parent.character_resource._check_critical()
+		enemy_attack._parry(parent.character_resource._deal_parry_damage(critical), critical, parent)
+		# signal indicator
+		indicator._show_parry()

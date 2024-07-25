@@ -3,16 +3,23 @@ class_name Character
 
 @export var character_resource: CharacterResource
 
+@onready var indicator: CharacterIndicator = $Indicator
 @onready var action_manager: ActionManager = $ActionManager
 @onready var state_manager: StateManager = $StateManager
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
-func _take_damage(damage: float, _from: Character) -> void:
+func _take_damage(damage: float, critical: bool, _from: Character) -> void:
+	# show critical
+	# FIXME: critical too low?
+	print(critical)
+	if critical:
+		indicator._show_critical()
+	# pass damage to indicator
+	indicator._show_damage(damage)
 	# apply damage to character hp
 	character_resource._apply_damage(damage)
 	# play damage animation
 	anim.play("damage")
-	
 	if character_resource.hp == 0:
 		# character death
 		_take_death()

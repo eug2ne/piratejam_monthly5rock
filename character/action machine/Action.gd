@@ -1,7 +1,8 @@
 extends Node
 class_name Action
 
-@export var parent: Character
+var parent: Character
+var indicator: CharacterIndicator
 
 var targets: Array[Character] # enemy / pc affected by action
 @onready var target_area: Area2D = $Area2D

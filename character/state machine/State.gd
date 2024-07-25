@@ -6,6 +6,7 @@ class_name State
 var parent: CharacterBody2D
 var anim: AnimationPlayer
 var action_manager: ActionManager
+var indicator: CharacterIndicator
 
 var next_state: State
 signal Transition

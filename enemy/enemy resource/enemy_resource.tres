@@ -5,7 +5,12 @@
 [resource]
 script = ExtResource("1_w0he3")
 character_name = "enemy"
-hp = 100.0
+hp = 1000.0
 ap = 50.0
+parry_damage = 0.0
+move_speed = 0.0
+dash_speed = 0.0
+defense = 0.0
+agility = 0.0
 accuracy = 25.0
-cirtical_rate = 10.0
+critical_rate = 0.0

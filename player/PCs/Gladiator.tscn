@@ -1,10 +1,11 @@
-[gd_scene load_steps=60 format=3 uid="uid://dvpthewkuttia"]
+[gd_scene load_steps=61 format=3 uid="uid://dvpthewkuttia"]
 
 [ext_resource type="Script" path="res://player/PC.gd" id="1_fhjl8"]
 [ext_resource type="Material" uid="uid://b5sfgjat7dyv0" path="res://character/character shaders/pc_material.tres" id="1_tkqss"]
 [ext_resource type="Texture2D" uid="uid://ckk50b1g4byk4" path="res://assets/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png" id="2_c4731"]
 [ext_resource type="Resource" uid="uid://dhlms7hwnjm" path="res://player/PC resources/Gladiator.tres" id="2_pipyw"]
 [ext_resource type="Script" path="res://player/movement controller/MovementController.gd" id="3_bxr2l"]
+[ext_resource type="PackedScene" uid="uid://coo8juutpxbgw" path="res://character/character indicator/Indicator.tscn" id="4_0yxy1"]
 [ext_resource type="Script" path="res://character/action machine/ActionManager.gd" id="4_tfyyi"]
 [ext_resource type="PackedScene" uid="uid://cndercnoyvxu3" path="res://player/PC actions/Gladiator/Attack.tscn" id="5_52j7o"]
 [ext_resource type="PackedScene" uid="uid://bftq7opuyn0au" path="res://player/PC actions/Gladiator/Parry.tscn" id="7_aqu00"]
@@ -714,6 +715,8 @@ collision_mask = 3
 script = ExtResource("1_fhjl8")
 character_resource = ExtResource("2_pipyw")
 
+[node name="Indicator" parent="." instance=ExtResource("4_0yxy1")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0n5gx")
 
@@ -732,26 +735,23 @@ script = ExtResource("3_bxr2l")
 parent = NodePath("..")
 anim = NodePath("../AnimationPlayer")
 
-[node name="ActionManager" type="Node" parent="." node_paths=PackedStringArray("parent", "basic_action", "secondary_action")]
+[node name="ActionManager" type="Node" parent="." node_paths=PackedStringArray("parent", "indicator", "basic_action", "secondary_action")]
 script = ExtResource("4_tfyyi")
 parent = NodePath("..")
+indicator = NodePath("../Indicator")
 basic_action = NodePath("Attack")
 secondary_action = NodePath("Parry")
 
-[node name="Attack" parent="ActionManager" node_paths=PackedStringArray("parent") instance=ExtResource("5_52j7o")]
-parent = NodePath("../..")
-target_group = "enemy"
+[node name="Attack" parent="ActionManager" instance=ExtResource("5_52j7o")]
 
-[node name="Parry" parent="ActionManager" node_paths=PackedStringArray("parent") instance=ExtResource("7_aqu00")]
-parent = NodePath("../..")
-target_group = "enemy"
-cool_time = 0.5
+[node name="Parry" parent="ActionManager" instance=ExtResource("7_aqu00")]
 
-[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent", "action_manager")]
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent", "action_manager", "indicator")]
 script = ExtResource("9_biyni")
 initial_state = NodePath("Default")
 parent = NodePath("..")
 action_manager = NodePath("../ActionManager")
+indicator = NodePath("../Indicator")
 
 [node name="Default" type="Node" parent="StateManager" node_paths=PackedStringArray("movement_controller", "dash_state", "dead_state")]
 script = ExtResource("9_2uo28")
@@ -768,6 +768,10 @@ script = ExtResource("12_fgoqn")
 movement_controller = NodePath("../../MovementController")
 default_state = NodePath("../Default")
 anim_key = "dash"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateManager/Dash" method="_on_animation_player_animation_finished"]
 [connection signal="Transition" from="StateManager/Default" to="StateManager" method="_set_current_state"]
