@@ -222,6 +222,7 @@ text = "10"
 [node name="Parry" parent="DamageContainer" instance=ExtResource("5_3fj4k")]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.262745, 0.698039, 0.721569, 1)
+theme_override_font_sizes/font_size = 25
 text = "Parry!"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

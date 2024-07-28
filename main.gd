@@ -6,12 +6,30 @@
 
 extends Node2D
 
+@export var current_pc_index: int = 0
+var current_pc: PlayableCharacter
+@onready var pc_group: Array[Node] = get_tree().get_nodes_in_group("pc")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+@onready var combat_UI: Control = $CanvasLayer/CombatUI
+@onready var main_camera: MainCamera = $MainCamera
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _input(event) -> void:
+	if event.is_action_pressed("switch_pc"):
+		# switch current_pc
+		if current_pc_index == pc_group.size() - 1:
+			current_pc_index = 0
+		else:
+			current_pc_index += 1
+		
+		current_pc = pc_group[current_pc_index]
+		
+	# pass current_pc_index + current_pc to CombatUI + MainCamera
+	combat_UI._set_current_pc(current_pc_index, current_pc)
+	main_camera._set_current_pc(current_pc_index, current_pc)
+
+func _ready() -> void:
+	# pass current_pc_index + current_pc to CombatUI + MainCamera
+	current_pc = pc_group[current_pc_index]
+	combat_UI._set_current_pc(current_pc_index, current_pc)
+	main_camera._set_current_pc(current_pc_index, current_pc)

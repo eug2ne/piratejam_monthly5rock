@@ -9,7 +9,7 @@ extends State
 func _on_enter() -> void:
 	# do not play animation
 	# enable input on action_manager
-	action_manager.input_disabled = false
+	#action_manager.input_disabled = false
 	# set movement_controller speed to default speed
 	movement_controller.SPEED = movement_controller.DEFAULT_SPEED
 	

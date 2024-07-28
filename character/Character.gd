@@ -8,10 +8,13 @@ class_name Character
 @onready var state_manager: StateManager = $StateManager
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
+func _ready() -> void:
+	# set max_hp
+	character_resource.max_hp = character_resource.hp
+
 func _take_damage(damage: float, critical: bool, _from: Character) -> void:
+	# TODO: add screenshake when character take/deal damage
 	# show critical
-	# FIXME: critical too low?
-	print(critical)
 	if critical:
 		indicator._show_critical()
 	# pass damage to indicator

@@ -2,7 +2,6 @@ extends EnemyState
 
 var target: Character
 var lockon: bool = false
-@onready var lockon_timer: Timer = $LockOnTimer
 var attack_direction: Vector2i
 
 func _on_enter() -> void:

@@ -1,7 +1,7 @@
 extends Node
 class_name MovementController
 
-@export var parent: Character
+@export var parent: PlayableCharacter
 @export var anim: AnimationPlayer
 
 var direction: Vector2
@@ -14,6 +14,9 @@ func _ready():
 	SPEED = DEFAULT_SPEED
 
 func _handle_input(event) -> void:
+	if !parent.current:
+		return
+	
 	# handle input event
 	var directionX = Input.get_axis("move_left", "move_right")
 	var directionY = Input.get_axis("move_up", "move_down")

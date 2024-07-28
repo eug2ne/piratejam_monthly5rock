@@ -32,11 +32,10 @@ func _start_lockon():
 	anim.play("lockon")
 	
 func _show_critical():
+	# show critical
 	critical_label._show()
 	
 func _show_damage(damage: float):
-	# TODO: create CharacterIndicatorLabel class + add timer/animation to each label
-	# TODO: show critical
 	# show damage label
 	damage_label._show(str(damage).pad_decimals(1))
 	

@@ -1,7 +1,7 @@
 extends Node
 class_name ActionManager
 
-@export var parent: CharacterBody2D
+@export var parent: Character
 @export var indicator: CharacterIndicator
 @export var input_disabled: bool # if true, do not deal input
 
@@ -12,6 +12,9 @@ class_name ActionManager
 var actions: Dictionary = {}
 
 func _ready():
+	if parent is PlayableCharacter && !parent.current:
+		input_disabled = true
+	
 	for child in get_children():
 		if child is Action:
 			actions[child.name.to_lower()] = child

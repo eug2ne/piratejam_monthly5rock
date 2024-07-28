@@ -1,6 +1,7 @@
 extends Node
 class_name Action
 
+@export var action_resource: ActionResource
 var parent: Character
 var indicator: CharacterIndicator
 

@@ -19,6 +19,8 @@ func _on_exit() -> void:
 	parent.get_node("CollisionShape2D").disabled = false
 	# set next_state to default-state
 	next_state = default_state
+	# enable input on action_manager
+	action_manager.input_disabled = false
 	
 func _update_physics(delta):
 	movement_controller._handle_physics(delta)

@@ -28,6 +28,9 @@ func _ready():
 		current_state._on_enter()
 		
 func _input(event):
+	if parent is PlayableCharacter && !parent.current:
+		return
+	
 	if current_state:
 		current_state._update_input(event)
 	
@@ -47,7 +50,6 @@ func _set_current_state(state_key: String = ""):
 	if current_state.name.to_lower() == "dead":
 		return
 	
-	print("state change")
 	# exit current_state
 	current_state._on_exit()
 	
@@ -57,7 +59,6 @@ func _set_current_state(state_key: String = ""):
 		new_state = states.get(state_key)
 	else:
 		new_state = current_state.next_state
-	print(current_state.name, " ", new_state.name)
 	
 	# assign new state
 	current_state = new_state
