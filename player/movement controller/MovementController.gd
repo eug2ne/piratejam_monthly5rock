@@ -3,9 +3,11 @@ class_name MovementController
 
 @export var parent: PlayableCharacter
 @export var anim: AnimationPlayer
+@onready var sprite: AnimatedSprite2D = parent.get_node("AnimatedSprite2D")
 
 var direction: Vector2
 var SPEED: float
+@onready var IDLE_SPEED: float = parent.character_resource.idle_speed
 @onready var DEFAULT_SPEED: float = parent.character_resource.move_speed
 @onready var DASH_SPEED: float = parent.character_resource.dash_speed
 
@@ -15,6 +17,10 @@ func _ready():
 
 func _handle_input(event) -> void:
 	if !parent.current:
+		return
+	if event.is_action_pressed("switch_pc"):
+		# reset direction
+		direction = Vector2(0,0)
 		return
 	
 	# handle input event
@@ -29,28 +35,13 @@ func _handle_physics(_delta) -> void:
 func _handle_process(_delta) -> void:
 	# FIXME: when player take damage, damage animation interrupted by movement animation
 		## need to play both animations at the same time
-	# handle parent animation according to parent.velocity	
-	if parent.velocity.x == 0 && parent.velocity.y > 0:
-		# move down
-		anim.play("move_down")
-	elif  parent.velocity.x == 0 && parent.velocity.y < 0:
-		# move up
-		anim.play("move_up")
-	elif  parent.velocity.x > 0 && parent.velocity.y == 0:
-		# move right
-		anim.play("move_right")
-	elif  parent.velocity.x < 0 && parent.velocity.y == 0:
-		# move left
-		anim.play("move_left")
-	elif  parent.velocity.x > 0 && parent.velocity.y > 0:
-		# move down-right
-		anim.play("move_downright")
-	elif  parent.velocity.x < 0 && parent.velocity.y > 0:
-		# move down-left
-		anim.play("move_downleft")
-	elif  parent.velocity.x > 0 && parent.velocity.y < 0:
-		# move up-right
-		anim.play("move_upright")
-	elif  parent.velocity.x < 0 && parent.velocity.y < 0:
-		# move up-left
-		anim.play("move_upleft")
+	# handle parent animation
+	if SPEED == DEFAULT_SPEED:
+		anim.play("move")
+	elif SPEED == IDLE_SPEED:
+		anim.play("idle")
+	# flip sprite according to parent.velocity
+	if parent.velocity.x < 0:
+		sprite.flip_h = true
+	elif parent.velocity.x > 0:
+		sprite.flip_h = false

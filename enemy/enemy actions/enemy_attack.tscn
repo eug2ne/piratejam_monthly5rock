@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://blvlehvuw5oji"]
+[gd_scene load_steps=15 format=3 uid="uid://blvlehvuw5oji"]
 
 [ext_resource type="Script" path="res://enemy/enemy actions/enemy_attack.gd" id="1_dbar0"]
+[ext_resource type="Resource" uid="uid://ln7ux561bqcx" path="res://enemy/enemy actions/enemy action resources/enemy_attack.tres" id="2_bjib1"]
 [ext_resource type="Texture2D" uid="uid://cfh6chcax1goq" path="res://assets/vfx/SFX400_nyknck/SFX401_nyknck/SFX401_01.png" id="2_lerwu"]
 [ext_resource type="Texture2D" uid="uid://ue7x5udr641" path="res://assets/vfx/SFX400_nyknck/SFX401_nyknck/SFX401_02.png" id="3_4sgdm"]
 [ext_resource type="Texture2D" uid="uid://c2rf18r5rc7i8" path="res://assets/vfx/SFX400_nyknck/SFX401_nyknck/SFX401_03.png" id="4_ran0a"]
@@ -141,6 +142,7 @@ _data = {
 [node name="EnemyAttack" type="Node"]
 script = ExtResource("1_dbar0")
 distance = 50.0
+action_resource = ExtResource("2_bjib1")
 target_group = "pc"
 cool_time = 3.5
 

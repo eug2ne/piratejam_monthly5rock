@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfgiwo00rrjld"]
+
+[ext_resource type="Script" path="res://UI/components/ActionContainer.gd" id="1_07wcg"]
+[ext_resource type="FontFile" uid="uid://0lbcqeg82nea" path="res://assets/fonts/Silver.ttf" id="1_n7lwv"]
+
+[node name="ActionContainer" type="VBoxContainer"]
+custom_minimum_size = Vector2(100, 2.08165e-12)
+offset_right = 100.0
+offset_bottom = 50.0
+script = ExtResource("1_07wcg")
+
+[node name="KeyLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_n7lwv")
+theme_override_font_sizes/font_size = 40
+text = "key"
+horizontal_alignment = 1
+clip_text = true
+uppercase = true
+
+[node name="ActionLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_n7lwv")
+theme_override_font_sizes/font_size = 30
+text = "action"
+horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_n7lwv")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

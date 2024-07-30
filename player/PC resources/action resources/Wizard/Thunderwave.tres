@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionResource" load_steps=3 format=3 uid="uid://bswmrs3u6vbgv"]
+
+[ext_resource type="Script" path="res://character/action machine/ActionResource.gd" id="1_dm4yo"]
+[ext_resource type="Texture2D" uid="uid://cb7ett2dwwyf5" path="res://assets/vfx/npt_nyknck/NPT100.png" id="2_fjrbb"]
+
+[resource]
+script = ExtResource("1_dm4yo")
+action_name = "thunderwave"
+base_damage = 20.0
+parry_action = false
+ui_texture = ExtResource("2_fjrbb")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ActionResource" load_steps=2 format=3 uid="uid://ln7ux561bqcx"]
+
+[ext_resource type="Script" path="res://character/action machine/ActionResource.gd" id="1_23thm"]
+
+[resource]
+script = ExtResource("1_23thm")
+action_name = "enemy attack"
+base_damage = 40.0
+parry_action = false

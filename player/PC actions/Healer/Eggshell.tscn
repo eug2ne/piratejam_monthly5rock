@@ -1,0 +1,188 @@
+[gd_scene load_steps=23 format=3 uid="uid://dvcjhff7dqr4b"]
+
+[ext_resource type="Script" path="res://player/PC actions/Healer/Eggshell.gd" id="1_tbtld"]
+[ext_resource type="Resource" uid="uid://df1572t6ncgrd" path="res://player/PC resources/action resources/Healer/Eggshell.tres" id="2_ht4vr"]
+[ext_resource type="Texture2D" uid="uid://bkf67egko7trm" path="res://assets/vfx/FX000/FX001.png" id="2_jdomy"]
+[ext_resource type="Texture2D" uid="uid://evuowh3b36a" path="res://assets/vfx/FX000/FX002.png" id="3_pe8a7"]
+[ext_resource type="Texture2D" uid="uid://cwwglpbld2oe2" path="res://assets/vfx/FX000/FX003.png" id="4_tr1qr"]
+[ext_resource type="Texture2D" uid="uid://sj2ksxdd722r" path="res://assets/vfx/FX000/FX004.png" id="5_rfske"]
+[ext_resource type="Texture2D" uid="uid://gpxubs070xku" path="res://assets/vfx/FX000/FX005.png" id="6_rpghu"]
+[ext_resource type="Texture2D" uid="uid://pwodr8csbxda" path="res://assets/vfx/FX000/FX006.png" id="7_76i2c"]
+[ext_resource type="Texture2D" uid="uid://bbqyasxy0ui2g" path="res://assets/vfx/FX000/FX007.png" id="8_tyfo1"]
+[ext_resource type="Texture2D" uid="uid://cwkubrrxnunv0" path="res://assets/vfx/FX000/FX008.png" id="9_d4jdg"]
+[ext_resource type="Texture2D" uid="uid://bx6kfavwamhee" path="res://assets/vfx/FX000/FX009.png" id="10_7jpne"]
+[ext_resource type="Texture2D" uid="uid://bxtqdsrkq7n3u" path="res://assets/vfx/FX000/FX010.png" id="11_n8xs6"]
+[ext_resource type="Texture2D" uid="uid://df2g2hsngai86" path="res://assets/vfx/FX000/FX011.png" id="12_o085n"]
+[ext_resource type="Texture2D" uid="uid://dej2bvi1hfb00" path="res://assets/vfx/FX000/FX012.png" id="13_t2tjc"]
+[ext_resource type="Texture2D" uid="uid://bso4hfyyggj6x" path="res://assets/vfx/FX000/FX013.png" id="14_oymxt"]
+[ext_resource type="Texture2D" uid="uid://cfdlvo48iujtx" path="res://assets/vfx/FX000/FX014.png" id="15_rgf2x"]
+[ext_resource type="Texture2D" uid="uid://cdc820j0aguch" path="res://assets/vfx/FX000/FX015.png" id="16_axsu3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vkjjb"]
+radius = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_25yye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jdomy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pe8a7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tr1qr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rfske")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rpghu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_76i2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tyfo1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_d4jdg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7jpne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_n8xs6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_o085n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_t2tjc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_oymxt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_rgf2x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_axsu3")
+}],
+"loop": true,
+"name": &"action",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_deso7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"action"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_2fx1p"]
+resource_name = "action"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"action"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cuiiv"]
+_data = {
+"RESET": SubResource("Animation_deso7"),
+"action": SubResource("Animation_2fx1p")
+}
+
+[node name="Eggshell" type="Node"]
+script = ExtResource("1_tbtld")
+action_resource = ExtResource("2_ht4vr")
+target_group = "pc"
+cool_time = 8.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vkjjb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_25yye")
+animation = &"action"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cuiiv")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -12,8 +12,8 @@ class_name ActionManager
 var actions: Dictionary = {}
 
 func _ready():
-	if parent is PlayableCharacter && !parent.current:
-		input_disabled = true
+	if parent is PlayableCharacter:
+		input_disabled = !parent.current
 	
 	for child in get_children():
 		if child is Action:

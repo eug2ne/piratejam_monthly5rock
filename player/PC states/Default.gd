@@ -21,7 +21,7 @@ func _update_input(event) -> void:
 		# change state to dash
 		emit_signal("Transition")
 		return
-		
+	
 	# handle basic movement
 	movement_controller._handle_input(event)
 	

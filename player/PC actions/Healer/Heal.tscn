@@ -1,0 +1,168 @@
+[gd_scene load_steps=12 format=3 uid="uid://csrb08pqiv4ot"]
+
+[ext_resource type="Script" path="res://player/PC actions/Healer/Heal.gd" id="1_v2ew1"]
+[ext_resource type="Texture2D" uid="uid://ca0xuuipt6x0a" path="res://assets/vfx/SP600_nyknck/SP602_nyknck/SP602_01.png" id="2_4lcwu"]
+[ext_resource type="Resource" uid="uid://di3t2drhjraxx" path="res://player/PC resources/action resources/Healer/Heal.tres" id="2_eaxl6"]
+[ext_resource type="Texture2D" uid="uid://crae41b3xfkpb" path="res://assets/vfx/SP600_nyknck/SP602_nyknck/SP602_02.png" id="3_o5sis"]
+[ext_resource type="Texture2D" uid="uid://d2kegdxobm0cc" path="res://assets/vfx/SP600_nyknck/SP602_nyknck/SP602_03.png" id="4_arqra"]
+[ext_resource type="Texture2D" uid="uid://dsa6fd6q4a5nb" path="res://assets/vfx/SP600_nyknck/SP602_nyknck/SP602_04.png" id="5_bct2x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jfd5"]
+size = Vector2(32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x4v25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4lcwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_o5sis")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_arqra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bct2x")
+}],
+"loop": true,
+"name": &"action",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_syexe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"action"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6w0qi"]
+resource_name = "action"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"action"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hqkvc"]
+_data = {
+"RESET": SubResource("Animation_syexe"),
+"action": SubResource("Animation_6w0qi")
+}
+
+[node name="Heal" type="Node"]
+script = ExtResource("1_v2ew1")
+action_resource = ExtResource("2_eaxl6")
+target_group = "pc"
+cool_time = 0.8
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_5jfd5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+sprite_frames = SubResource("SpriteFrames_x4v25")
+animation = &"action"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hqkvc")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_target_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -17,7 +17,7 @@ func _on_enter() -> void:
 func _on_exit() -> void:
 	# enable collision
 	parent.get_node("CollisionShape2D").disabled = false
-	# set next_state to default-state
+	# set next_state
 	next_state = default_state
 	# enable input on action_manager
 	action_manager.input_disabled = false

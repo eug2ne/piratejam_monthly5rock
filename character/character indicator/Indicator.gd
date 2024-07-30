@@ -11,6 +11,7 @@ var label: PackedScene = preload("res://character/character indicator/label/Indi
 @onready var critical_label: IndicatorLabel = $DamageContainer/Critical
 @onready var damage_label: IndicatorLabel = $DamageContainer/Damage
 @onready var parry_label: IndicatorLabel = $DamageContainer/Parry
+@onready var debuff_label: IndicatorLabel = $GridContainer/States/Debuff
 
 signal _end_alert
 
@@ -40,8 +41,10 @@ func _show_damage(damage: float):
 	damage_label._show(str(damage).pad_decimals(1))
 	
 func _show_parry():
-	# TODO: show parry label
 	parry_label._show()
+
+func _show_debuff():
+	debuff_label._show()
 
 func _add_state(state_name: String, state_show_time: float):
 	# add state label to states container

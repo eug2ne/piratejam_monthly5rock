@@ -1,16 +1,19 @@
-[gd_resource type="Resource" script_class="CharacterResource" load_steps=2 format=3 uid="uid://10qy4oful0rp"]
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=3 format=3 uid="uid://10qy4oful0rp"]
 
 [ext_resource type="Script" path="res://character/character resource/CharacterResource.gd" id="1_bcqc2"]
+[ext_resource type="Texture2D" uid="uid://b7h3qc85rf7qd" path="res://assets/wizard_profile.png" id="2_x6jp5"]
 
 [resource]
 script = ExtResource("1_bcqc2")
 character_name = "wizard"
 hp = 150.0
-ap = 30.0
-parry_damage = 30.0
-move_speed = 200.0
+ap = 0.0
+parry_damage = 0.0
+idle_speed = 30.0
+move_speed = 180.0
 dash_speed = 300.0
-defense = 15.0
-agility = 15.0
-accuracy = 30.0
-critical_rate = 20.0
+defense = 10.0
+agility = 10.0
+accuracy = 15.0
+critical_rate = 5.0
+ui_profile = ExtResource("2_x6jp5")

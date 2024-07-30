@@ -1,0 +1,202 @@
+[gd_scene load_steps=20 format=3 uid="uid://m68cprrbwc2n"]
+
+[ext_resource type="Script" path="res://player/PC actions/Wizard/Fireball.gd" id="1_77uug"]
+[ext_resource type="Resource" uid="uid://cdiep22y4rite" path="res://player/PC resources/action resources/Wizard/Fireball.tres" id="2_g4j46"]
+[ext_resource type="Texture2D" uid="uid://clyp1ysibbn6k" path="res://assets/vfx/explosion/Explosion/1.png" id="2_ps8al"]
+[ext_resource type="Texture2D" uid="uid://cao1gtetmnfjx" path="res://assets/vfx/explosion/Explosion/2.png" id="3_cm8vy"]
+[ext_resource type="Texture2D" uid="uid://dygin3gex8f8c" path="res://assets/vfx/explosion/Explosion/3.png" id="4_14bh4"]
+[ext_resource type="Texture2D" uid="uid://gpo8hvnt46cm" path="res://assets/vfx/explosion/Explosion/4.png" id="5_82tvs"]
+[ext_resource type="Texture2D" uid="uid://bwe66a863kfuo" path="res://assets/vfx/explosion/Explosion/5.png" id="6_355l6"]
+[ext_resource type="Texture2D" uid="uid://binsx58x86s1m" path="res://assets/vfx/explosion/Explosion/6.png" id="7_1wa8p"]
+[ext_resource type="Texture2D" uid="uid://bgx5i16rxqb3a" path="res://assets/vfx/explosion/Explosion/7.png" id="8_aa8il"]
+[ext_resource type="Texture2D" uid="uid://hixicq42k0xo" path="res://assets/vfx/explosion/Explosion/8.png" id="9_ohv6g"]
+[ext_resource type="Texture2D" uid="uid://ovr440epue3" path="res://assets/vfx/explosion/Explosion/9.png" id="10_x5i14"]
+[ext_resource type="Texture2D" uid="uid://48024yqm2gib" path="res://assets/vfx/explosion/Explosion/10.png" id="11_6she4"]
+[ext_resource type="Texture2D" uid="uid://bt8ij6keyqdda" path="res://assets/vfx/explosion/Explosion/11.png" id="12_3cu2a"]
+[ext_resource type="Texture2D" uid="uid://ppu1r2c14wmo" path="res://assets/vfx/explosion/Explosion/12.png" id="13_76bry"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f04c5"]
+radius = 112.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44tdq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ps8al")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cm8vy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_14bh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_82tvs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_355l6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1wa8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_aa8il")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ohv6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_x5i14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6she4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3cu2a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_76bry")
+}],
+"loop": true,
+"name": &"action",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_3mhhy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"action"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hwllg"]
+resource_name = "action"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"action"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ueye2"]
+_data = {
+"RESET": SubResource("Animation_3mhhy"),
+"action": SubResource("Animation_hwllg")
+}
+
+[node name="Fireball" type="Node"]
+script = ExtResource("1_77uug")
+action_resource = ExtResource("2_g4j46")
+target_group = "enemy"
+cool_time = 5.5
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_f04c5")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_44tdq")
+animation = &"action"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ueye2")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_target_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

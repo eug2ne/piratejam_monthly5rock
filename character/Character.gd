@@ -6,7 +6,7 @@ class_name Character
 @onready var indicator: CharacterIndicator = $Indicator
 @onready var action_manager: ActionManager = $ActionManager
 @onready var state_manager: StateManager = $StateManager
-@onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var effects_anim: AnimationPlayer = $EffectsAnimationPlayer
 
 func _ready() -> void:
 	# set max_hp
@@ -22,10 +22,27 @@ func _take_damage(damage: float, critical: bool, _from: Character) -> void:
 	# apply damage to character hp
 	character_resource._apply_damage(damage)
 	# play damage animation
-	anim.play("damage")
+	effects_anim.play("damage")
 	if character_resource.hp == 0:
 		# character death
 		_take_death()
+		
+func _take_heal(recover: float, critical: bool, _from: Character) -> void:
+	# show critical
+	if critical:
+		indicator._show_critical()
+	# pass recover to indicator
+	indicator._show_damage(recover)
+	# apply recover to character hp
+	character_resource._apply_heal(recover)
+	# play heal animation
+	effects_anim.play("heal")
+	
+func _take_debuff(debuff: float, debuff_stat: String) -> void:
+	# debuff character stat
+	character_resource[debuff_stat] -= debuff
+	# pass debuff to indicator
+	indicator._show_debuff()
 	
 func _take_death() -> void:
 	# stop character

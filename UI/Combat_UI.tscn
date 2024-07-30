@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqkd670a24rn"]
+[gd_scene load_steps=7 format=3 uid="uid://cqkd670a24rn"]
 
 [ext_resource type="Script" path="res://UI/Combat_UI.gd" id="1_wiuuq"]
+[ext_resource type="PackedScene" uid="uid://cfgiwo00rrjld" path="res://UI/components/ActionContainer.tscn" id="2_8u6dk"]
 [ext_resource type="FontFile" uid="uid://0lbcqeg82nea" path="res://assets/fonts/Silver.ttf" id="2_nmp1b"]
+[ext_resource type="Texture2D" uid="uid://6kk3cfljkokw" path="res://assets/gladiator_profile.png" id="3_oof5g"]
+[ext_resource type="Texture2D" uid="uid://b7h3qc85rf7qd" path="res://assets/wizard_profile.png" id="4_6cbou"]
+[ext_resource type="Texture2D" uid="uid://cxe13nfcpos54" path="res://assets/healer_profile.png" id="5_csu7w"]
 
 [node name="CombatUI" type="Control"]
 z_index = 100
@@ -21,147 +25,44 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -65.0
+offset_left = -308.0
+offset_top = -83.0
 grow_horizontal = 0
 grow_vertical = 0
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 2.08165e-12)
-layout_mode = 2
-
-[node name="J" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="ActionContainer_secondary" parent="HBoxContainer" instance=ExtResource("2_8u6dk")]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("2_nmp1b")
-theme_override_font_sizes/font_size = 40
-text = "J"
-horizontal_alignment = 1
-clip_text = true
-uppercase = true
+key = "j"
 
-[node name="SecondaryAction" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="ActionContainer_basic" parent="HBoxContainer" instance=ExtResource("2_8u6dk")]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("2_nmp1b")
-theme_override_font_sizes/font_size = 30
-text = "secondary"
-horizontal_alignment = 1
-clip_text = true
+key = "k"
 
-[node name="ActionPanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
-clip_contents = true
-custom_minimum_size = Vector2(70, 2.08165e-12)
-layout_mode = 2
-
-[node name="ActionPanel" type="Panel" parent="HBoxContainer/VBoxContainer/ActionPanelContainer"]
-clip_contents = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 2.08165e-12)
-layout_mode = 2
-
-[node name="K" type="Label" parent="HBoxContainer/VBoxContainer2"]
+[node name="ActionContainer_special" parent="HBoxContainer" instance=ExtResource("2_8u6dk")]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("2_nmp1b")
-theme_override_font_sizes/font_size = 40
-text = "K"
-horizontal_alignment = 1
-clip_text = true
-uppercase = true
-
-[node name="BasicAction" type="Label" parent="HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("2_nmp1b")
-theme_override_font_sizes/font_size = 30
-text = "basic"
-horizontal_alignment = 1
-clip_text = true
-
-[node name="ActionPanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer2"]
-clip_contents = true
-custom_minimum_size = Vector2(70, 2.08165e-12)
-layout_mode = 2
-
-[node name="ActionPanel" type="Panel" parent="HBoxContainer/VBoxContainer2/ActionPanelContainer"]
-clip_contents = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 2.08165e-12)
-layout_mode = 2
-
-[node name="L" type="Label" parent="HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("2_nmp1b")
-theme_override_font_sizes/font_size = 40
-text = "L"
-horizontal_alignment = 1
-clip_text = true
-uppercase = true
-
-[node name="SpecialAction" type="Label" parent="HBoxContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("2_nmp1b")
-theme_override_font_sizes/font_size = 30
-text = "special"
-horizontal_alignment = 1
-clip_text = true
-
-[node name="ActionPanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer3"]
-clip_contents = true
-custom_minimum_size = Vector2(70, 2.08165e-12)
-layout_mode = 2
-
-[node name="ActionPanel" type="Panel" parent="HBoxContainer/VBoxContainer3/ActionPanelContainer"]
-clip_contents = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-size_flags_horizontal = 4
+key = "l"
 
 [node name="PCBoxContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(100, 300)
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -20.0
-offset_bottom = 20.0
-grow_horizontal = 0
+offset_top = -160.0
+offset_right = 100.0
+offset_bottom = 160.0
 grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
 [node name="PCMarginContainer0" type="MarginContainer" parent="PCBoxContainer"]
 clip_contents = true
-custom_minimum_size = Vector2(80, 90)
+custom_minimum_size = Vector2(100, 120)
 layout_mode = 2
-size_flags_vertical = 6
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
@@ -170,11 +71,23 @@ theme_override_constants/margin_bottom = 5
 [node name="Panel" type="Panel" parent="PCBoxContainer/PCMarginContainer0"]
 layout_mode = 2
 
+[node name="Sprite2D" type="Sprite2D" parent="PCBoxContainer/PCMarginContainer0/Panel"]
+texture = ExtResource("3_oof5g")
+centered = false
+
+[node name="HealthLabel" type="Label" parent="PCBoxContainer/PCMarginContainer0"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_nmp1b")
+theme_override_font_sizes/font_size = 30
+vertical_alignment = 1
+
 [node name="PCMarginContainer1" type="MarginContainer" parent="PCBoxContainer"]
 clip_contents = true
-custom_minimum_size = Vector2(80, 90)
+custom_minimum_size = Vector2(100, 120)
 layout_mode = 2
-size_flags_vertical = 6
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
@@ -183,11 +96,23 @@ theme_override_constants/margin_bottom = 5
 [node name="Panel" type="Panel" parent="PCBoxContainer/PCMarginContainer1"]
 layout_mode = 2
 
+[node name="Sprite2D" type="Sprite2D" parent="PCBoxContainer/PCMarginContainer1/Panel"]
+texture = ExtResource("4_6cbou")
+centered = false
+
+[node name="HealthLabel" type="Label" parent="PCBoxContainer/PCMarginContainer1"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_nmp1b")
+theme_override_font_sizes/font_size = 30
+vertical_alignment = 1
+
 [node name="PCMarginContainer2" type="MarginContainer" parent="PCBoxContainer"]
 clip_contents = true
-custom_minimum_size = Vector2(80, 90)
+custom_minimum_size = Vector2(100, 120)
 layout_mode = 2
-size_flags_vertical = 6
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
@@ -195,3 +120,16 @@ theme_override_constants/margin_bottom = 5
 
 [node name="Panel" type="Panel" parent="PCBoxContainer/PCMarginContainer2"]
 layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="PCBoxContainer/PCMarginContainer2/Panel"]
+texture = ExtResource("5_csu7w")
+centered = false
+
+[node name="HealthLabel" type="Label" parent="PCBoxContainer/PCMarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_nmp1b")
+theme_override_font_sizes/font_size = 30
+vertical_alignment = 1

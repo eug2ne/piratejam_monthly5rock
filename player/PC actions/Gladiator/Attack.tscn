@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://cndercnoyvxu3"]
 
 [ext_resource type="Script" path="res://player/PC actions/Gladiator/Attack.gd" id="1_uma2o"]
-[ext_resource type="Texture2D" uid="uid://dy87ut1etn2uk" path="res://assets/vfx/SFX300_nyknck/SFX303_nyknck/SFX303_01.png" id="2_pk8t8"]
-[ext_resource type="Texture2D" uid="uid://bhnndie8lrky3" path="res://assets/vfx/SFX300_nyknck/SFX303_nyknck/SFX303_02.png" id="3_wdq3g"]
-[ext_resource type="Texture2D" uid="uid://ua1j4s63dght" path="res://assets/vfx/SFX300_nyknck/SFX303_nyknck/SFX303_03.png" id="4_2nvsd"]
-[ext_resource type="Texture2D" uid="uid://ck4whnxx66w4y" path="res://assets/vfx/SFX300_nyknck/SFX303_nyknck/SFX303_04.png" id="5_dep7l"]
-[ext_resource type="Texture2D" uid="uid://dc0nwxrqr51f6" path="res://assets/vfx/SFX300_nyknck/SFX303_nyknck/SFX303_05.png" id="6_ito8u"]
+[ext_resource type="Texture2D" uid="uid://8m3cdv81qpci" path="res://assets/vfx/SFX300_nyknck/SFX301_nyknck/SFX301_01.png" id="2_c8136"]
+[ext_resource type="Texture2D" uid="uid://dgchil4urbbeq" path="res://assets/vfx/SFX300_nyknck/SFX301_nyknck/SFX301_02.png" id="3_txlfh"]
+[ext_resource type="Texture2D" uid="uid://cda1dtkpuhm6u" path="res://assets/vfx/SFX300_nyknck/SFX301_nyknck/SFX301_03.png" id="4_7sffa"]
+[ext_resource type="Texture2D" uid="uid://bmuoqlbpggo2p" path="res://assets/vfx/SFX300_nyknck/SFX301_nyknck/SFX301_04.png" id="5_7fswu"]
+[ext_resource type="Texture2D" uid="uid://sfmv6p8f62ge" path="res://assets/vfx/SFX300_nyknck/SFX301_nyknck/SFX301_05.png" id="6_qdrnt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yqhu"]
 size = Vector2(32, 32)
@@ -14,19 +14,19 @@ size = Vector2(32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_pk8t8")
+"texture": ExtResource("2_c8136")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_wdq3g")
+"texture": ExtResource("3_txlfh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_2nvsd")
+"texture": ExtResource("4_7sffa")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_dep7l")
+"texture": ExtResource("5_7fswu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_ito8u")
+"texture": ExtResource("6_qdrnt")
 }],
 "loop": true,
 "name": &"action",

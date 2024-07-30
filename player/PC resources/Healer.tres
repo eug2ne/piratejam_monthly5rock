@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="CharacterResource" load_steps=2 format=3 uid="uid://dwuj7frrx4j6s"]
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=3 format=3 uid="uid://dwuj7frrx4j6s"]
 
 [ext_resource type="Script" path="res://character/character resource/CharacterResource.gd" id="1_8lj1d"]
+[ext_resource type="Texture2D" uid="uid://cxe13nfcpos54" path="res://assets/healer_profile.png" id="2_wotfn"]
 
 [resource]
 script = ExtResource("1_8lj1d")
 character_name = "healer"
 hp = 180.0
-ap = 20.0
-parry_damage = 0.0
+idle_speed = 30.0
 move_speed = 200.0
 dash_speed = 300.0
-defense = 100.0
+defense = 15.0
 agility = 15.0
-accuracy = 10.0
+accuracy = 15.0
 critical_rate = 10.0
+ui_profile = ExtResource("2_wotfn")

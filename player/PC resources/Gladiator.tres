@@ -1,16 +1,17 @@
-[gd_resource type="Resource" script_class="CharacterResource" load_steps=2 format=3 uid="uid://dhlms7hwnjm"]
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=3 format=3 uid="uid://dhlms7hwnjm"]
 
 [ext_resource type="Script" path="res://character/character resource/CharacterResource.gd" id="1_5qdn7"]
+[ext_resource type="Texture2D" uid="uid://6kk3cfljkokw" path="res://assets/gladiator_profile.png" id="2_t6q44"]
 
 [resource]
 script = ExtResource("1_5qdn7")
 character_name = "gladiator"
-hp = 200.0
-ap = 50.0
-parry_damage = 10.0
+hp = 250.0
+idle_speed = 30.0
 move_speed = 200.0
 dash_speed = 300.0
 defense = 20.0
 agility = 20.0
-accuracy = 15.0
-critical_rate = 10.0
+accuracy = 12.0
+critical_rate = 15.0
+ui_profile = ExtResource("2_t6q44")

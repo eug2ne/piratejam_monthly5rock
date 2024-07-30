@@ -59,6 +59,10 @@ func _set_current_state(state_key: String = ""):
 		new_state = states.get(state_key)
 	else:
 		new_state = current_state.next_state
+		
+	if !new_state:
+		# FIXME: when changing state dash >> idle, _set_current_state called twice + new_state not found
+		return
 	
 	# assign new state
 	current_state = new_state

@@ -14,7 +14,9 @@ func _deal_damage() -> void:
 	if !target:
 		return
 	
-	# apply damage to target
+	# apply damage to targeta
+	var parent_accuracy: float = parent.character_resource.accuracy
+	var parent_bonus_ap: float = parent.character_resource.bonus_ap
 	var target_agility = target.character_resource.agility
 	var target_defense = target.character_resource.defense
 	
@@ -23,5 +25,5 @@ func _deal_damage() -> void:
 		target._take_damage(0, false, parent)
 	
 	var critical: bool = parent.character_resource._check_critical()
-	var damage: float = parent.character_resource._deal_damage(target_defense, critical)
+	var damage: float = action_resource._deal_damage(target_defense, parent_accuracy, parent_bonus_ap, critical)
 	target._take_damage(damage, critical, parent)

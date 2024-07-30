@@ -1,0 +1,148 @@
+[gd_scene load_steps=12 format=3 uid="uid://dufbyrveswvnq"]
+
+[ext_resource type="Script" path="res://player/PC actions/Gladiator/Boost.gd" id="1_ea8b7"]
+[ext_resource type="Resource" uid="uid://djnfqexwe4rtm" path="res://player/PC resources/action resources/Gladiator/Boost.tres" id="2_ljo5y"]
+[ext_resource type="Texture2D" uid="uid://b6rd01ubwbwn2" path="res://assets/vfx/FE1000_nyknck/FE1001/FE1001_01.png" id="3_7puda"]
+[ext_resource type="Texture2D" uid="uid://dyrvb8rk5fmpf" path="res://assets/vfx/FE1000_nyknck/FE1001/FE1001_02.png" id="4_ptyck"]
+[ext_resource type="Texture2D" uid="uid://bepojcj7bqi2u" path="res://assets/vfx/FE1000_nyknck/FE1001/FE1001_03.png" id="5_kj8xl"]
+[ext_resource type="Texture2D" uid="uid://c8jdrjwl0wg6h" path="res://assets/vfx/FE1000_nyknck/FE1001/FE1001_04.png" id="6_j0k66"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnbef"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dnggb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7puda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ptyck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kj8xl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_j0k66")
+}],
+"loop": true,
+"name": &"action",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_8pwpx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"action"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_2g7bw"]
+resource_name = "action"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"action"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fp3rq"]
+_data = {
+"RESET": SubResource("Animation_8pwpx"),
+"action": SubResource("Animation_2g7bw")
+}
+
+[node name="Boost" type="Node"]
+script = ExtResource("1_ea8b7")
+action_resource = ExtResource("2_ljo5y")
+target_group = "parent"
+cool_time = 10.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_bnbef")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+sprite_frames = SubResource("SpriteFrames_dnggb")
+animation = &"action"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fp3rq")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BoostTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="BoostTimer" to="." method="_on_boost_timer_timeout"]

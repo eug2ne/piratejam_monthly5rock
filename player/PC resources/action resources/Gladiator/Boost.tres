@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionResource" load_steps=3 format=3 uid="uid://djnfqexwe4rtm"]
+
+[ext_resource type="Script" path="res://character/action machine/ActionResource.gd" id="1_7863s"]
+[ext_resource type="Texture2D" uid="uid://bepojcj7bqi2u" path="res://assets/vfx/FE1000_nyknck/FE1001/FE1001_03.png" id="2_rymce"]
+
+[resource]
+script = ExtResource("1_7863s")
+action_name = "boost"
+base_damage = 0.0
+parry_action = false
+ui_texture = ExtResource("2_rymce")
