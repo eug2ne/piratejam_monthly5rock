@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_5tfbw")
 action_name = "lightning"
-base_damage = 30.0
+base_damage = 20.0
 parry_action = false
 ui_texture = ExtResource("2_fpno0")

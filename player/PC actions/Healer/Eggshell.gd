@@ -4,8 +4,9 @@ extends Action
 @onready var pc_group: Array[Node] = get_tree().get_nodes_in_group("pc")
 
 func _start() -> void:
-	# TODO: create eggshell to all pcs
+	# heal + create eggshell to all pcs
 	for pc: Node in pc_group:
+		pc._take_heal(action_resource.base_damage, false, parent)
 		pc._start_eggshell()
 	
 	# start cool-time timer
@@ -13,4 +14,3 @@ func _start() -> void:
 	
 func _stop() -> void:
 	super()
-	# TODO: remove eggshell from all pcs

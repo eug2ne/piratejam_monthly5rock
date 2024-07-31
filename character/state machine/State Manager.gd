@@ -46,8 +46,8 @@ func _set_current_state(state_key: String = ""):
 	# prevent redundancy
 	if current_state.name.to_lower() == state_key:
 		return
-	# character dead
-	if current_state.name.to_lower() == "dead":
+	# not revivable
+	if current_state.name.to_lower() == "dead" && !current_state.revive:
 		return
 	
 	# exit current_state

@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_dm4yo")
 action_name = "thunderwave"
-base_damage = 20.0
+base_damage = 10.0
 parry_action = false
 ui_texture = ExtResource("2_fjrbb")

@@ -2,6 +2,7 @@ extends Node
 class_name State
 
 @export var anim_key: String
+@export var revive: bool
 # reference to parent
 var parent: CharacterBody2D
 var anim: AnimationPlayer

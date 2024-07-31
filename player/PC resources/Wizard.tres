@@ -7,11 +7,9 @@
 script = ExtResource("1_bcqc2")
 character_name = "wizard"
 hp = 150.0
-ap = 0.0
-parry_damage = 0.0
 idle_speed = 30.0
 move_speed = 180.0
-dash_speed = 300.0
+dash_speed = 280.0
 defense = 10.0
 agility = 10.0
 accuracy = 15.0

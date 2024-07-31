@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bje8xclox6jiu"]
+[gd_scene load_steps=14 format=3 uid="uid://bje8xclox6jiu"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_tuq5s"]
 [ext_resource type="PackedScene" uid="uid://b15kbyg7k4fwd" path="res://map/bar_map.tscn" id="1_yokby"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://ccx8e1l6enf1q" path="res://player/PCs/Healer.tscn" id="5_poar1"]
 [ext_resource type="PackedScene" uid="uid://c44b2lj3ngcko" path="res://player/PCs/Wizard.tscn" id="6_c2o31"]
 [ext_resource type="Script" path="res://UI/MainCamera/MainCamera.gd" id="8_585he"]
-[ext_resource type="PackedScene" uid="uid://dr4d5i7gefy27" path="res://enemy/enemy.tscn" id="8_vgvgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxl6l"]
 size = Vector2(1120, 20)
@@ -32,18 +31,6 @@ shader_parameter/flash_modifier = 0.0
 resource_local_to_scene = true
 shader = ExtResource("3_ga1au")
 shader_parameter/flash_color = Color(0.180392, 0.921569, 0.54902, 1)
-shader_parameter/flash_modifier = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2bsl0"]
-resource_local_to_scene = true
-shader = ExtResource("3_ga1au")
-shader_parameter/flash_color = Color(0.952941, 0.168627, 0.270588, 1)
-shader_parameter/flash_modifier = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kdkqe"]
-resource_local_to_scene = true
-shader = ExtResource("3_ga1au")
-shader_parameter/flash_color = Color(0.952941, 0.168627, 0.270588, 1)
 shader_parameter/flash_modifier = 0.0
 
 [node name="Main" type="Node2D"]
@@ -78,29 +65,27 @@ y_sort_enabled = true
 
 [node name="Gladiator" parent="PCs" groups=["pc"] instance=ExtResource("2_l72q6")]
 material = SubResource("ShaderMaterial_4gvr3")
-position = Vector2(576, 400)
+position = Vector2(368, 560)
 
 [node name="Wizard" parent="PCs" groups=["pc"] instance=ExtResource("6_c2o31")]
 material = SubResource("ShaderMaterial_6vexe")
-position = Vector2(312, 472)
+position = Vector2(560, 560)
 
 [node name="Healer" parent="PCs" groups=["pc"] instance=ExtResource("5_poar1")]
 material = SubResource("ShaderMaterial_wjyme")
-position = Vector2(752, 424)
+position = Vector2(736, 560)
 
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
-
-[node name="Enemy" parent="Enemies" groups=["enemy"] instance=ExtResource("8_vgvgf")]
-material = SubResource("ShaderMaterial_2bsl0")
-position = Vector2(408, 296)
-
-[node name="Enemy2" parent="Enemies" groups=["enemy"] instance=ExtResource("8_vgvgf")]
-material = SubResource("ShaderMaterial_kdkqe")
-position = Vector2(656, 272)
 
 [node name="MainCamera" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 script = ExtResource("8_585he")
 camera_move_speed = 250.0
 camera_zoom_speed = 0.25
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

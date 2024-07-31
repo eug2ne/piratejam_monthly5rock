@@ -18,6 +18,10 @@ var current_pc: PlayableCharacter
 @onready var combat_UI: Control = $CanvasLayer/CombatUI
 @onready var main_camera: MainCamera = $MainCamera
 
+# enemy spawn
+@onready var enemy_ps: PackedScene = preload("res://enemy/enemy.tscn")
+@onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
+
 
 func _input(event) -> void:
 	if event.is_action_pressed("switch_pc"):
@@ -51,6 +55,16 @@ func _ready() -> void:
 	combat_UI._set_current_pc(current_pc_index, current_pc)
 	main_camera._set_current_pc(current_pc_index, current_pc)
 	
-func _process(_delta):
-	# TODO: spawn enemies every 10 sec
-	pass
+	# spawn enemies
+	for i in range(10):
+		var enemy: Character = enemy_ps.instantiate()
+		enemy.global_position = Vector2(500,400)
+		enemy.add_to_group("enemy")
+		get_node("Enemies").add_child(enemy)
+
+func _on_enemy_spawn_timer_timeout():
+	# spawn new enemy
+	var enemy: Character = enemy_ps.instantiate()
+	enemy.global_position = Vector2(500,400)
+	enemy.add_to_group("enemy")
+	get_node("Enemies").add_child(enemy)

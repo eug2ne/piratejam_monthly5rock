@@ -155,7 +155,7 @@ _data = {
 script = ExtResource("1_vb8uj")
 action_resource = ExtResource("2_qdtdh")
 target_group = "enemy"
-cool_time = 1.0
+cool_time = 5.0
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8

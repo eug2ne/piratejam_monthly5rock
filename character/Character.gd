@@ -38,6 +38,11 @@ func _take_heal(recover: float, critical: bool, _from: Character) -> void:
 	# play heal animation
 	effects_anim.play("heal")
 	
+	# revive player
+	if state_manager.current_state.name.to_lower() == "dead":
+		print("revive")
+		state_manager._set_current_state("idle")
+	
 func _take_debuff(debuff: float, debuff_stat: String) -> void:
 	# debuff character stat
 	character_resource[debuff_stat] -= debuff
