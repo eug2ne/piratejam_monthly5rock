@@ -4,6 +4,7 @@ class_name StateManager
 var states: Dictionary = {}
 var current_state: State
 @export var initial_state: State
+@export var default_state: State
 
 # imported from parent
 @export var parent: Character
@@ -62,6 +63,8 @@ func _set_current_state(state_key: String = ""):
 		
 	if !new_state:
 		# FIXME: when changing state dash >> idle, _set_current_state called twice + new_state not found
+		# set new_state to default state
+		new_state = default_state
 		return
 	
 	# assign new state
@@ -70,3 +73,7 @@ func _set_current_state(state_key: String = ""):
 	
 func _get_current_state():
 	return current_state
+
+
+func _on_state_transition():
+	pass # Replace with function body.

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ActionResource" load_steps=3 format=3 uid="uid://b7bgoqugry1a2"]
 
-[ext_resource type="Script" path="res://character/action machine/ActionResource.gd" id="1_w60bm"]
+[ext_resource type="Script" path="res://character/action machine/resources/ActionResource.gd" id="1_w60bm"]
 [ext_resource type="Texture2D" uid="uid://bhnndie8lrky3" path="res://assets/vfx/SFX300_nyknck/SFX303_nyknck/SFX303_02.png" id="2_wyows"]
 
 [resource]

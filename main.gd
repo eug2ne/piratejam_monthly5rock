@@ -63,8 +63,10 @@ func _ready() -> void:
 		get_node("Enemies").add_child(enemy)
 
 func _on_enemy_spawn_timer_timeout():
-	# spawn new enemy
-	var enemy: Character = enemy_ps.instantiate()
-	enemy.global_position = Vector2(500,400)
-	enemy.add_to_group("enemy")
-	get_node("Enemies").add_child(enemy)
+	# spawn new enemies
+	for i in range(5):
+		var enemy: Character = enemy_ps.instantiate()
+		enemy.global_position = Vector2(500,400)
+		enemy.add_to_group("enemy")
+		get_node("Enemies").add_child(enemy)
+		print(enemy)

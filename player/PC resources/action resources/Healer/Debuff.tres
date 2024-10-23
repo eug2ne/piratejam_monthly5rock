@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ActionResource" load_steps=3 format=3 uid="uid://dpg16kylyo5mp"]
 
-[ext_resource type="Script" path="res://character/action machine/ActionResource.gd" id="1_wpjsa"]
+[ext_resource type="Script" path="res://character/action machine/resources/ActionResource.gd" id="1_wpjsa"]
 [ext_resource type="Texture2D" uid="uid://bdacilhaxk0oq" path="res://assets/vfx/SP600_nyknck/SP601_nyknck/SP601_02.png" id="2_o7kei"]
 
 [resource]

@@ -11,6 +11,7 @@ func _on_animation_finished(_anim_name: String) -> void:
 	super(_anim_name)
 	
 func _deal_damage() -> void:
+	# FIXME: enemy attack target when target didn't enter target area
 	if !target:
 		return
 	

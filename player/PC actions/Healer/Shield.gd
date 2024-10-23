@@ -7,7 +7,7 @@ func _start() -> void:
 	# heal + create eggshell to all pcs
 	for pc: Node in pc_group:
 		pc._take_heal(action_resource.base_damage, false, parent)
-		pc._start_eggshell()
+		pc.state_manager._set_current_state("shield")
 	
 	# start cool-time timer
 	timer.start(cool_time)

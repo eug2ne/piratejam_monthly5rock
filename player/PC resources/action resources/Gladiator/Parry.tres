@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ActionResource" load_steps=3 format=3 uid="uid://dqcrwnoxdxlic"]
 
-[ext_resource type="Script" path="res://character/action machine/ActionResource.gd" id="1_fhygy"]
+[ext_resource type="Script" path="res://character/action machine/resources/ActionResource.gd" id="1_fhygy"]
 [ext_resource type="Texture2D" uid="uid://cdrkvsamblksq" path="res://assets/vfx/SP400_nyknck/SP401_nyknck/SP401_04.png" id="2_3u46e"]
 
 [resource]

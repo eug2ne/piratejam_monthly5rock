@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ActionResource" load_steps=3 format=3 uid="uid://cpddqla3m1wo2"]
 
-[ext_resource type="Script" path="res://character/action machine/ActionResource.gd" id="1_5tfbw"]
+[ext_resource type="Script" path="res://character/action machine/resources/ActionResource.gd" id="1_5tfbw"]
 [ext_resource type="Texture2D" uid="uid://4k6r3wqujcn8" path="res://assets/vfx/LT100_nyknck/LT103.png" id="2_fpno0"]
 
 [resource]

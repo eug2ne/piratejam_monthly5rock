@@ -1,22 +1,22 @@
 [gd_scene load_steps=23 format=3 uid="uid://dvcjhff7dqr4b"]
 
-[ext_resource type="Script" path="res://player/PC actions/Healer/Eggshell.gd" id="1_tbtld"]
-[ext_resource type="Resource" uid="uid://df1572t6ncgrd" path="res://player/PC resources/action resources/Healer/Eggshell.tres" id="2_ht4vr"]
-[ext_resource type="Texture2D" uid="uid://bkf67egko7trm" path="res://assets/vfx/FX000/FX001.png" id="2_jdomy"]
-[ext_resource type="Texture2D" uid="uid://evuowh3b36a" path="res://assets/vfx/FX000/FX002.png" id="3_pe8a7"]
-[ext_resource type="Texture2D" uid="uid://cwwglpbld2oe2" path="res://assets/vfx/FX000/FX003.png" id="4_tr1qr"]
-[ext_resource type="Texture2D" uid="uid://sj2ksxdd722r" path="res://assets/vfx/FX000/FX004.png" id="5_rfske"]
-[ext_resource type="Texture2D" uid="uid://gpxubs070xku" path="res://assets/vfx/FX000/FX005.png" id="6_rpghu"]
-[ext_resource type="Texture2D" uid="uid://pwodr8csbxda" path="res://assets/vfx/FX000/FX006.png" id="7_76i2c"]
-[ext_resource type="Texture2D" uid="uid://bbqyasxy0ui2g" path="res://assets/vfx/FX000/FX007.png" id="8_tyfo1"]
-[ext_resource type="Texture2D" uid="uid://cwkubrrxnunv0" path="res://assets/vfx/FX000/FX008.png" id="9_d4jdg"]
-[ext_resource type="Texture2D" uid="uid://bx6kfavwamhee" path="res://assets/vfx/FX000/FX009.png" id="10_7jpne"]
-[ext_resource type="Texture2D" uid="uid://bxtqdsrkq7n3u" path="res://assets/vfx/FX000/FX010.png" id="11_n8xs6"]
-[ext_resource type="Texture2D" uid="uid://df2g2hsngai86" path="res://assets/vfx/FX000/FX011.png" id="12_o085n"]
-[ext_resource type="Texture2D" uid="uid://dej2bvi1hfb00" path="res://assets/vfx/FX000/FX012.png" id="13_t2tjc"]
-[ext_resource type="Texture2D" uid="uid://bso4hfyyggj6x" path="res://assets/vfx/FX000/FX013.png" id="14_oymxt"]
-[ext_resource type="Texture2D" uid="uid://cfdlvo48iujtx" path="res://assets/vfx/FX000/FX014.png" id="15_rgf2x"]
-[ext_resource type="Texture2D" uid="uid://cdc820j0aguch" path="res://assets/vfx/FX000/FX015.png" id="16_axsu3"]
+[ext_resource type="Script" path="res://player/PC actions/Healer/Shield.gd" id="1_1feub"]
+[ext_resource type="Resource" uid="uid://df1572t6ncgrd" path="res://player/PC resources/action resources/Healer/Shield.tres" id="2_o8kji"]
+[ext_resource type="Texture2D" uid="uid://bkf67egko7trm" path="res://assets/vfx/FX000/FX001.png" id="3_s6u3d"]
+[ext_resource type="Texture2D" uid="uid://evuowh3b36a" path="res://assets/vfx/FX000/FX002.png" id="4_6iemr"]
+[ext_resource type="Texture2D" uid="uid://cwwglpbld2oe2" path="res://assets/vfx/FX000/FX003.png" id="5_ekd1q"]
+[ext_resource type="Texture2D" uid="uid://sj2ksxdd722r" path="res://assets/vfx/FX000/FX004.png" id="6_65n22"]
+[ext_resource type="Texture2D" uid="uid://gpxubs070xku" path="res://assets/vfx/FX000/FX005.png" id="7_kwtib"]
+[ext_resource type="Texture2D" uid="uid://pwodr8csbxda" path="res://assets/vfx/FX000/FX006.png" id="8_xd06v"]
+[ext_resource type="Texture2D" uid="uid://bbqyasxy0ui2g" path="res://assets/vfx/FX000/FX007.png" id="9_nue2q"]
+[ext_resource type="Texture2D" uid="uid://cwkubrrxnunv0" path="res://assets/vfx/FX000/FX008.png" id="10_nyp0s"]
+[ext_resource type="Texture2D" uid="uid://bx6kfavwamhee" path="res://assets/vfx/FX000/FX009.png" id="11_iudwk"]
+[ext_resource type="Texture2D" uid="uid://bxtqdsrkq7n3u" path="res://assets/vfx/FX000/FX010.png" id="12_pjb83"]
+[ext_resource type="Texture2D" uid="uid://df2g2hsngai86" path="res://assets/vfx/FX000/FX011.png" id="13_u8ewk"]
+[ext_resource type="Texture2D" uid="uid://dej2bvi1hfb00" path="res://assets/vfx/FX000/FX012.png" id="14_f3gll"]
+[ext_resource type="Texture2D" uid="uid://bso4hfyyggj6x" path="res://assets/vfx/FX000/FX013.png" id="15_byaw7"]
+[ext_resource type="Texture2D" uid="uid://cfdlvo48iujtx" path="res://assets/vfx/FX000/FX014.png" id="16_b71c2"]
+[ext_resource type="Texture2D" uid="uid://cdc820j0aguch" path="res://assets/vfx/FX000/FX015.png" id="17_idgm6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vkjjb"]
 radius = 16.0
@@ -25,49 +25,49 @@ radius = 16.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_jdomy")
+"texture": ExtResource("3_s6u3d")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_pe8a7")
+"texture": ExtResource("4_6iemr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_tr1qr")
+"texture": ExtResource("5_ekd1q")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_rfske")
+"texture": ExtResource("6_65n22")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_rpghu")
+"texture": ExtResource("7_kwtib")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_76i2c")
+"texture": ExtResource("8_xd06v")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_tyfo1")
+"texture": ExtResource("9_nue2q")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_d4jdg")
+"texture": ExtResource("10_nyp0s")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_7jpne")
+"texture": ExtResource("11_iudwk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_n8xs6")
+"texture": ExtResource("12_pjb83")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_o085n")
+"texture": ExtResource("13_u8ewk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_t2tjc")
+"texture": ExtResource("14_f3gll")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_oymxt")
+"texture": ExtResource("15_byaw7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_rgf2x")
+"texture": ExtResource("16_b71c2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_axsu3")
+"texture": ExtResource("17_idgm6")
 }],
 "loop": true,
 "name": &"action",
@@ -159,9 +159,9 @@ _data = {
 "action": SubResource("Animation_2fx1p")
 }
 
-[node name="Eggshell" type="Node"]
-script = ExtResource("1_tbtld")
-action_resource = ExtResource("2_ht4vr")
+[node name="Shield" type="Node"]
+script = ExtResource("1_1feub")
+action_resource = ExtResource("2_o8kji")
 target_group = "pc"
 cool_time = 8.0
 

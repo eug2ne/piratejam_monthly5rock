@@ -17,12 +17,18 @@ func _take_damage(damage: float, critical: bool, _from: Character) -> void:
 	# show critical
 	if critical:
 		indicator._show_critical()
+	
 	# pass damage to indicator
 	indicator._show_damage(damage)
 	# apply damage to character hp
 	character_resource._apply_damage(damage)
 	# play damage animation
 	effects_anim.play("damage")
+	
+	if character_resource.deflect:
+		# TODO: deflect damage to enemy when deflect is true
+		pass
+	
 	if character_resource.hp == 0:
 		# character death
 		_take_death()

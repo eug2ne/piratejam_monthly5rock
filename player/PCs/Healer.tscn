@@ -23,7 +23,7 @@
 [ext_resource type="SpriteFrames" uid="uid://b0686be3mwgj8" path="res://player/PC resources/action spriteframes/Eggshell.tres" id="14_vl46m"]
 [ext_resource type="PackedScene" uid="uid://csrb08pqiv4ot" path="res://player/PC actions/Healer/Heal.tscn" id="16_rwt3y"]
 [ext_resource type="PackedScene" uid="uid://rtl00mnxctx6" path="res://player/PC actions/Healer/Debuff.tscn" id="17_eno0l"]
-[ext_resource type="PackedScene" uid="uid://dvcjhff7dqr4b" path="res://player/PC actions/Healer/Eggshell.tscn" id="19_n4qb8"]
+[ext_resource type="PackedScene" uid="uid://dvcjhff7dqr4b" path="res://player/PC actions/Healer/Shield.tscn" id="19_n4qb8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0djip"]
 radius = 40.0
@@ -484,7 +484,6 @@ shape = SubResource("CircleShape2D_0djip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0n5gx")
-disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -517,13 +516,13 @@ parent = NodePath("..")
 indicator = NodePath("../Indicator")
 basic_action = NodePath("Heal")
 secondary_action = NodePath("Debuff")
-special_action = NodePath("Eggshell")
+special_action = NodePath("Shield")
 
 [node name="Heal" parent="ActionManager" instance=ExtResource("16_rwt3y")]
 
 [node name="Debuff" parent="ActionManager" instance=ExtResource("17_eno0l")]
 
-[node name="Eggshell" parent="ActionManager" instance=ExtResource("19_n4qb8")]
+[node name="Shield" parent="ActionManager" instance=ExtResource("19_n4qb8")]
 cool_time = 10.0
 
 [node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent", "action_manager", "indicator")]

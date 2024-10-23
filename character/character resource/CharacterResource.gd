@@ -18,6 +18,9 @@ var max_hp: float
 var bonus_ap: float = 0
 var bonus_critical_rate: float = 0
 
+# bonus states
+var deflect: bool = false # deflect damage to enemies when taken damage
+
 # UI resource
 @export var ui_profile: Texture
 

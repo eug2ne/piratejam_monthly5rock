@@ -475,6 +475,7 @@ material = ExtResource("1_wrfyk")
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("2_frjc6")
+current = null
 character_resource = ExtResource("3_fu2wq")
 
 [node name="Indicator" parent="." instance=ExtResource("4_r42m2")]
@@ -486,7 +487,6 @@ shape = SubResource("CircleShape2D_ynfcu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0n5gx")
-disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dvpthewkuttia"]
+[gd_scene load_steps=50 format=3 uid="uid://dvpthewkuttia"]
 
 [ext_resource type="Script" path="res://player/PC.gd" id="1_fhjl8"]
 [ext_resource type="Material" uid="uid://b5sfgjat7dyv0" path="res://character/character shaders/pc_material.tres" id="1_tkqss"]
@@ -26,6 +26,7 @@
 [ext_resource type="Resource" uid="uid://b7bgoqugry1a2" path="res://player/PC resources/action resources/Gladiator/Attack.tres" id="17_canuy"]
 [ext_resource type="PackedScene" uid="uid://dufbyrveswvnq" path="res://player/PC actions/Gladiator/Boost.tscn" id="18_rj0lb"]
 [ext_resource type="Resource" uid="uid://dqcrwnoxdxlic" path="res://player/PC resources/action resources/Gladiator/Parry.tres" id="19_vicj7"]
+[ext_resource type="Script" path="res://character/state machine/character states/Stun.gd" id="27_d8r0b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0m35v"]
 radius = 40.0
@@ -488,7 +489,6 @@ shape = SubResource("CircleShape2D_0m35v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0n5gx")
-disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -531,12 +531,8 @@ action_resource = ExtResource("19_vicj7")
 
 [node name="Boost" parent="ActionManager" instance=ExtResource("18_rj0lb")]
 
-[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent", "action_manager", "indicator")]
+[node name="StateManager" type="Node" parent="."]
 script = ExtResource("9_biyni")
-initial_state = NodePath("Default")
-parent = NodePath("..")
-action_manager = NodePath("../ActionManager")
-indicator = NodePath("../Indicator")
 
 [node name="Default" type="Node" parent="StateManager" node_paths=PackedStringArray("movement_controller", "dash_state", "dead_state")]
 script = ExtResource("9_2uo28")
@@ -559,6 +555,12 @@ anim_key = "dash"
 script = ExtResource("14_umevl")
 movement_controller = NodePath("../../MovementController")
 
+[node name="Stun" type="Node" parent="StateManager"]
+script = ExtResource("27_d8r0b")
+anim_key = "stun"
+
+[node name="Timer" type="Timer" parent="StateManager/Stun"]
+
 [connection signal="body_entered" from="DetectionArea" to="StateManager/Idle" method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="StateManager/Idle" method="_on_detection_area_body_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateManager/Dash" method="_on_animation_player_animation_finished"]
@@ -566,3 +568,5 @@ movement_controller = NodePath("../../MovementController")
 [connection signal="Transition" from="StateManager/Dead" to="StateManager" method="_set_current_state"]
 [connection signal="Transition" from="StateManager/Dash" to="StateManager" method="_set_current_state"]
 [connection signal="Transition" from="StateManager/Idle" to="StateManager" method="_set_current_state"]
+[connection signal="Transition" from="StateManager/Stun" to="StateManager" method="_on_state_transition"]
+[connection signal="timeout" from="StateManager/Stun/Timer" to="StateManager/Stun" method="_on_timer_timeout"]

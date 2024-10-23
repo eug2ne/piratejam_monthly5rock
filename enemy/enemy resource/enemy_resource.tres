@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://character/character resource/CharacterResource.gd" id="1_w0he3"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_w0he3")
 character_name = "enemy"
-hp = 1000.0
-ap = 50.0
-parry_damage = 0.0
+hp = 2000.0
+idle_speed = 30.0
 move_speed = 0.0
 dash_speed = 0.0
 defense = 0.0
