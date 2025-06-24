@@ -7,5 +7,11 @@
 script = ExtResource("1_fhygy")
 action_name = "parry"
 base_damage = 50.0
-parry_action = true
+parry = true
+stun = true
+stun_duration = 3.0
+stun_damage = 0
+effect = false
+effect_duration = 0
+effect_damage = 0
 ui_texture = ExtResource("2_3u46e")

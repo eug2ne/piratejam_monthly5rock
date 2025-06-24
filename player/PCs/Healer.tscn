@@ -16,7 +16,6 @@
 [ext_resource type="Script" path="res://player/PC states/Default.gd" id="11_2gs2x"]
 [ext_resource type="Texture2D" uid="uid://cm7xu3g8t7kic" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_run_anim_f1.png" id="11_jm8av"]
 [ext_resource type="Script" path="res://player/PC states/PC_Idle.gd" id="12_6hq5k"]
-[ext_resource type="Script" path="res://character/state machine/State.gd" id="12_kd7ml"]
 [ext_resource type="Texture2D" uid="uid://chpy2tqin0wdm" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_run_anim_f2.png" id="12_u7gj1"]
 [ext_resource type="Texture2D" uid="uid://cralw8n0gdb6t" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_run_anim_f3.png" id="13_2ejol"]
 [ext_resource type="Script" path="res://character/state machine/character states/Dash.gd" id="13_mqdbx"]
@@ -24,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://csrb08pqiv4ot" path="res://player/PC actions/Healer/Heal.tscn" id="16_rwt3y"]
 [ext_resource type="PackedScene" uid="uid://rtl00mnxctx6" path="res://player/PC actions/Healer/Debuff.tscn" id="17_eno0l"]
 [ext_resource type="PackedScene" uid="uid://dvcjhff7dqr4b" path="res://player/PC actions/Healer/Shield.tscn" id="19_n4qb8"]
+[ext_resource type="Script" path="res://character/state machine/character states/Dead.gd" id="22_5ig8r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0djip"]
 radius = 40.0
@@ -525,9 +525,10 @@ special_action = NodePath("Shield")
 [node name="Shield" parent="ActionManager" instance=ExtResource("19_n4qb8")]
 cool_time = 10.0
 
-[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent", "action_manager", "indicator")]
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state", "default_state", "parent", "action_manager", "indicator")]
 script = ExtResource("10_riig8")
 initial_state = NodePath("Default")
+default_state = NodePath("Default")
 parent = NodePath("..")
 action_manager = NodePath("../ActionManager")
 indicator = NodePath("../Indicator")
@@ -537,9 +538,10 @@ script = ExtResource("11_2gs2x")
 movement_controller = NodePath("../../MovementController")
 dash_state = NodePath("../Dash")
 dead_state = NodePath("../Dead")
+anim_key = "move"
 
 [node name="Dead" type="Node" parent="StateManager"]
-script = ExtResource("12_kd7ml")
+script = ExtResource("22_5ig8r")
 anim_key = "death"
 revive = true
 
@@ -552,11 +554,12 @@ anim_key = "dash"
 [node name="Idle" type="Node" parent="StateManager" node_paths=PackedStringArray("movement_controller")]
 script = ExtResource("12_6hq5k")
 movement_controller = NodePath("../../MovementController")
+anim_key = "idle"
 
 [connection signal="body_entered" from="DetectionArea" to="StateManager/Idle" method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="StateManager/Idle" method="_on_detection_area_body_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateManager/Dash" method="_on_animation_player_animation_finished"]
-[connection signal="Transition" from="StateManager/Default" to="StateManager" method="_set_current_state"]
-[connection signal="Transition" from="StateManager/Dead" to="StateManager" method="_set_current_state"]
-[connection signal="Transition" from="StateManager/Dash" to="StateManager" method="_set_current_state"]
-[connection signal="Transition" from="StateManager/Idle" to="StateManager" method="_set_current_state"]
+[connection signal="Transition" from="StateManager/Default" to="StateManager" method="_on_state_transition"]
+[connection signal="Transition" from="StateManager/Dead" to="StateManager" method="_on_state_transition"]
+[connection signal="Transition" from="StateManager/Dash" to="StateManager" method="_on_state_transition"]
+[connection signal="Transition" from="StateManager/Idle" to="StateManager" method="_on_state_transition"]

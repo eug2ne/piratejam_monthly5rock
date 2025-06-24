@@ -27,5 +27,11 @@ func _on_target_area_area_entered(area: Area2D) -> void:
 		# parry enemy attack
 		var critical: bool = parent.character_resource._check_critical()
 		enemy_attack._parry(action_resource._deal_damage(target_defense, parent_accuracy, parent_bonus_ap, critical), critical, parent)
+		# bounce off enemies
+		var enemy_direction: Vector2 = parent.global_position.direction_to(enemy.global_position)
+		enemy.global_position += enemy_direction.normalized() * 25
+		# apply stun to enemy
+		enemy.state_manager._set_current_state("stun", action_resource.stun_duration, action_resource.stun_damage)
+		
 		# signal indicator
 		indicator._show_parry()

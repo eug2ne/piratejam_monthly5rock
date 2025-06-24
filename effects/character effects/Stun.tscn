@@ -1,0 +1,128 @@
+[gd_scene load_steps=13 format=3 uid="uid://baeqcx8kmis7p"]
+
+[ext_resource type="Texture2D" uid="uid://cl7nyte8iww35" path="res://assets/vfx/Stun.png" id="1_gupur"]
+[ext_resource type="Theme" uid="uid://b05xgljo0h2ni" path="res://assets/themes/basic label.tres" id="2_2tosm"]
+[ext_resource type="Script" path="res://effects/character effects/Stun.gd" id="2_vop8t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54abc"]
+atlas = ExtResource("1_gupur")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjgf4"]
+atlas = ExtResource("1_gupur")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3iyg"]
+atlas = ExtResource("1_gupur")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqq4g"]
+atlas = ExtResource("1_gupur")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mrq0"]
+atlas = ExtResource("1_gupur")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mc76s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54abc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjgf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3iyg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqq4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mrq0")
+}],
+"loop": true,
+"name": &"stun",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ajay6"]
+resource_name = "effect_anim"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"stun"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_jlvjb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"stun"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aff4b"]
+_data = {
+"RESET": SubResource("Animation_jlvjb"),
+"effect_anim": SubResource("Animation_ajay6")
+}
+
+[node name="Stun" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_mc76s")
+animation = &"stun"
+script = ExtResource("2_vop8t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aff4b")
+}
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("2_2tosm")
+text = "Stun!"

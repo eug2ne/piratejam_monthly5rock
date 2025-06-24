@@ -21,7 +21,7 @@ func _ready():
 			child.action_manager = action_manager
 			child.indicator = indicator
 		else:
-			push_warning("WARNING: " + child.name + " is not State.")
+			push_warning("WARNING: " + child.name + " is not State or TmeporaryState.")
 	
 	if initial_state:
 		# start initial state
@@ -34,7 +34,7 @@ func _input(event):
 	
 	if current_state:
 		current_state._update_input(event)
-	
+
 func _process(delta):
 	if current_state:
 		current_state._update_process(delta)
@@ -42,8 +42,8 @@ func _process(delta):
 func _physics_process(delta):
 	if current_state:
 		current_state._update_physics(delta)
-	
-func _set_current_state(state_key: String = ""):
+
+func _set_current_state(state_key: String = "", state_duration: float = 0):
 	# prevent redundancy
 	if current_state.name.to_lower() == state_key:
 		return
@@ -65,15 +65,16 @@ func _set_current_state(state_key: String = ""):
 		# FIXME: when changing state dash >> idle, _set_current_state called twice + new_state not found
 		# set new_state to default state
 		new_state = default_state
-		return
 	
 	# assign new state
 	current_state = new_state
+	# assign state_duration
+	if (!current_state.permanant):
+		current_state.duration = state_duration
 	current_state._on_enter()
 	
 func _get_current_state():
 	return current_state
 
-
 func _on_state_transition():
-	pass # Replace with function body.
+	_set_current_state()

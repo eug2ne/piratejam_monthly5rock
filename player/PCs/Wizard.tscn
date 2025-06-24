@@ -13,7 +13,6 @@
 [ext_resource type="Script" path="res://character/state machine/State Manager.gd" id="8_u23y0"]
 [ext_resource type="Texture2D" uid="uid://cvpf570cbg1jk" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/wizzard_m_idle_anim_f3.png" id="9_8nnc6"]
 [ext_resource type="Script" path="res://player/PC states/Default.gd" id="9_asuuq"]
-[ext_resource type="Script" path="res://character/state machine/State.gd" id="10_1k3vr"]
 [ext_resource type="Texture2D" uid="uid://do1mcerx2aw2g" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/wizzard_m_run_anim_f0.png" id="10_yqi5j"]
 [ext_resource type="Texture2D" uid="uid://dd28v7hdh5rs3" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/wizzard_m_run_anim_f1.png" id="11_af0jn"]
 [ext_resource type="Script" path="res://character/state machine/character states/Dash.gd" id="11_iwo28"]
@@ -24,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://c2p4lpdcnk2ml" path="res://player/PC actions/Wizard/ThunderWave.tscn" id="16_kbodc"]
 [ext_resource type="PackedScene" uid="uid://ccwlcsho8wqxb" path="res://player/PC actions/Wizard/Lightning.tscn" id="17_jycb6"]
 [ext_resource type="PackedScene" uid="uid://m68cprrbwc2n" path="res://player/PC actions/Wizard/Fireball.tscn" id="18_18qr8"]
+[ext_resource type="Script" path="res://character/state machine/character states/Dead.gd" id="22_djkxh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ynfcu"]
 radius = 40.0
@@ -475,7 +475,6 @@ material = ExtResource("1_wrfyk")
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("2_frjc6")
-current = null
 character_resource = ExtResource("3_fu2wq")
 
 [node name="Indicator" parent="." instance=ExtResource("4_r42m2")]
@@ -527,9 +526,10 @@ special_action = NodePath("Fireball")
 
 [node name="Fireball" parent="ActionManager" instance=ExtResource("18_18qr8")]
 
-[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent", "action_manager", "indicator")]
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state", "default_state", "parent", "action_manager", "indicator")]
 script = ExtResource("8_u23y0")
 initial_state = NodePath("Default")
+default_state = NodePath("Default")
 parent = NodePath("..")
 action_manager = NodePath("../ActionManager")
 indicator = NodePath("../Indicator")
@@ -541,7 +541,7 @@ dash_state = NodePath("../Dash")
 dead_state = NodePath("../Dead")
 
 [node name="Dead" type="Node" parent="StateManager"]
-script = ExtResource("10_1k3vr")
+script = ExtResource("22_djkxh")
 anim_key = "death"
 revive = true
 
@@ -554,9 +554,10 @@ anim_key = "dash"
 [node name="Idle" type="Node" parent="StateManager" node_paths=PackedStringArray("movement_controller")]
 script = ExtResource("12_8iq2o")
 movement_controller = NodePath("../../MovementController")
+anim_key = "idle"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateManager/Dash" method="_on_animation_player_animation_finished"]
-[connection signal="Transition" from="StateManager/Default" to="StateManager" method="_set_current_state"]
-[connection signal="Transition" from="StateManager/Dead" to="StateManager" method="_set_current_state"]
-[connection signal="Transition" from="StateManager/Dash" to="StateManager" method="_set_current_state"]
-[connection signal="Transition" from="StateManager/Idle" to="StateManager" method="_set_current_state"]
+[connection signal="Transition" from="StateManager/Default" to="StateManager" method="_on_state_transition"]
+[connection signal="Transition" from="StateManager/Dead" to="StateManager" method="_on_state_transition"]
+[connection signal="Transition" from="StateManager/Dash" to="StateManager" method="_on_state_transition"]
+[connection signal="Transition" from="StateManager/Idle" to="StateManager" method="_on_state_transition"]

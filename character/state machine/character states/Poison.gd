@@ -1,7 +1,6 @@
 extends State
 
 # TODO: add aditional damage over time to parent
-var damage: int
 var critical: int
 var from: Character
 @export var effects_anim: AnimationPlayer

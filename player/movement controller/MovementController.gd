@@ -8,15 +8,15 @@ class_name MovementController
 var direction: Vector2
 var SPEED: float
 @onready var IDLE_SPEED: float = parent.character_resource.idle_speed
-@onready var DEFAULT_SPEED: float = parent.character_resource.move_speed
+@onready var MOVE_SPEED: float = parent.character_resource.move_speed
 @onready var DASH_SPEED: float = parent.character_resource.dash_speed
 
 func _ready():
-	# set speed to default_speed
-	SPEED = DEFAULT_SPEED
+	# set speed to move_speed
+	SPEED = MOVE_SPEED
 
 func _handle_input(event) -> void:
-	if !parent.current:
+	if !parent.current || parent.state_manager.current_state.name.to_lower() == "hide":
 		return
 	if event.is_action_pressed("switch_pc"):
 		# reset direction
@@ -36,7 +36,7 @@ func _handle_process(_delta) -> void:
 	# FIXME: when player take damage, damage animation interrupted by movement animation
 		## need to play both animations at the same time
 	# handle parent animation
-	if SPEED == DEFAULT_SPEED:
+	if SPEED == MOVE_SPEED:
 		anim.play("move")
 	elif SPEED == IDLE_SPEED:
 		anim.play("idle")

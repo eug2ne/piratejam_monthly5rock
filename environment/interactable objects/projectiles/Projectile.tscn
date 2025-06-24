@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2wy5km8iondl"]
+
+[ext_resource type="Script" path="res://environment/interactable objects/projectiles/Projectile.gd" id="1_yqgn6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pjfe1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_idu4a"]
+radius = 40.0
+
+[node name="Projectile" type="AnimatableBody2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_yqgn6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pjfe1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_idu4a")

@@ -2,10 +2,11 @@ extends State
 class_name EnemyState
 
 # physics property
-var SPEED = 30
+var SPEED: float
 
-const IDLE_SPEED = 30
-const MOVE_SPEED = 50
+@onready var IDLE_SPEED: float = parent.character_resource.idle_speed
+@onready var MOVE_SPEED: float = parent.character_resource.move_speed
+@onready var DASH_SPEED: float = parent.character_resource.dash_speed
 
 func _on_enter() -> void:
 	# play state animation

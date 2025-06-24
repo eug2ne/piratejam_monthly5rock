@@ -3,6 +3,8 @@ class_name PlayableCharacter
 
 @export var current: bool = false
 
+@onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var movement_controller: MovementController = $MovementController
 @onready var effects_sprite: AnimatedSprite2D = $EffectsAnimatedSprite2D
 
 func _ready() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dvpthewkuttia"]
+[gd_scene load_steps=49 format=3 uid="uid://dvpthewkuttia"]
 
 [ext_resource type="Script" path="res://player/PC.gd" id="1_fhjl8"]
 [ext_resource type="Material" uid="uid://b5sfgjat7dyv0" path="res://character/character shaders/pc_material.tres" id="1_tkqss"]
@@ -16,7 +16,6 @@
 [ext_resource type="Script" path="res://character/state machine/State Manager.gd" id="9_biyni"]
 [ext_resource type="Texture2D" uid="uid://duk3a728e5wyb" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f3.png" id="9_o4lem"]
 [ext_resource type="Texture2D" uid="uid://dk1us4wxb7ab8" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f0.png" id="10_oyttj"]
-[ext_resource type="Script" path="res://character/state machine/State.gd" id="10_wvem7"]
 [ext_resource type="Texture2D" uid="uid://b1vnjab72v8lq" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f1.png" id="11_4s4f8"]
 [ext_resource type="Texture2D" uid="uid://bbacjgfm1f6hd" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f2.png" id="12_8dbj7"]
 [ext_resource type="Script" path="res://character/state machine/character states/Dash.gd" id="12_fgoqn"]
@@ -26,7 +25,7 @@
 [ext_resource type="Resource" uid="uid://b7bgoqugry1a2" path="res://player/PC resources/action resources/Gladiator/Attack.tres" id="17_canuy"]
 [ext_resource type="PackedScene" uid="uid://dufbyrveswvnq" path="res://player/PC actions/Gladiator/Boost.tscn" id="18_rj0lb"]
 [ext_resource type="Resource" uid="uid://dqcrwnoxdxlic" path="res://player/PC resources/action resources/Gladiator/Parry.tres" id="19_vicj7"]
-[ext_resource type="Script" path="res://character/state machine/character states/Stun.gd" id="27_d8r0b"]
+[ext_resource type="Script" path="res://character/state machine/character states/Dead.gd" id="24_lqs6c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0m35v"]
 radius = 40.0
@@ -531,19 +530,26 @@ action_resource = ExtResource("19_vicj7")
 
 [node name="Boost" parent="ActionManager" instance=ExtResource("18_rj0lb")]
 
-[node name="StateManager" type="Node" parent="."]
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state", "default_state", "parent", "action_manager", "indicator")]
 script = ExtResource("9_biyni")
+initial_state = NodePath("Default")
+default_state = NodePath("Default")
+parent = NodePath("..")
+action_manager = NodePath("../ActionManager")
+indicator = NodePath("../Indicator")
 
 [node name="Default" type="Node" parent="StateManager" node_paths=PackedStringArray("movement_controller", "dash_state", "dead_state")]
 script = ExtResource("9_2uo28")
 movement_controller = NodePath("../../MovementController")
 dash_state = NodePath("../Dash")
 dead_state = NodePath("../Dead")
+anim_key = "move"
 
 [node name="Dead" type="Node" parent="StateManager"]
-script = ExtResource("10_wvem7")
+script = ExtResource("24_lqs6c")
 anim_key = "death"
 revive = true
+permanant = true
 
 [node name="Dash" type="Node" parent="StateManager" node_paths=PackedStringArray("movement_controller", "default_state")]
 script = ExtResource("12_fgoqn")
@@ -554,19 +560,13 @@ anim_key = "dash"
 [node name="Idle" type="Node" parent="StateManager" node_paths=PackedStringArray("movement_controller")]
 script = ExtResource("14_umevl")
 movement_controller = NodePath("../../MovementController")
-
-[node name="Stun" type="Node" parent="StateManager"]
-script = ExtResource("27_d8r0b")
-anim_key = "stun"
-
-[node name="Timer" type="Timer" parent="StateManager/Stun"]
+anim_key = "idle"
 
 [connection signal="body_entered" from="DetectionArea" to="StateManager/Idle" method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="StateManager/Idle" method="_on_detection_area_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateManager/Dead" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateManager/Dash" method="_on_animation_player_animation_finished"]
-[connection signal="Transition" from="StateManager/Default" to="StateManager" method="_set_current_state"]
-[connection signal="Transition" from="StateManager/Dead" to="StateManager" method="_set_current_state"]
-[connection signal="Transition" from="StateManager/Dash" to="StateManager" method="_set_current_state"]
-[connection signal="Transition" from="StateManager/Idle" to="StateManager" method="_set_current_state"]
-[connection signal="Transition" from="StateManager/Stun" to="StateManager" method="_on_state_transition"]
-[connection signal="timeout" from="StateManager/Stun/Timer" to="StateManager/Stun" method="_on_timer_timeout"]
+[connection signal="Transition" from="StateManager/Default" to="StateManager" method="_on_state_transition"]
+[connection signal="Transition" from="StateManager/Dead" to="StateManager" method="_on_state_transition"]
+[connection signal="Transition" from="StateManager/Dash" to="StateManager" method="_on_state_transition"]
+[connection signal="Transition" from="StateManager/Idle" to="StateManager" method="_on_state_transition"]

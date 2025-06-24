@@ -49,8 +49,14 @@ func _show_debuff():
 func _add_state(state_name: String, state_show_time: float):
 	# add state label to states container
 	var new_label: IndicatorLabel = label.instantiate()
+	new_label.label_timeout.connect(_delete_state)
 	# pass state_time to new_label
 	new_label.show_time = state_show_time
 	# show new_label
 	states_container.add_child(new_label)
 	new_label._show(state_name)
+
+func _delete_state(state_label: IndicatorLabel):
+	print("delete label")
+	# delete label
+	states_container.remove_child(state_label)

@@ -12,7 +12,7 @@ func _ready() -> void:
 	# set max_hp
 	character_resource.max_hp = character_resource.hp
 
-func _take_damage(damage: float, critical: bool, _from: Character) -> void:
+func _take_damage(damage: float, critical: bool, from: Character = null) -> void:
 	# TODO: add screenshake when character take/deal damage
 	# show critical
 	if critical:
@@ -48,7 +48,7 @@ func _take_heal(recover: float, critical: bool, _from: Character) -> void:
 	if state_manager.current_state.name.to_lower() == "dead":
 		print("revive")
 		state_manager._set_current_state("idle")
-	
+
 func _take_debuff(debuff: float, debuff_stat: String) -> void:
 	# debuff character stat
 	character_resource[debuff_stat] -= debuff

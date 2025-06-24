@@ -12,7 +12,7 @@ var current_pc: PlayableCharacter
 
 
 func _get_incentor_position() -> Vector2:
-	# TODO: get incentor position of PCs
+	# get incentor position of PCs
 	var incentor: Vector2
 	
 	var a: Vector2 = pc_group[0].global_position
@@ -57,7 +57,7 @@ func _set_current_pc(new_pc_index: int, new_pc: PlayableCharacter) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	# TODO: follow current_pc
+	# follow current_pc
 	var current_pc_position: Vector2 = current_pc.global_position
 	var incentor_position: Vector2 = _get_incentor_position()
 	

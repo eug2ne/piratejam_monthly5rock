@@ -3,7 +3,14 @@ class_name ActionResource
 
 @export var action_name: String
 @export var base_damage: float
-@export var parry_action: bool
+# effect info
+@export var parry: bool
+@export var stun: bool = false
+@export var stun_duration: float = 0
+@export var stun_damage: int = 0
+@export var effect: bool
+@export var effect_duration: int = 0
+@export var effect_damage: int = 0
 
 # UI resource
 @export var ui_texture: Texture
@@ -15,7 +22,7 @@ func _deal_damage(target_defense: float, parent_accuracy: float, parent_bonus_ap
 	var total_damage: float = base_damage + parent_bonus_ap
 	
 	# get parry damage
-	if parry_action:
+	if parry:
 		if critical:
 			# critical parry deal
 			return snappedf(total_damage * rng.randf_range(1.5,2), 0.1)
