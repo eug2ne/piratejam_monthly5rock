@@ -30,8 +30,8 @@ func _on_target_area_area_entered(area: Area2D) -> void:
 		# bounce off enemies
 		var enemy_direction: Vector2 = parent.global_position.direction_to(enemy.global_position)
 		enemy.global_position += enemy_direction.normalized() * 25
-		# apply stun to enemy
-		enemy.state_manager._set_current_state("stun", action_resource.stun_duration, action_resource.stun_damage)
+		# TODO: apply stun to enemy
+		#enemy.state_manager._set_current_state("stun", action_resource.stun_duration, action_resource.stun_damage)
 		
 		# signal indicator
 		indicator._show_parry()

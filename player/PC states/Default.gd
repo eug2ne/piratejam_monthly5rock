@@ -11,7 +11,7 @@ func _on_enter() -> void:
 	# enable input on action_manager
 	#action_manager.input_disabled = false
 	# set movement_controller speed to default speed
-	movement_controller.SPEED = movement_controller.DEFAULT_SPEED
+	movement_controller.SPEED = movement_controller.MOVE_SPEED
 	
 func _update_input(event) -> void:
 	# handle dash event

@@ -1,39 +1,44 @@
 extends AnimatableBody2D
 class_name Projectile
 
+@export var target_group: String = "enemy"
+var target: CharacterBody2D
 @export var SPEED: float = 70
-
-@onready var collision_area: Area2D = $Area2D
+@export var LIFE: float = 3
+@onready var interaction_area: InteractionArea = $InteractionArea
 @onready var anim: AnimationPlayer = $AnimationPlayer
+var dir: Vector2
 
 
-func sort_by_distance(t1, t2):
-	var t1_distance = global_position.distance_to(t1.global_position)
-	var t2_distance = global_position.distance_to(t2.global_position)
+func sort_by_distance(target1,target2) -> bool:
+	var target1_distance = global_position.distance_to(target1.global_position)
+	var target2_distance = global_position.distance_to(target2.global_position)
+	# use PlayerManager.current_player instead of player to prevent bug
 	
-	if t1_distance == t2_distance:
+	if target1_distance == target2_distance:
 		# if distance is equal, sort by priority
-		return t1.priority < t2.priority
+		return target1.priority < target2.priority
 	else:
-		return t1_distance < t2_distance
+		return target1_distance < target2_distance
 
-func _throw(target_group: String) -> void:
-	# search nearest target
+func _ready() -> void:
+	# set interact of interaction_area
+	interaction_area.interact = _throw
+
+func _throw(t_group: String = "") -> void:
+	if t_group:
+		target_group = t_group
+	
+	# get closest target
 	var targets: Array[Node] = get_tree().get_nodes_in_group(target_group)
 	targets.sort_custom(sort_by_distance)
-	var nearest_target: Node = targets.front()
+	target = targets[0]
 	
-	# get direction to target
-	var direction: Vector2 = global_position.direction_to(nearest_target.global_position)
-	direction.normalized()
-	# throw self to target
-	move_and_collide(direction * SPEED)
-	# play throw animation
+	dir = global_position.direction_to(target.global_position)
+	# TODO: throw self to target
 	anim.play("throw")
 
-func _hit(body: Character) -> void:
+func _hit() -> void:
 	# play hit animation
 	anim.play("hit")
-	# TODO: get affected enemies >> apply effect + damage
-	# destroy self
-	free()
+	# TODO: destruct self

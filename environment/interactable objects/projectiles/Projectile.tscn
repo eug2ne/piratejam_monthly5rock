@@ -1,25 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2wy5km8iondl"]
+[gd_scene load_steps=5 format=3 uid="uid://ccy8c0g0uqmpp"]
 
-[ext_resource type="Script" path="res://environment/interactable objects/projectiles/Projectile.gd" id="1_yqgn6"]
+[ext_resource type="Script" path="res://environment/interactable objects/InteractionArea.gd" id="1_hxu3o"]
+[ext_resource type="Script" path="res://environment/interactable objects/projectiles/Projectile.gd" id="1_mwepb"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pjfe1"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_rtl8b"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_idu4a"]
-radius = 40.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_i84e8"]
+radius = 30.0
 
 [node name="Projectile" type="AnimatableBody2D"]
+collision_mask = 2
+script = ExtResource("1_mwepb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rtl8b")
+
+[node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("1_yqgn6")
+script = ExtResource("1_hxu3o")
+action_name = "throw"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_i84e8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_pjfe1")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="LifeTimer" type="Timer" parent="."]
+one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_idu4a")
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

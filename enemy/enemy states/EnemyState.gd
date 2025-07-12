@@ -4,9 +4,10 @@ class_name EnemyState
 # physics property
 var SPEED: float
 
-@onready var IDLE_SPEED: float = parent.character_resource.idle_speed
-@onready var MOVE_SPEED: float = parent.character_resource.move_speed
-@onready var DASH_SPEED: float = parent.character_resource.dash_speed
+# assigned value by state_manager
+var IDLE_SPEED: float
+var MOVE_SPEED: float
+var DASH_SPEED: float
 
 func _on_enter() -> void:
 	# play state animation

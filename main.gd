@@ -11,50 +11,16 @@
 
 extends Node2D
 
-@export var current_pc_index: int = 0
-var current_pc: PlayableCharacter
-@onready var pc_group: Array[Node] = get_tree().get_nodes_in_group("pc")
-
-@onready var combat_UI: Control = $CanvasLayer/CombatUI
-@onready var main_camera: MainCamera = $MainCamera
-
 # enemy spawn
 @onready var enemy_ps: PackedScene = preload("res://enemy/enemy.tscn")
 @onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
 
 
-func _input(event) -> void:
-	if event.is_action_pressed("switch_pc"):
-		# switch current_pc
-		if current_pc_index == pc_group.size() - 1:
-			current_pc_index = 0
-		else:
-			current_pc_index += 1
-		
-		current_pc = pc_group[current_pc_index]
-		# set current for each pc
-		for pc: Node in pc_group:
-			if pc == current_pc:
-				pc._set_current(true)
-			else:
-				pc._set_current(false)
-		
-	# pass current_pc_index + current_pc to CombatUI + MainCamera
-	combat_UI._set_current_pc(current_pc_index, current_pc)
-	main_camera._set_current_pc(current_pc_index, current_pc)
-
 func _ready() -> void:
-	# set current for each pc
-	current_pc = pc_group[current_pc_index]
-	for pc: Node in pc_group:
-		if pc == current_pc:
-			pc._set_current(true)
-		else:
-			pc._set_current(false)
-	# pass current_pc_index + current_pc to CombatUI + MainCamera
-	combat_UI._set_current_pc(current_pc_index, current_pc)
-	main_camera._set_current_pc(current_pc_index, current_pc)
+	# load managers
+	PlayerManager._load()
 	
+	# BUG: enemy spawn having collision issues?
 	# spawn enemies
 	for i in range(10):
 		var enemy: Character = enemy_ps.instantiate()

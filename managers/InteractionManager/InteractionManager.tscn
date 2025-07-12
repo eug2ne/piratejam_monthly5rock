@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwce5axufumav"]
+
+[ext_resource type="Script" path="res://managers/InteractionManager/InteractionManager.gd" id="1_1h1yh"]
+[ext_resource type="Theme" uid="uid://b05xgljo0h2ni" path="res://assets/themes/basic label.tres" id="2_4hguc"]
+[ext_resource type="LabelSettings" uid="uid://cg2h2esxsdb4p" path="res://assets/themes/label settings/basic label settings.tres" id="2_vivft"]
+
+[node name="InteractionManager" type="Node2D"]
+z_index = 20
+script = ExtResource("1_1h1yh")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -28.0
+offset_right = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_4hguc")
+text = "press [e] to "
+label_settings = ExtResource("2_vivft")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true

@@ -44,15 +44,16 @@ func _physics_process(delta):
 		current_state._update_physics(delta)
 
 func _set_current_state(state_key: String = "", state_duration: float = 0):
-	# prevent redundancy
-	if current_state.name.to_lower() == state_key:
-		return
-	# not revivable
-	if current_state.name.to_lower() == "dead" && !current_state.revive:
-		return
-	
-	# exit current_state
-	current_state._on_exit()
+	if current_state:
+		# prevent redundancy
+		if current_state.name.to_lower() == state_key:
+			return
+		# not revivable
+		if current_state.name.to_lower() == "dead" && !current_state.revive:
+			return
+		
+		# exit current_state
+		current_state._on_exit()
 	
 	# get new_state
 	var new_state: State
