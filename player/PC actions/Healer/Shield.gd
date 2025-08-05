@@ -1,4 +1,4 @@
-extends Action
+extends CharacterAction
 # TODO: create eggshell (egg protection to all pcs for 10 sec)
 
 @onready var pc_group: Array[Node] = get_tree().get_nodes_in_group("pc")

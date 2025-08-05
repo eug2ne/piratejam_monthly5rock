@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bn2f2n2mpjtya"]
 
-[ext_resource type="Script" path="res://effects/Effect.gd" id="1_18t1n"]
+[ext_resource type="Script" path="res://actions & effects/Effect.gd" id="1_18t1n"]
 [ext_resource type="Theme" uid="uid://b05xgljo0h2ni" path="res://assets/themes/basic label.tres" id="2_mp83y"]
 
 [node name="Effect" type="AnimatedSprite2D"]

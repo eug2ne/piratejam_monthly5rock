@@ -1,4 +1,4 @@
-extends Action
+extends CharacterAction
 # TODO: create fireball action
 
 

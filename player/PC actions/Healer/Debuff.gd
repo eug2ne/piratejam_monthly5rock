@@ -1,4 +1,4 @@
-extends Action
+extends CharacterAction
 
 @export var debuff_stat: String
 

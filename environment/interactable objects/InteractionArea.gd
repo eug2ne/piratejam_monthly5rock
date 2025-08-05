@@ -10,6 +10,7 @@ class_name InteractionArea
 var interact: Callable
 
 func _on_body_entered(body: CharacterBody2D) -> void:
+	print(body == PlayerManager.current_pc)
 	if body != PlayerManager.current_pc:
 		return
 	if !visible||!action_available:

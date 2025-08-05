@@ -17,7 +17,6 @@ func _register_area(area: InteractionArea):
 		return
 		
 	active_areas.push_back(area)
-	print(active_areas)
 
 func _unregister_area(area: InteractionArea):
 	var i = active_areas.find(area)

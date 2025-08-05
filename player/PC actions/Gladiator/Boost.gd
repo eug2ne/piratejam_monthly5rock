@@ -1,4 +1,4 @@
-extends Action
+extends CharacterAction
 
 @onready var boost_timer: Timer = $BoostTimer
 var boost_time: float = 5

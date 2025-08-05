@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cl7nyte8iww35" path="res://assets/vfx/Stun.png" id="1_gupur"]
 [ext_resource type="Theme" uid="uid://b05xgljo0h2ni" path="res://assets/themes/basic label.tres" id="2_2tosm"]
-[ext_resource type="Script" path="res://effects/character effects/Stun.gd" id="2_vop8t"]
+[ext_resource type="Script" path="res://actions & effects/character effects/Stun.gd" id="2_vop8t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_54abc"]
 atlas = ExtResource("1_gupur")

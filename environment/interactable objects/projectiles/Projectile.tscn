@@ -1,19 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccy8c0g0uqmpp"]
+[gd_scene load_steps=6 format=3 uid="uid://ckr3kvgjwdnhc"]
 
 [ext_resource type="Script" path="res://environment/interactable objects/InteractionArea.gd" id="1_hxu3o"]
 [ext_resource type="Script" path="res://environment/interactable objects/projectiles/Projectile.gd" id="1_mwepb"]
+[ext_resource type="Script" path="res://actions & effects/Action.gd" id="3_1udtj"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rtl8b"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_gs7qm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i84e8"]
-radius = 30.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_6m0xk"]
+radius = 20.0
 
-[node name="Projectile" type="AnimatableBody2D"]
-collision_mask = 2
+[node name="Projectile" type="CharacterBody2D"]
 script = ExtResource("1_mwepb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_rtl8b")
+shape = SubResource("CircleShape2D_gs7qm")
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -22,14 +22,17 @@ script = ExtResource("1_hxu3o")
 action_name = "throw"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource("CircleShape2D_i84e8")
+shape = SubResource("CircleShape2D_6m0xk")
+
+[node name="Throw" type="Node" parent="."]
+script = ExtResource("3_1udtj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="LifeTimer" type="Timer" parent="."]
-one_shot = true
 
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

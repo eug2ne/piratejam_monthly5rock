@@ -1,4 +1,4 @@
-extends Action
+extends CharacterAction
 class_name EnemyAction
 
 var target: Character
@@ -10,7 +10,7 @@ var parried: bool = false
 @onready var lockon_timer: Timer = $Timers/LockOnTimer
 @onready var cooltime_timer: Timer = $Timers/CoolTimeTimer
 
-signal action_end(action: Action)
+signal action_end(action: CharacterAction)
 
 func _lock_on(direction: Vector2i) -> void:
 	# set target_area position

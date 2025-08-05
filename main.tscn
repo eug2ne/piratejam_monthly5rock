@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bje8xclox6jiu"]
+[gd_scene load_steps=19 format=3 uid="uid://bje8xclox6jiu"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_tuq5s"]
 [ext_resource type="PackedScene" uid="uid://b15kbyg7k4fwd" path="res://map/bar_map.tscn" id="1_yokby"]
@@ -8,7 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ccx8e1l6enf1q" path="res://player/PCs/Healer.tscn" id="5_poar1"]
 [ext_resource type="PackedScene" uid="uid://c44b2lj3ngcko" path="res://player/PCs/Wizard.tscn" id="6_c2o31"]
 [ext_resource type="Script" path="res://UI/MainCamera/MainCamera.gd" id="8_585he"]
-[ext_resource type="PackedScene" uid="uid://b6y2pafgxqhj8" path="res://environment/interactable objects/InteractionArea.tscn" id="9_q6jyc"]
+[ext_resource type="PackedScene" uid="uid://dr4d5i7gefy27" path="res://enemy/enemy.tscn" id="8_ribcv"]
+[ext_resource type="Script" path="res://character/character resource/CharacterResource.gd" id="9_bx0ao"]
+[ext_resource type="PackedScene" uid="uid://dg0n6qfhmqv0n" path="res://environment/interactable objects/projectiles/Bottle/Bottle.tscn" id="11_lf6ok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxl6l"]
 size = Vector2(1120, 20)
@@ -33,6 +35,25 @@ resource_local_to_scene = true
 shader = ExtResource("3_ga1au")
 shader_parameter/flash_color = Color(0.180392, 0.921569, 0.54902, 1)
 shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fan2h"]
+resource_local_to_scene = true
+shader = ExtResource("3_ga1au")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="Resource" id="Resource_x3kev"]
+resource_local_to_scene = true
+script = ExtResource("9_bx0ao")
+character_name = "enemy"
+hp = 2000.0
+idle_speed = 30.0
+move_speed = 50.0
+dash_speed = 0.0
+defense = 0.0
+agility = 0.0
+accuracy = 25.0
+critical_rate = 0.0
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_tuq5s")
@@ -80,6 +101,14 @@ position = Vector2(736, 560)
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Enemy" parent="Enemies" groups=["enemy"] instance=ExtResource("8_ribcv")]
+material = SubResource("ShaderMaterial_fan2h")
+position = Vector2(352, 280)
+character_resource = SubResource("Resource_x3kev")
+
+[node name="Bottle" parent="." instance=ExtResource("11_lf6ok")]
+position = Vector2(512, 376)
+
 [node name="MainCamera" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 script = ExtResource("8_585he")
@@ -89,8 +118,5 @@ camera_zoom_speed = 0.25
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 20.0
 autostart = true
-
-[node name="InteractionArea" parent="." instance=ExtResource("9_q6jyc")]
-position = Vector2(528, 352)
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

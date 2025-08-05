@@ -1,4 +1,4 @@
-extends Action
+extends CharacterAction
 
 func _process(_delta) -> void:
 	if parent.velocity == Vector2(0,0):

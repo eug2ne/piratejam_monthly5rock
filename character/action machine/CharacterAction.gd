@@ -1,5 +1,5 @@
 extends Node
-class_name Action
+class_name CharacterAction
 
 @export var action_resource: ActionResource
 var parent: Character
