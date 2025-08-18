@@ -20,10 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://chpy2tqin0wdm" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_run_anim_f2.png" id="12_u7gj1"]
 [ext_resource type="Texture2D" uid="uid://cralw8n0gdb6t" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_run_anim_f3.png" id="13_2ejol"]
 [ext_resource type="Script" path="res://character/state machine/character states/Dash.gd" id="13_mqdbx"]
-[ext_resource type="SpriteFrames" uid="uid://b0686be3mwgj8" path="res://player/PC resources/action spriteframes/Eggshell.tres" id="14_vl46m"]
-[ext_resource type="PackedScene" uid="uid://csrb08pqiv4ot" path="res://player/PC actions/Healer/Heal.tscn" id="16_rwt3y"]
-[ext_resource type="PackedScene" uid="uid://rtl00mnxctx6" path="res://player/PC actions/Healer/Debuff.tscn" id="17_eno0l"]
-[ext_resource type="PackedScene" uid="uid://dvcjhff7dqr4b" path="res://player/PC actions/Healer/Eggshell.tscn" id="19_n4qb8"]
+[ext_resource type="SpriteFrames" uid="uid://b0686be3mwgj8" path="res://assets/spriteframes/action spriteframes/Eggshell.tres" id="14_vl46m"]
+[ext_resource type="PackedScene" uid="uid://csrb08pqiv4ot" path="res://actions/PC actions/Healer/Heal.tscn" id="16_rwt3y"]
+[ext_resource type="PackedScene" uid="uid://rtl00mnxctx6" path="res://actions/PC actions/Healer/Debuff.tscn" id="17_eno0l"]
+[ext_resource type="PackedScene" uid="uid://dvcjhff7dqr4b" path="res://actions/PC actions/Healer/Eggshell.tscn" id="19_n4qb8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0djip"]
 radius = 40.0
@@ -484,7 +484,6 @@ shape = SubResource("CircleShape2D_0djip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0n5gx")
-disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true

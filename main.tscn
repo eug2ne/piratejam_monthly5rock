@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bje8xclox6jiu"]
+[gd_scene load_steps=16 format=3 uid="uid://bje8xclox6jiu"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_tuq5s"]
 [ext_resource type="PackedScene" uid="uid://b15kbyg7k4fwd" path="res://map/bar_map.tscn" id="1_yokby"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ccx8e1l6enf1q" path="res://player/PCs/Healer.tscn" id="5_poar1"]
 [ext_resource type="PackedScene" uid="uid://c44b2lj3ngcko" path="res://player/PCs/Wizard.tscn" id="6_c2o31"]
 [ext_resource type="Script" path="res://UI/MainCamera/MainCamera.gd" id="8_585he"]
+[ext_resource type="PackedScene" uid="uid://cvr7q7vlcvax7" path="res://interaction/InteractionArea.tscn" id="8_qabv7"]
+[ext_resource type="Script" path="res://interaction/spawn areas/bottle_spawn_area.gd" id="9_iy6bl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nxl6l"]
 size = Vector2(1120, 20)
@@ -77,6 +79,12 @@ position = Vector2(736, 560)
 
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true
+
+[node name="InteractionAreas" type="Node2D" parent="."]
+
+[node name="InteractionArea" parent="InteractionAreas" groups=["bottle_spawn_areas", "interaction_areas"] instance=ExtResource("8_qabv7")]
+position = Vector2(456, 440)
+script = ExtResource("9_iy6bl")
 
 [node name="MainCamera" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)

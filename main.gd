@@ -9,7 +9,7 @@
 	# 0x72 - 16x16 DungeonTileset II - https://0x72.itch.io/dungeontileset-ii
 	# Poppy Works - Silver font https://poppyworks.itch.io/silver
 
-extends Node2D
+extends Node
 
 @export var current_pc_index: int = 0
 var current_pc: PlayableCharacter
@@ -21,6 +21,9 @@ var current_pc: PlayableCharacter
 # enemy spawn
 @onready var enemy_ps: PackedScene = preload("res://enemy/enemy.tscn")
 @onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
+#bottle spawn
+@onready var bottle_spawn_areas: Array[Node] = get_tree().get_nodes_in_group("bottle_spawn_areas")
+@onready var bottle_ps: PackedScene = preload("res://actions/environment actions/furnitures/bottle/Bottle.tscn")
 
 
 func _input(event) -> void:
@@ -61,6 +64,11 @@ func _ready() -> void:
 		enemy.global_position = Vector2(500,400)
 		enemy.add_to_group("enemy")
 		get_node("Enemies").add_child(enemy)
+	
+	# TODO: create bottles
+	for b_area: InteractionArea in bottle_spawn_areas:
+		var bottle: Action = bottle_ps.instantiate() as Action
+		await b_area._add_bottle(bottle)
 
 func _on_enemy_spawn_timer_timeout():
 	# spawn new enemy

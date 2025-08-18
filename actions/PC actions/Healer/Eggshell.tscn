@@ -1,0 +1,189 @@
+[gd_scene load_steps=23 format=3 uid="uid://dvcjhff7dqr4b"]
+
+[ext_resource type="Script" path="res://actions/PC actions/Healer/Eggshell.gd" id="1_d0ykc"]
+[ext_resource type="Resource" uid="uid://df1572t6ncgrd" path="res://actions/PC actions/action resources/Healer/Eggshell.tres" id="2_jv8mr"]
+[ext_resource type="Texture2D" uid="uid://bkf67egko7trm" path="res://assets/vfx/FX000/FX001.png" id="3_bs8aa"]
+[ext_resource type="Texture2D" uid="uid://evuowh3b36a" path="res://assets/vfx/FX000/FX002.png" id="4_2h6ff"]
+[ext_resource type="Texture2D" uid="uid://cwwglpbld2oe2" path="res://assets/vfx/FX000/FX003.png" id="5_dxkcv"]
+[ext_resource type="Texture2D" uid="uid://sj2ksxdd722r" path="res://assets/vfx/FX000/FX004.png" id="6_tu88k"]
+[ext_resource type="Texture2D" uid="uid://gpxubs070xku" path="res://assets/vfx/FX000/FX005.png" id="7_fc7i4"]
+[ext_resource type="Texture2D" uid="uid://pwodr8csbxda" path="res://assets/vfx/FX000/FX006.png" id="8_8sysl"]
+[ext_resource type="Texture2D" uid="uid://bbqyasxy0ui2g" path="res://assets/vfx/FX000/FX007.png" id="9_034c1"]
+[ext_resource type="Texture2D" uid="uid://cwkubrrxnunv0" path="res://assets/vfx/FX000/FX008.png" id="10_dxrcw"]
+[ext_resource type="Texture2D" uid="uid://bx6kfavwamhee" path="res://assets/vfx/FX000/FX009.png" id="11_tyboj"]
+[ext_resource type="Texture2D" uid="uid://bxtqdsrkq7n3u" path="res://assets/vfx/FX000/FX010.png" id="12_mvhgt"]
+[ext_resource type="Texture2D" uid="uid://df2g2hsngai86" path="res://assets/vfx/FX000/FX011.png" id="13_nysv8"]
+[ext_resource type="Texture2D" uid="uid://dej2bvi1hfb00" path="res://assets/vfx/FX000/FX012.png" id="14_eb76e"]
+[ext_resource type="Texture2D" uid="uid://bso4hfyyggj6x" path="res://assets/vfx/FX000/FX013.png" id="15_sguos"]
+[ext_resource type="Texture2D" uid="uid://cfdlvo48iujtx" path="res://assets/vfx/FX000/FX014.png" id="16_54o8w"]
+[ext_resource type="Texture2D" uid="uid://cdc820j0aguch" path="res://assets/vfx/FX000/FX015.png" id="17_qbe1c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vkjjb"]
+radius = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_25yye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bs8aa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2h6ff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dxkcv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tu88k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fc7i4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8sysl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_034c1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dxrcw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_tyboj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mvhgt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_nysv8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_eb76e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_sguos")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_54o8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_qbe1c")
+}],
+"loop": true,
+"name": &"action",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_deso7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"action"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_2fx1p"]
+resource_name = "action"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"action"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cuiiv"]
+_data = {
+"RESET": SubResource("Animation_deso7"),
+"action": SubResource("Animation_2fx1p")
+}
+
+[node name="Eggshell" type="Node"]
+script = ExtResource("1_d0ykc")
+action_resource = ExtResource("2_jv8mr")
+target_group = "pc"
+reusable = true
+cool_time = 8.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vkjjb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_25yye")
+animation = &"action"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cuiiv")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

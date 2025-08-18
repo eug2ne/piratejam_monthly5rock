@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dvpthewkuttia"]
+[gd_scene load_steps=47 format=3 uid="uid://dvpthewkuttia"]
 
 [ext_resource type="Script" path="res://player/PC.gd" id="1_fhjl8"]
 [ext_resource type="Material" uid="uid://b5sfgjat7dyv0" path="res://character/character shaders/pc_material.tres" id="1_tkqss"]
@@ -7,9 +7,9 @@
 [ext_resource type="Script" path="res://player/movement controller/MovementController.gd" id="3_bxr2l"]
 [ext_resource type="PackedScene" uid="uid://coo8juutpxbgw" path="res://character/character indicator/Indicator.tscn" id="4_0yxy1"]
 [ext_resource type="Script" path="res://character/action machine/ActionManager.gd" id="4_tfyyi"]
-[ext_resource type="PackedScene" uid="uid://cndercnoyvxu3" path="res://player/PC actions/Gladiator/Attack.tscn" id="5_52j7o"]
+[ext_resource type="PackedScene" uid="uid://cndercnoyvxu3" path="res://actions/PC actions/Gladiator/Attack.tscn" id="5_52j7o"]
 [ext_resource type="Texture2D" uid="uid://mno3hwmdd5th" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="6_36fan"]
-[ext_resource type="PackedScene" uid="uid://bftq7opuyn0au" path="res://player/PC actions/Gladiator/Parry.tscn" id="7_aqu00"]
+[ext_resource type="PackedScene" uid="uid://bftq7opuyn0au" path="res://actions/PC actions/Gladiator/Parry.tscn" id="7_aqu00"]
 [ext_resource type="Texture2D" uid="uid://dq1eonvsbsfm2" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f1.png" id="7_lntjo"]
 [ext_resource type="Texture2D" uid="uid://l6e02162gct7" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f2.png" id="8_jvllg"]
 [ext_resource type="Script" path="res://player/PC states/Default.gd" id="9_2uo28"]
@@ -21,11 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://bbacjgfm1f6hd" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f2.png" id="12_8dbj7"]
 [ext_resource type="Script" path="res://character/state machine/character states/Dash.gd" id="12_fgoqn"]
 [ext_resource type="Texture2D" uid="uid://cg276xwxjs0t" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f3.png" id="13_gcvg5"]
-[ext_resource type="SpriteFrames" uid="uid://b0686be3mwgj8" path="res://player/PC resources/action spriteframes/Eggshell.tres" id="14_6ls5k"]
+[ext_resource type="SpriteFrames" uid="uid://b0686be3mwgj8" path="res://assets/spriteframes/action spriteframes/Eggshell.tres" id="14_6ls5k"]
 [ext_resource type="Script" path="res://player/PC states/PC_Idle.gd" id="14_umevl"]
-[ext_resource type="Resource" uid="uid://b7bgoqugry1a2" path="res://player/PC resources/action resources/Gladiator/Attack.tres" id="17_canuy"]
-[ext_resource type="PackedScene" uid="uid://dufbyrveswvnq" path="res://player/PC actions/Gladiator/Boost.tscn" id="18_rj0lb"]
-[ext_resource type="Resource" uid="uid://dqcrwnoxdxlic" path="res://player/PC resources/action resources/Gladiator/Parry.tres" id="19_vicj7"]
+[ext_resource type="PackedScene" uid="uid://dufbyrveswvnq" path="res://actions/PC actions/Gladiator/Boost.tscn" id="18_rj0lb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0m35v"]
 radius = 40.0
@@ -488,7 +486,6 @@ shape = SubResource("CircleShape2D_0m35v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0n5gx")
-disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -524,10 +521,8 @@ secondary_action = NodePath("Parry")
 special_action = NodePath("Boost")
 
 [node name="Attack" parent="ActionManager" instance=ExtResource("5_52j7o")]
-action_resource = ExtResource("17_canuy")
 
 [node name="Parry" parent="ActionManager" instance=ExtResource("7_aqu00")]
-action_resource = ExtResource("19_vicj7")
 
 [node name="Boost" parent="ActionManager" instance=ExtResource("18_rj0lb")]
 
