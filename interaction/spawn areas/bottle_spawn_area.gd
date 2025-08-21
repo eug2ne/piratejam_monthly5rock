@@ -9,7 +9,7 @@ func _ready():
 func _add_bottle(new_bottle: Action):
 	add_child(new_bottle)
 	bottle = new_bottle
-	bottle.target_area.global_position = global_position
+	bottle.character_body.global_position = global_position
 
 func _throw_bottle():
 	# set bottle parent to current_pc
