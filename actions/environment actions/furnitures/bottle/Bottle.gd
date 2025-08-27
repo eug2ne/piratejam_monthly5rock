@@ -1,15 +1,20 @@
 extends Action
 
-# throw physics configs
-var SPEED: float
+# trajectory physics values
+const SPEED: float = 200
 @export var REACH: float = 30
 const GRAVITY: float = 1
-@onready var DRAG: float = ProjectSettings.get_setting("physics/2d/default_linear_damp")
+var DISTANCE: float
+var HEIGHT: float
+const DEFAULT_HEIGHT: float = 55 # HEIGHT when DISTANCE is 100
+@export var height_damp: float = 1
 var TIMESTAMP: float = 0.0
-var target: Character
 var initial_position: Vector2
 var throw_direction: Vector2
 var throw_angle: float
+
+# throw configs
+var target: Character
 var z_axis: float = 0.0
 var activated: bool = false
 
@@ -23,9 +28,9 @@ func _ready():
 	# disable raycast
 	raycast.enabled = false
 
-func sort_by_distance_to_player(target1, target2):
-	var target1_distance = PlayerManager.current_pc.global_position.distance_to(target1.global_position)
-	var target2_distance = PlayerManager.current_pc.global_position.distance_to(target2.global_position)
+func sort_by_distance(target1, target2):
+	var target1_distance = character_body.global_position.distance_to(target1.global_position)
+	var target2_distance = character_body.global_position.distance_to(target2.global_position)
 	# use PlayerManager.current_player instead of player to prevent bug
 	
 	if target1_distance == target2_distance:
@@ -37,20 +42,24 @@ func sort_by_distance_to_player(target1, target2):
 func get_target() -> Character:
 	# get target
 	var targets: Array[Node] = get_tree().get_nodes_in_group(target_group)
-	targets.sort_custom(sort_by_distance_to_player)
+	targets.sort_custom(sort_by_distance)
 	var target: Character = targets[0]
 	
 	return target
 
-func get_trajectory(initial_pos: Vector2, direction: Vector2, desired_distance: float, desired_angle: float) -> void:
-	# TODO: need to adjust trajectory (more curve toward target)
+func get_trajectory(initial_pos: Vector2, target_pos: Vector2) -> void:
+	# TODO: calculate SPEED based on distance + time
+	# FIXME: calculate trajectory values differently depending on target_distance
+	# set trajectory values
 	initial_position = initial_pos
-	throw_direction = direction.normalized()
-	throw_angle = desired_angle + 30
+	throw_direction = initial_pos.direction_to(target_pos).normalized()
+	throw_angle = abs(rad_to_deg(throw_direction.angle()))
+	raycast.target_position = throw_direction * 100
 	
-	SPEED = pow(abs(desired_distance * GRAVITY / sin(2 * deg_to_rad(desired_angle))), 0.5)
+	# get height of the trajectory
+	DISTANCE = initial_pos.distance_to(target_pos)
+	HEIGHT = DEFAULT_HEIGHT * height_damp / DISTANCE * 100
 	
-	character_body.global_position = initial_position
 	TIMESTAMP = 0.0
 
 func _throw():
@@ -59,27 +68,38 @@ func _throw():
 	
 	# get target + direction + angle
 	target = get_target()
-	var direction: Vector2 = character_body.global_position.direction_to(target.global_position).normalized()
-	var distance: float = character_body.global_position.distance_to(target.global_position)
-	var angle: float = direction.angle()
-	get_trajectory(character_body.global_position, direction, distance, angle)
+	get_trajectory(character_body.global_position, target.global_position)
 	
 	# enable raycast
 	raycast.enabled = true
+	
+	# play throw animation
+	anim.play("throw")
 
 func _physics_process(delta: float) -> void:
 	if !activated:
 		return
 	
-	# TODO: move toward target in parabola trajectory
+	# move toward target in parabola trajectory
 	TIMESTAMP += delta
 	
-	z_axis = SPEED * sin(deg_to_rad(throw_angle)) * TIMESTAMP - 0.5 * GRAVITY
-	if abs(z_axis) > 0:
-		var x_axis: float = SPEED * cos(deg_to_rad(throw_angle)) * TIMESTAMP
-		character_body.global_position = initial_position + throw_direction * x_axis
-		# set raycast direction
-		raycast.target_position = character_body.velocity.normalized() * REACH
+	if TIMESTAMP * SPEED >= DISTANCE:
+		activated = false
+		return
+	
+	var x: float
+	var y: float
+	var new_position: Vector2
+	# FIXME: update velocity instead of global_position
+	if throw_direction.x < 0:
+		x = -TIMESTAMP * SPEED
+		y = 4*HEIGHT/pow(DISTANCE, 2) * pow((abs(x)-DISTANCE*0.5), 2) - HEIGHT
+		new_position = Vector2(x,y).rotated(deg_to_rad(180-throw_angle))
+	else:
+		x = TIMESTAMP * SPEED
+		y = 4*HEIGHT/pow(DISTANCE, 2) * pow((abs(x)-DISTANCE*0.5), 2) - HEIGHT
+		new_position = Vector2(x,y).rotated(deg_to_rad(-throw_angle))
+	character_body.global_position = initial_position + new_position
 	
 	# detect hit from target using raycast
 	#if raycast.is_colliding():
