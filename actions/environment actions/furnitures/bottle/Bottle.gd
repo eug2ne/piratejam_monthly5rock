@@ -1,7 +1,8 @@
 extends Action
 
 # trajectory physics values
-const SPEED: float = 200
+var SPEED: float
+var THROW_TIME: float = 2 # default: 2 seconds
 @export var REACH: float = 30
 const GRAVITY: float = 1
 var DISTANCE: float
@@ -17,14 +18,16 @@ var throw_angle: float
 var target: Character
 var z_axis: float = 0.0
 var activated: bool = false
+var hit: bool = false
 
 @onready var character_body: CharacterBody2D = $CharacterBody2D
 @onready var raycast: RayCast2D = $CharacterBody2D/RayCast2D
 
 
 func _ready():
-	# assign target_area
+	# assign + disable target_area
 	target_area = $CharacterBody2D/Area2D
+	target_area.get_child(0).disabled = true
 	# disable raycast
 	raycast.enabled = false
 
@@ -47,8 +50,21 @@ func get_target() -> Character:
 	
 	return target
 
+func get_bottle_speed(bottle_pos: Vector2, target_pos: Vector2, DELTA: float) -> float:
+	var distance: float = bottle_pos.distance_to(target_pos)
+	return distance / DELTA
+
+func get_intercept(initial_pos: Vector2, bottle_speed: float, taret_position: Vector2, target_velocity: Vector2) -> Vector2:
+	var a: float = bottle_speed*bottle_speed - target_velocity.dot(target_velocity)
+	var b: float = 2*target_velocity.dot(target_pos - initial_pos)
+	var c: float = (target_pos - initial_position).dot(target_pos - initial_pos)
+	
+	if bottle_speed > target_velocity.length():
+		THROW_TIME = (b+sqrt(b*b + 4*a*c)) / (2*a)
+	
+	return target_pos + THROW_TIME*target_velocity
+
 func get_trajectory(initial_pos: Vector2, target_pos: Vector2) -> void:
-	# TODO: calculate SPEED based on distance + time
 	# FIXME: calculate trajectory values differently depending on target_distance
 	# set trajectory values
 	initial_position = initial_pos
@@ -57,62 +73,96 @@ func get_trajectory(initial_pos: Vector2, target_pos: Vector2) -> void:
 	raycast.target_position = throw_direction * 100
 	
 	# get height of the trajectory
-	DISTANCE = initial_pos.distance_to(target_pos)
+	DISTANCE = initial_pos.distance_to(target_pos) * 1.5 # muptiply 1.5 for 
 	HEIGHT = DEFAULT_HEIGHT * height_damp / DISTANCE * 100
-	
-	TIMESTAMP = 0.0
+	# TODO: calculate SPEED based on distance + time
+	SPEED = DISTANCE / THROW_TIME
 
 func _throw():
-	# activate bottle
-	activated = true
-	
+	# reset TIMESTAMP
+	TIMESTAMP = 0.0
 	# get target + direction + angle
 	target = get_target()
-	get_trajectory(character_body.global_position, target.global_position)
+	initial_position = character_body.global_position
+	#get_trajectory(character_body.global_position, target.global_position)
 	
 	# enable raycast
 	raycast.enabled = true
+	# enable target_area
+	target_area.get_child(0).disabled = false
 	
+	# activate bottle
+	activated = true
 	# play throw animation
 	anim.play("throw")
+	# start timer
+	timer.start(THROW_TIME)
+
+func _on_target_area_body_entered(body) -> void:
+	if hit:
+		return
+	# get target
+	if body is Character && body.is_in_group(target_group):
+		hit = true
+		# stop timer
+		timer.stop()
+		# TODO: slow entire game time + zoom in to bottle
+		
+		var parent_accuracy: float = parent.character_resource.accuracy
+		var parent_bonus_ap: float = parent.character_resource.bonus_ap
+		var target_agility = body.character_resource.agility
+		var target_defense = body.character_resource.defense
+		
+		if raycast.is_colliding():
+			print("critical hit!")
+		
+		# apply damage to target
+		var critical: bool = raycast.is_colliding()
+		#var damage: float = action_resource._deal_damage(target_defense, parent_accuracy, parent_bonus_ap, critical)
+		#body._take_damage(damage, critical, parent)
+		
+		# FIXME: how do I make this part only fire once????
+		# play action animation
+		anim.play("action")
+		await anim.animation_finished
+		# destroy self
+		queue_free()
 
 func _physics_process(delta: float) -> void:
 	if !activated:
 		return
 	
-	# move toward target in parabola trajectory
+	## FIXME: move toward target in parabola trajectory
 	TIMESTAMP += delta
-	
-	if TIMESTAMP * SPEED >= DISTANCE:
-		activated = false
-		return
-	
-	var x: float
-	var y: float
-	var new_position: Vector2
-	# FIXME: update velocity instead of global_position
-	if throw_direction.x < 0:
-		x = -TIMESTAMP * SPEED
-		y = 4*HEIGHT/pow(DISTANCE, 2) * pow((abs(x)-DISTANCE*0.5), 2) - HEIGHT
-		new_position = Vector2(x,y).rotated(deg_to_rad(180-throw_angle))
-	else:
-		x = TIMESTAMP * SPEED
-		y = 4*HEIGHT/pow(DISTANCE, 2) * pow((abs(x)-DISTANCE*0.5), 2) - HEIGHT
-		new_position = Vector2(x,y).rotated(deg_to_rad(-throw_angle))
-	character_body.global_position = initial_position + new_position
-	
-	# detect hit from target using raycast
-	#if raycast.is_colliding():
-		#print("raycast colliding")
-		#if character_body.global_position.distance_to(target.global_position) < 30:
-			#print("hit!!!!")
-			#character_body.velocity = Vector2(0,0)
-			#activated = false
-			## TODO: break bottle (hit targets within target_area)
-			## FIXME: target_area pushes bottle away
-			##target_area.global_position = character_body.global_position
+	#
+	## adjust throw_direction, throw_angle
+	#throw_direction = character_body.global_position.direction_to(target.global_position).normalized()
+	#throw_angle = abs(rad_to_deg(throw_direction.angle()))
+	## adjust SPEED
+	#DISTANCE = character_body.global_position.distance_to(target.global_position) * 1.5
+	#SPEED = DISTANCE / (THROW_TIME - TIMESTAMP)
+	#
+	## FIXME: how do i get a parabola trajectory????
+	#var x: float
+	#var y: float
+	#var new_position: Vector2
+	## FIXME: update velocity instead of global_position
+	#if throw_direction.x < 0:
+		#x = -TIMESTAMP * SPEED
+		#y = 4*HEIGHT/pow(DISTANCE, 2) * pow((abs(x)-DISTANCE*0.5), 2) - HEIGHT
+		#new_position = Vector2(x,y).rotated(deg_to_rad(180-throw_angle))
 	#else:
-		#print("adjust bottle direction")
-		## TODO: adjust direction to closest new target
+		#x = TIMESTAMP * SPEED
+		#y = 4*HEIGHT/pow(DISTANCE, 2) * pow((abs(x)-DISTANCE*0.5), 2) - HEIGHT
+		#new_position = Vector2(x,y).rotated(deg_to_rad(-throw_angle))
+	#
+	#throw_direction = new_position + throw_direction
+	#
+	#raycast.target_position = throw_direction.normalized() * SPEED
+	#
+	#character_body.velocity = raycast.target_position
+	
+	SPEED = get_bottle_speed(character_body.global_position, target.global_position, THROW_TIME-TIMESTAMP)
+	character_body.velocity = (target.global_position - character_body.global_position).normalized() * SPEED
 	
 	character_body.move_and_slide()

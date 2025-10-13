@@ -150,10 +150,10 @@ tracks/1/path = NodePath("CharacterBody2D/AnimatedSprite2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.0472, 2.0944, 3.14159, 4.18879]
+"values": [0.0, 1.0472, 2.0944, 3.14159, 4.18879, 6.28319]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wk8sb"]
@@ -193,4 +193,5 @@ libraries = {
 
 [node name="Timer" type="Timer" parent="."]
 
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="." method="_on_target_area_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
