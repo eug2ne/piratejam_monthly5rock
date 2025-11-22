@@ -101,30 +101,29 @@ func _throw():
 func _on_target_area_body_entered(body) -> void:
 	if hit:
 		return
+	
 	# get target
 	if body is Character && body.is_in_group(target_group):
 		hit = true
 		# stop timer
 		timer.stop()
-		# TODO: slow entire game time + zoom in to bottle
+		
+		# play action animation
+		anim.play("action")
+		Engine.time_scale = freeze_time_scale
+		await anim.animation_finished
+		print("animation action finished")
+		Engine.time_scale = 1.0
 		
 		var parent_accuracy: float = parent.character_resource.accuracy
 		var parent_bonus_ap: float = parent.character_resource.bonus_ap
 		var target_agility = body.character_resource.agility
 		var target_defense = body.character_resource.defense
-		
-		if raycast.is_colliding():
-			print("critical hit!")
+		var critical: bool = raycast.is_colliding()
 		
 		# apply damage to target
-		var critical: bool = raycast.is_colliding()
 		#var damage: float = action_resource._deal_damage(target_defense, parent_accuracy, parent_bonus_ap, critical)
 		#body._take_damage(damage, critical, parent)
-		
-		# FIXME: how do I make this part only fire once????
-		# play action animation
-		anim.play("action")
-		await anim.animation_finished
 		# destroy self
 		queue_free()
 
@@ -162,7 +161,15 @@ func _physics_process(delta: float) -> void:
 	#
 	#character_body.velocity = raycast.target_position
 	
+	# FIXME: [URGENT] bottle gets bounced off enemy bodies (change to AnimatableBody2D?)
 	SPEED = get_bottle_speed(character_body.global_position, target.global_position, THROW_TIME-TIMESTAMP)
-	character_body.velocity = (target.global_position - character_body.global_position).normalized() * SPEED
+	if hit:
+		# slow down velocity
+		if character_body.global_position.distance_to(target.global_position) < 16:
+			character_body.velocity = (target.global_position - character_body.global_position).normalized() * SPEED * 0.1
+		else:
+			character_body.velocity = (target.global_position - character_body.global_position).normalized() * SPEED * 0.5
+	else:
+		character_body.velocity = (target.global_position - character_body.global_position).normalized() * SPEED
 	
 	character_body.move_and_slide()
