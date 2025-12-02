@@ -24,6 +24,7 @@ var current_pc: PlayableCharacter
 #bottle spawn
 @onready var bottle_spawn_areas: Array[Node] = get_tree().get_nodes_in_group("bottle_spawn_areas")
 @onready var bottle_ps: PackedScene = preload("res://actions/environment actions/furnitures/bottle/Bottle.tscn")
+@onready var bottle_ps_2: PackedScene = preload("res://actions/environment actions/furnitures/bottle/Bottle 2.tscn")
 
 
 func _input(event) -> void:
@@ -67,7 +68,7 @@ func _ready() -> void:
 	
 	# TODO: create bottles
 	for b_area: InteractionArea in bottle_spawn_areas:
-		var bottle: Action = bottle_ps.instantiate() as Action
+		var bottle: Action = bottle_ps_2.instantiate() as Action
 		await b_area._add_bottle(bottle)
 
 func _on_enemy_spawn_timer_timeout():
