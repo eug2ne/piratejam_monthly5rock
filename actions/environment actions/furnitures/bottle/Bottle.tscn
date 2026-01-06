@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://djhobbciaxa7j"]
+[gd_scene load_steps=19 format=3 uid="uid://djhobbciaxa7j"]
 
 [ext_resource type="Script" path="res://actions/environment actions/furnitures/bottle/Bottle.gd" id="1_cqc7q"]
 [ext_resource type="Texture2D" uid="uid://decgwa01km7fa" path="res://assets/spriteframes/action spriteframes/Bottle.png" id="2_hg0on"]
+[ext_resource type="PackedScene" uid="uid://35q61c7qk8st" path="res://actions/environment actions/furnitures/bottle/BottleParticle.tscn" id="2_u75qu"]
 [ext_resource type="AudioStream" uid="uid://28rwfaj2wgp6" path="res://assets/sfx/glass_breaking.wav" id="4_cydug"]
 [ext_resource type="Script" path="res://actions/ActionAudio.gd" id="5_a1ex7"]
 
@@ -124,6 +125,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BottleParticle:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_5bqe2"]
 resource_name = "action"
@@ -190,6 +203,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BottleParticle:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_bmjt2"]
 resource_name = "throw"
@@ -243,6 +268,8 @@ _data = {
 script = ExtResource("1_cqc7q")
 target_group = "enemy"
 freeze_time_scale = 0.2
+
+[node name="BottleParticle" parent="." instance=ExtResource("2_u75qu")]
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
 collision_layer = 5

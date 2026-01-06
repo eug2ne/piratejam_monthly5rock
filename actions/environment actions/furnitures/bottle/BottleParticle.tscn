@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://35q61c7qk8st"]
+
+[sub_resource type="Curve" id="Curve_4oei4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 39.979), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_5unh3"]
+min_value = 2.13163e-14
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 2.13163e-14), 0.0, 0.0, 0, 0, Vector2(1, 15), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_6hqop"]
+min_value = -180.0
+max_value = 30.0
+_data = [Vector2(0, -88.0589), 0.0, 0.0, 0, 0, Vector2(0.984568, 111.352), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_wdrs6"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(2.08165e-12, 0.6, 0.8)
+colors = PackedColorArray(0.278431, 0.0313726, 0.556863, 1, 1, 1, 1, 1, 0, 0.458113, 0.019326, 1)
+
+[node name="BottleParticle" type="CPUParticles2D"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+emission_shape = 2
+emission_sphere_radius = 15.0
+direction = Vector2(2.08165e-12, 2.08165e-12)
+spread = 180.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+angular_velocity_max = 2.0
+linear_accel_max = 5.0
+linear_accel_curve = SubResource("Curve_4oei4")
+radial_accel_min = 1.0
+radial_accel_max = 3.0
+radial_accel_curve = SubResource("Curve_5unh3")
+angle_max = 30.0
+angle_curve = SubResource("Curve_6hqop")
+scale_amount_min = 0.8
+scale_amount_max = 1.5
+color_initial_ramp = SubResource("Gradient_wdrs6")

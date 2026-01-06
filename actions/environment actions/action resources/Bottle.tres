@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ActionResource" load_steps=2 format=3 uid="uid://xpt3qlcxcl1u"]
+
+[ext_resource type="Script" path="res://actions/ActionResource.gd" id="1_mcfe7"]
+
+[resource]
+script = ExtResource("1_mcfe7")
+action_name = "bottle"
+base_damage = 0.0
+parry_action = false
