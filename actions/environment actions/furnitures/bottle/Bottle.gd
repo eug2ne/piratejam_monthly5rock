@@ -89,6 +89,7 @@ func _on_target_area_body_entered(body: Node2D) -> void:
 		if (anim.current_animation != "action"):
 			anim.play("action")
 		
+		print('parent: ', parent)
 		var parent_accuracy: float = parent.character_resource.accuracy
 		var parent_bonus_ap: float = parent.character_resource.bonus_ap
 		var target_agility = body.character_resource.agility

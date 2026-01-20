@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://djhobbciaxa7j"]
+[gd_scene load_steps=20 format=3 uid="uid://djhobbciaxa7j"]
 
 [ext_resource type="Script" path="res://actions/environment actions/furnitures/bottle/Bottle.gd" id="1_cqc7q"]
 [ext_resource type="Texture2D" uid="uid://decgwa01km7fa" path="res://assets/spriteframes/action spriteframes/Bottle.png" id="2_hg0on"]
 [ext_resource type="PackedScene" uid="uid://35q61c7qk8st" path="res://actions/environment actions/furnitures/bottle/BottleParticle.tscn" id="2_u75qu"]
+[ext_resource type="Resource" uid="uid://xpt3qlcxcl1u" path="res://actions/environment actions/action resources/Bottle.tres" id="2_uea0d"]
 [ext_resource type="AudioStream" uid="uid://28rwfaj2wgp6" path="res://assets/sfx/glass_breaking.wav" id="4_cydug"]
 [ext_resource type="Script" path="res://actions/ActionAudio.gd" id="5_a1ex7"]
 
@@ -68,19 +69,19 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ActionAudio:playing")
+tracks/0/path = NodePath("AnimatableBody2D/AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ActionAudio:volume_db")
+tracks/1/path = NodePath("AnimatableBody2D/AnimatedSprite2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -92,46 +93,22 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatableBody2D/AnimatedSprite2D:frame")
+tracks/2/path = NodePath("AnimatableBody2D/Area2D/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatableBody2D/AnimatedSprite2D:rotation")
+tracks/3/path = NodePath("BottleParticle:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AnimatableBody2D/Area2D/CollisionShape2D:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("BottleParticle:emitting")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -266,6 +243,7 @@ _data = {
 
 [node name="Bottle" type="Node"]
 script = ExtResource("1_cqc7q")
+action_resource = ExtResource("2_uea0d")
 target_group = "enemy"
 freeze_time_scale = 0.2
 

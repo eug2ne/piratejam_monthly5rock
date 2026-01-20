@@ -1,13 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfgiwo00rrjld"]
+[gd_scene load_steps=4 format=3 uid="uid://cfgiwo00rrjld"]
 
 [ext_resource type="Script" path="res://UI/components/ActionContainer.gd" id="1_07wcg"]
 [ext_resource type="FontFile" uid="uid://0lbcqeg82nea" path="res://assets/fonts/Silver.ttf" id="1_n7lwv"]
+[ext_resource type="Texture2D" uid="uid://gfh8hfcwhp5h" path="res://assets/vfx/FXPack_nyknck/LightFX/FX003/FX003_03.png" id="2_wuxsw"]
 
 [node name="ActionContainer" type="VBoxContainer"]
+clip_contents = true
 custom_minimum_size = Vector2(100, 2.08165e-12)
 offset_right = 100.0
 offset_bottom = 50.0
 script = ExtResource("1_07wcg")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel"]
+position = Vector2(50, 50)
+scale = Vector2(3, 3)
+texture = ExtResource("2_wuxsw")
 
 [node name="KeyLabel" type="Label" parent="."]
 layout_mode = 2

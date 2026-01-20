@@ -14,6 +14,7 @@ func _add_bottle(new_bottle: Action):
 func _throw_bottle():
 	# set bottle parent to current_pc
 	var current_player: PlayableCharacter = PlayerManager.current_pc
+	print('current player: ', current_player)
 	bottle.parent = current_player
 	# throw bottle
 	bottle._throw()
