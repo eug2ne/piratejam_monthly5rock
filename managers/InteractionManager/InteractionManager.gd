@@ -8,7 +8,11 @@ var active_areas: Array[InteractionArea] = []
 var can_interact: bool = true
 
 func _register_area(area: InteractionArea):
-	if area.auto_action && area._get_action_available():
+	print(area._get_action_available())
+	if !area._get_action_available():
+		return
+	
+	if area.auto_action:
 		# directly implement interact function
 		can_interact = false # prevent label.show() + input event
 		await area.interact.call()
@@ -20,8 +24,10 @@ func _register_area(area: InteractionArea):
 func _unregister_area(area: InteractionArea):
 	var i = active_areas.find(area)
 	if i != -1:
+		# BUG: clashes with bottle_spawn_area, furniture_spawn_area
+		# (bottle_spawn_area, furniture_spawn_area needs to be unavailable after interaction)
 		# set action_available to true
-		active_areas[i]._set_action_available(true)
+		#active_areas[i]._set_action_available(true)
 		# remove from active_areas
 		active_areas.remove_at(i)
 
@@ -43,7 +49,6 @@ func _input(event):
 		
 		await active_areas[0].interact.call()
 		
-		print(active_areas)
 		if (!active_areas.is_empty()):
 			_unregister_area(active_areas[0]) # unregister activated area
 		can_interact = true

@@ -9,7 +9,7 @@ var current_pc: PlayableCharacter
 @onready var pc_action_containers: Array[Node] = $HBoxContainer.get_children()
 
 func _set_current_pc(new_pc_index: int, new_pc: PlayableCharacter) -> void:
-	# adjust old current pc_mcontainer
+	# adjust old current pc_container
 	pc_profile_containers[current_pc_index].set_scale(Vector2(1,1))
 	
 	current_pc_index = new_pc_index

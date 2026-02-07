@@ -94,12 +94,15 @@ func _on_target_area_body_entered(body: Node2D) -> void:
 		var parent_bonus_ap: float = parent.character_resource.bonus_ap
 		var target_agility = body.character_resource.agility
 		var target_defense = body.character_resource.defense
-		var critical: bool = raycast.is_colliding()
+		var critical_rate: float = parent.character_resource.critical_rate
+		var critical: bool = body == raycast.get_collider() # critical damage when bottle directly hits the target
 		
-		# TODO: create bottle action resource
-		# TODO: apply damage to target
-		#var damage: float = action_resource._deal_damage(target_defense, parent_accuracy, parent_bonus_ap, critical)
-		#body._take_damage(damage, critical, parent)
+		if critical:
+			critical_rate *= 1.5
+		
+		# apply damage to target
+		var damage: float = action_resource._deal_damage(target_defense, parent_accuracy, parent_bonus_ap, critical)
+		body._take_damage(damage, critical, parent)
 
 func _on_anim_started(anim_name: String) -> void:
 	if (anim_name == "action"):
@@ -119,13 +122,17 @@ func _physics_process(delta: float) -> void:
 	TIMESTAMP += delta
 	
 	SPEED = get_bottle_speed(animatable_body.global_position, target.global_position, THROW_TIME-TIMESTAMP)
+	var vector = (target.global_position - animatable_body.global_position).normalized()
 	if hit:
 		# slow down velocity
 		if animatable_body.global_position.distance_to(target.global_position) < 16:
 			animatable_body.global_position += Vector2.ZERO
 		elif (SPEED > 0):
-			animatable_body.global_position += (target.global_position - animatable_body.global_position).normalized() * SPEED * 0.5 * delta
+			animatable_body.global_position += vector * SPEED * 0.5 * delta
 		else:
-			animatable_body.global_position += (target.global_position - animatable_body.global_position).normalized() * 100 * delta
+			animatable_body.global_position += vector * 100 * delta
 	else:
-		animatable_body.global_position += (target.global_position - animatable_body.global_position).normalized() * SPEED * delta
+		animatable_body.global_position += vector * SPEED * delta
+	
+	# set raycast direction
+	raycast.target_position = vector * 20

@@ -12,9 +12,11 @@ func _add_bottle(new_bottle: Action):
 	bottle.animatable_body.global_position = global_position
 
 func _throw_bottle():
+	# disable spawn area
+	_set_action_available(false)
+	
 	# set bottle parent to current_pc
 	var current_player: PlayableCharacter = PlayerManager.current_pc
-	print('current player: ', current_player)
 	bottle.parent = current_player
 	# throw bottle
 	bottle._throw()

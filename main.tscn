@@ -83,7 +83,39 @@ y_sort_enabled = true
 [node name="InteractionAreas" type="Node2D" parent="."]
 
 [node name="InteractionArea" parent="InteractionAreas" groups=["bottle_spawn_areas", "interaction_areas"] instance=ExtResource("8_qabv7")]
-position = Vector2(456, 440)
+position = Vector2(168, 432)
+script = ExtResource("9_iy6bl")
+
+[node name="InteractionArea4" parent="InteractionAreas" groups=["bottle_spawn_areas", "interaction_areas"] instance=ExtResource("8_qabv7")]
+position = Vector2(136, 328)
+script = ExtResource("9_iy6bl")
+
+[node name="InteractionArea5" parent="InteractionAreas" groups=["bottle_spawn_areas", "interaction_areas"] instance=ExtResource("8_qabv7")]
+position = Vector2(784, 72)
+script = ExtResource("9_iy6bl")
+
+[node name="InteractionArea6" parent="InteractionAreas" groups=["bottle_spawn_areas", "interaction_areas"] instance=ExtResource("8_qabv7")]
+position = Vector2(928, 520)
+script = ExtResource("9_iy6bl")
+
+[node name="InteractionArea7" parent="InteractionAreas" groups=["bottle_spawn_areas", "interaction_areas"] instance=ExtResource("8_qabv7")]
+position = Vector2(272, 592)
+script = ExtResource("9_iy6bl")
+
+[node name="InteractionArea8" parent="InteractionAreas" groups=["bottle_spawn_areas", "interaction_areas"] instance=ExtResource("8_qabv7")]
+position = Vector2(688, 352)
+script = ExtResource("9_iy6bl")
+
+[node name="InteractionArea9" parent="InteractionAreas" groups=["bottle_spawn_areas", "interaction_areas"] instance=ExtResource("8_qabv7")]
+position = Vector2(376, 208)
+script = ExtResource("9_iy6bl")
+
+[node name="InteractionArea2" parent="InteractionAreas" groups=["bottle_spawn_areas", "interaction_areas"] instance=ExtResource("8_qabv7")]
+position = Vector2(896, 112)
+script = ExtResource("9_iy6bl")
+
+[node name="InteractionArea3" parent="InteractionAreas" groups=["bottle_spawn_areas", "interaction_areas"] instance=ExtResource("8_qabv7")]
+position = Vector2(840, 472)
 script = ExtResource("9_iy6bl")
 
 [node name="MainCamera" type="Camera2D" parent="."]

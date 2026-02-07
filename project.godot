@@ -20,6 +20,12 @@ config/icon="res://icon.png"
 PlayerManager="*res://managers/PlayerManager/PlayerManager.gd"
 InteractionManager="*res://managers/InteractionManager/InteractionManager.tscn"
 
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/stretch/mode="viewport"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
