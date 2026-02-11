@@ -17,10 +17,10 @@ func _input(event) -> void:
 			current_pc_index += 1
 		
 		# disable current_pc
-		current_pc.current = false
+		current_pc._set_current(false)
 		# assign new current_pc
 		current_pc = pc_group[current_pc_index]
-		current_pc.current = true
+		current_pc._set_current(true)
 		
 		_update_ui_system()
 

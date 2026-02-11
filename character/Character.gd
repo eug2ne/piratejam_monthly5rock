@@ -50,7 +50,16 @@ func _take_debuff(debuff: float, debuff_stat: String) -> void:
 	indicator._show_debuff()
 	
 func _take_death() -> void:
+	# remove character from enemy target when dead
+	var enemies = get_tree().get_nodes_in_group("enemy").filter(func(e: Character):
+		return e.state_manager._get_current_state().name.to_lower() == "attack" && e.state_manager.current_state.target == self)
+	for e in enemies:
+		e.state_manager._set_current_state("idle")
 	# stop character
 	velocity = Vector2(0,0)
 	state_manager._set_current_state("dead")
+	# disable input
+	action_manager.input_disabled = true
 	
+func _is_dead() -> bool:
+	return state_manager._get_current_state().name.to_lower() == "dead"
