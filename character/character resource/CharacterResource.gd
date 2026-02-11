@@ -9,10 +9,12 @@ var max_hp: float
 @export var move_speed: float = 200
 @export var dash_speed: float = 300
 
-@export var defense: float # max 30
-@export var agility: float # max 30
-@export var accuracy: float # max 20
-@export var critical_rate: float # max 40
+# base stats
+@export var defense: float # max 30 (damage control)
+@export var speed: float # max 20 (action cool time)
+@export var movement: float # max 20 (movement speed)
+@export var accuracy: float # max 20 (attack hit + bottle throw control)
+@export var critical: float # max 40 (critical action rate)
 
 # bonus points
 var bonus_ap: float = 0
@@ -25,13 +27,13 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _check_miss(target_agility: float) -> bool:
 	# check miss
-	if rng.randi_range(0,30) < target_agility:
-		return true
-	return false
+	if rng.randf_range(1,100) < 65 + defense:
+		return false
+	return true
 
 func _check_critical() -> bool:
 	# check critical
-	if rng.randi_range(0,40) < critical_rate + bonus_critical_rate:
+	if rng.randf_range(0,100) < critical + bonus_critical_rate:
 		return true
 	return false
 	
@@ -39,8 +41,8 @@ func _apply_damage(damage: float) -> void:
 	if damage <= 0 || hp == 0:
 		return
 	
-	# take damage from enemy
-	hp -= damage
+	# take damage from enemy (apply defense)
+	hp -= damage * (100 - defense * 2) / 100
 	
 	if hp <= 0:
 		hp = 0 # reset hp to 0
