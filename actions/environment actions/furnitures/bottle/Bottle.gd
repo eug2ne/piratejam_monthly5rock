@@ -32,11 +32,13 @@ func sort_by_distance(target1, target2):
 	else:
 		return target1_distance < target2_distance
 
-func get_target() -> Character:
+func _get_target() -> Character:
 	# get target
 	var targets: Array[Node] = get_tree().get_nodes_in_group(target_group)
 	targets.sort_custom(sort_by_distance)
-	var target: Character = targets[0]
+	var target: Character = null
+	if targets.size() > 0:
+		target = targets[0]
 	
 	return target
 
@@ -59,7 +61,7 @@ func _throw():
 	# reset TIMESTAMP
 	TIMESTAMP = 0.0
 	# get target + direction + angle
-	target = get_target()
+	target = _get_target()
 	initial_position = animatable_body.global_position
 	#get_trajectory(character_body.global_position, target.global_position)
 	
@@ -76,9 +78,6 @@ func _throw():
 	timer.start(THROW_TIME)
 
 func _on_target_area_body_entered(body: Node2D) -> void:
-	if hit:
-		return
-	
 	# get target
 	if body is Character && body.is_in_group(target_group):
 		hit = true
@@ -89,19 +88,17 @@ func _on_target_area_body_entered(body: Node2D) -> void:
 		if (anim.current_animation != "action"):
 			anim.play("action")
 		
-		print('parent: ', parent)
 		var parent_accuracy: float = parent.character_resource.accuracy
-		var parent_bonus_ap: float = parent.character_resource.bonus_ap
+		var parent_power: float = parent.character_resource.power
 		var target_agility = body.character_resource.agility
 		var target_defense = body.character_resource.defense
-		var critical_rate: float = parent.character_resource.critical_rate
 		var critical: bool = body == raycast.get_collider() # critical damage when bottle directly hits the target
 		
-		if critical:
-			critical_rate *= 1.5
+		if !critical:
+			critical = parent.character_resource._check_critical()
 		
 		# apply damage to target
-		var damage: float = action_resource._deal_damage(target_defense, parent_accuracy, parent_bonus_ap, critical)
+		var damage: float = action_resource._deal_damage(target_agility, target_defense, parent_accuracy, parent_power, critical)
 		body._take_damage(damage, critical, parent)
 
 func _on_anim_started(anim_name: String) -> void:

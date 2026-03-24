@@ -11,16 +11,20 @@ class_name Character
 func _ready() -> void:
 	# set max_hp
 	character_resource.max_hp = character_resource.hp
+	# set healthbar
+	indicator.healthbar.max_value = character_resource.max_hp
+	indicator.healthbar.value = character_resource.hp
+	indicator.healthbar.visible = character_resource.hp < character_resource.max_hp
 
 func _take_damage(damage: float, critical: bool, _from: Character) -> void:
 	# TODO: add screenshake when character take/deal damage
+	# apply damage to character hp
+	character_resource._apply_damage(damage)
+	# pass damage to indicator
+	indicator._show_damage(damage)
 	# show critical
 	if critical:
 		indicator._show_critical()
-	# pass damage to indicator
-	indicator._show_damage(damage)
-	# apply damage to character hp
-	character_resource._apply_damage(damage)
 	# play damage animation
 	effects_anim.play("damage")
 	if character_resource.hp == 0:
@@ -28,13 +32,13 @@ func _take_damage(damage: float, critical: bool, _from: Character) -> void:
 		_take_death()
 		
 func _take_heal(recover: float, critical: bool, _from: Character) -> void:
+	# apply recover to character hp
+	character_resource._apply_heal(recover)
+	# pass recover to indicator
+	indicator._show_damage(recover)
 	# show critical
 	if critical:
 		indicator._show_critical()
-	# pass recover to indicator
-	indicator._show_damage(recover)
-	# apply recover to character hp
-	character_resource._apply_heal(recover)
 	# play heal animation
 	effects_anim.play("heal")
 	

@@ -21,7 +21,7 @@ func _on_target_area_body_entered(body) -> void:
 	if body is Character && body.is_in_group(target_group):
 		# use ap as effect factor
 		var parent_accuracy: float = parent.character_resource.accuracy
-		var parent_bonus_ap: float = parent.character_resource.bonus_ap
+		var parent_power: float = parent.character_resource.power
 		var target_agility = body.character_resource.agility
 		
 		# check miss
@@ -32,5 +32,5 @@ func _on_target_area_body_entered(body) -> void:
 		
 		# apply debuff to target
 		var critical: bool = parent.character_resource._check_critical()
-		var debuff: float = action_resource._deal_heal_debuff(parent_accuracy, parent_bonus_ap, critical)
+		var debuff: float = action_resource._deal_heal_debuff(parent_accuracy, parent_power, critical)
 		body._take_debuff(debuff, debuff_stat)

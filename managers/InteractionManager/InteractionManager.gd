@@ -8,7 +8,6 @@ var active_areas: Array[InteractionArea] = []
 var can_interact: bool = true
 
 func _register_area(area: InteractionArea):
-	print(area._get_action_available())
 	if !area._get_action_available():
 		return
 	

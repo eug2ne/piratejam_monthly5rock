@@ -56,7 +56,7 @@ func _on_target_area_body_entered(body) -> void:
 	# get target
 	if body is Character && body.is_in_group(target_group):
 		var parent_accuracy: float = parent.character_resource.accuracy
-		var parent_bonus_ap: float = parent.character_resource.bonus_ap
+		var parent_power: float = parent.character_resource.power
 		var target_agility = body.character_resource.agility
 		var target_defense = body.character_resource.defense
 		
@@ -73,5 +73,5 @@ func _on_target_area_body_entered(body) -> void:
 			_frame_freeze(freeze_time_scale * 1.5, freeze_duration)
 		else:
 			_frame_freeze(freeze_time_scale, freeze_duration)
-		var damage: float = action_resource._deal_damage(target_defense, parent_accuracy, parent_bonus_ap, critical)
+		var damage: float = action_resource._deal_damage(target_agility, target_defense, parent_accuracy, parent_power, critical)
 		body._take_damage(damage, critical, parent)

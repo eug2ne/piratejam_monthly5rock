@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=3 uid="uid://djhobbciaxa7j"]
 
 [ext_resource type="Script" path="res://actions/environment actions/furnitures/bottle/Bottle.gd" id="1_cqc7q"]
+[ext_resource type="Resource" uid="uid://xpt3qlcxcl1u" path="res://actions/environment actions/environment action resources/Bottle.tres" id="2_37yq8"]
 [ext_resource type="Texture2D" uid="uid://decgwa01km7fa" path="res://assets/spriteframes/action spriteframes/Bottle.png" id="2_hg0on"]
 [ext_resource type="PackedScene" uid="uid://35q61c7qk8st" path="res://actions/environment actions/furnitures/bottle/BottleParticle.tscn" id="2_u75qu"]
-[ext_resource type="Resource" uid="uid://xpt3qlcxcl1u" path="res://actions/environment actions/action resources/Bottle.tres" id="2_uea0d"]
 [ext_resource type="AudioStream" uid="uid://28rwfaj2wgp6" path="res://assets/sfx/glass_breaking.wav" id="4_cydug"]
 [ext_resource type="Script" path="res://actions/ActionAudio.gd" id="5_a1ex7"]
 
@@ -62,7 +62,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_44f2w"]
-radius = 16.0
+radius = 20.0
 
 [sub_resource type="Animation" id="Animation_4ulj7"]
 length = 0.001
@@ -243,7 +243,7 @@ _data = {
 
 [node name="Bottle" type="Node"]
 script = ExtResource("1_cqc7q")
-action_resource = ExtResource("2_uea0d")
+action_resource = ExtResource("2_37yq8")
 target_group = "enemy"
 freeze_time_scale = 0.2
 

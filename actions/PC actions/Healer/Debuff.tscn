@@ -144,6 +144,8 @@ script = ExtResource("1_kmj4t")
 debuff_stat = "bonus_ap"
 action_resource = ExtResource("2_qxhtr")
 target_group = "enemy"
+freeze_time_scale = null
+freeze_duration = null
 reusable = true
 cool_time = 0.8
 

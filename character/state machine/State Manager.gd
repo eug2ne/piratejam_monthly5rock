@@ -26,14 +26,14 @@ func _ready():
 		# start initial state
 		current_state = initial_state
 		current_state._on_enter()
-		
+
 func _input(event):
 	if parent is PlayableCharacter && !parent.current:
 		return
 	
 	if current_state:
 		current_state._update_input(event)
-	
+
 func _process(delta):
 	if current_state:
 		current_state._update_process(delta)
@@ -41,7 +41,7 @@ func _process(delta):
 func _physics_process(delta):
 	if current_state:
 		current_state._update_physics(delta)
-	
+
 func _set_current_state(state_key: String = ""):
 	# prevent redundancy
 	if current_state.name.to_lower() == state_key:
@@ -67,6 +67,6 @@ func _set_current_state(state_key: String = ""):
 	# assign new state
 	current_state = new_state
 	current_state._on_enter()
-	
+
 func _get_current_state():
 	return current_state

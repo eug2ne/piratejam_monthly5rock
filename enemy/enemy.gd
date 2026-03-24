@@ -1,7 +1,6 @@
 extends Character
 
 @export var target_group: String
-# FIXME: enemy goes down by 1 hit after pc defeats more then 1 enemy
 
 func _physics_process(_delta) -> void:
 	move_and_slide()

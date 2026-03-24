@@ -11,8 +11,8 @@ func _process(_delta) -> void:
 func _start() -> void:
 	super()
 	# add bonus ap, critical rate
-	parent.character_resource.bonus_ap = 10
-	parent.character_resource.bonus_critical_rate = 5
+	parent.character_resource.power *= 1.2
+	parent.character_resource.critical *= 1.2
 	# start boost-timer
 	boost_timer.start(boost_time)
 

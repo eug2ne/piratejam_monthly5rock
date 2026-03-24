@@ -15,7 +15,10 @@ func _get_actions() -> Dictionary:
 func _set_current(new_current: bool) -> void:
 	# set current, input_disabled
 	current = new_current
-	action_manager.input_disabled = !current
+	action_manager.input_disabled = !current || _is_dead()
+	
+	if _is_dead():
+		return
 	
 	if current:
 		# set pc state to default

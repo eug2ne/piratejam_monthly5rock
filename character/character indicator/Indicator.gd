@@ -7,6 +7,8 @@ var parent: Character
 var label: PackedScene = preload("res://character/character indicator/label/IndicatorLabel.tscn")
 @onready var states_container: BoxContainer = $GridContainer/States
 
+# healthbar
+@onready var healthbar: TextureProgressBar = $Healthbar
 # labels
 @onready var critical_label: IndicatorLabel = $DamageContainer/Critical
 @onready var damage_label: IndicatorLabel = $DamageContainer/Damage
@@ -31,15 +33,18 @@ func _on_animation_player_animation_finished(anim_name):
 
 func _start_lockon():
 	anim.play("lockon")
-	
+
 func _show_critical():
 	# show critical
 	critical_label._show()
-	
-func _show_damage(damage: float):
+
+func _show_damage(damage: int) -> void:
 	# show damage label
-	damage_label._show(str(damage).pad_decimals(1))
-	
+	damage_label._show(str(damage))
+	# show healthbar
+	healthbar.value = parent.character_resource.hp
+	healthbar.visible = parent.character_resource.hp < parent.character_resource.max_hp
+
 func _show_parry():
 	parry_label._show()
 

@@ -3,53 +3,45 @@ class_name ActionResource
 
 @export var action_name: String
 @export var base_damage: float
-@export var parry_action: bool
+@export var parry: bool
+@export var area: bool
 
 # UI resource
 @export var ui_texture: Texture
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-func _deal_damage(target_defense: float, parent_accuracy: float, parent_bonus_ap: float, critical: bool) -> float:
+func _deal_damage(target_agility: float, target_defense: float, parent_accuracy: float, parent_power: float, critical: bool) -> int:
 	# get total_damage
-	var total_damage: float = base_damage + parent_bonus_ap
+	var total_damage: float = base_damage * (1 + parent_power / 20)
 	
 	# get parry damage
-	if parry_action:
+	if parry:
 		if critical:
 			# critical parry deal
-			return snappedf(total_damage * rng.randf_range(1.5,2), 0.1)
+			return roundi(total_damage * rng.randf_range(1.5, 2))
 		else:
-			return roundf(total_damage * rng.randf_range(1,1.2))
+			return roundi(total_damage * rng.randf_range(1, 1.2))
 	
-	# get damage according to base_damage + accuracy + critical_rate + target_agility + target_defense
+	# get damage according to base_damage + accuracy + target_defense
 	if critical:
-		# critical deal >> do not apply target_agility + target_defense
-		return snappedf(total_damage * rng.randf_range(1,2), 0.1)
-		
-	if rng.randi_range(0,100) > parent_accuracy:
-		# miss deal
-		## pass miss to indicator?
-		return roundf(total_damage * rng.randf_range(0,parent_accuracy) / 20)
+		# critical deal >> do not apply target_defense
+		return roundi(total_damage * rng.randf_range(1, 2))
 	
-	else:
-		# hit deal >> apply target_defense
-		return roundf(total_damage - rng.randf_range(0,target_defense))
-		
-func _deal_heal_debuff(parent_accuracy: float, parent_bonus_ap: float, critical: bool) -> float:
-	# get total_effect
-	var total_effect: float = base_damage + parent_bonus_ap
+	return roundi(total_damage * (1 - rng.randf_range((target_defense-5) / 30, (target_defense+5) / 30)))
+
+func _deal_heal(parent_accuracy: float, parent_power: float, critical: bool) -> int:
+	# get total_heal
+	var total_heal: float = base_damage * (1 + parent_power / 20)
 	
 	# get damage according to total_heal + accuracy + critical
 	if critical:
 		# critical heal
-		return snappedf(total_effect * rng.randf_range(1,2), 0.1)
-		
-	if rng.randi_range(0,100) > parent_accuracy:
-		# miss deal
-		## pass miss to indicator?
-		return roundf(total_effect * rng.randf_range(0,parent_accuracy) / 20)
+		return roundi(total_heal * rng.randf_range(1, 2))
 	
+	if rng.randi_range(0,20) > parent_accuracy:
+		# miss
+		# TODO: pass miss to indicator
+		return roundi(total_heal * rng.randf_range(0.8, 1.2))
 	else:
-		# hit deal
-		return roundf(total_effect)
+		return roundi(total_heal)
