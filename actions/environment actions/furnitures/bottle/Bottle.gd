@@ -63,7 +63,15 @@ func _throw():
 	# get target + direction + angle
 	target = _get_target()
 	initial_position = animatable_body.global_position
-	#get_trajectory(character_body.global_position, target.global_position)
+	
+	if parent.character_resource.character_name.to_lower() == "gladiator" && initial_position.distance_to(target.global_position) < 50:
+		# increase base_damage
+		# TODO: add special animation for bottle swing
+		action_resource.base_damage *= 1.5
+	if parent.character_resource.character_name.to_lower() == "healer" && initial_position.distance_to(target.global_position) > 180:
+		# increase base_damage
+		# TODO: add special animation for bottle launch
+		action_resource.base_damage *= 1.5
 	
 	# enable raycast
 	raycast.enabled = true

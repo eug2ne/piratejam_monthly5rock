@@ -7,5 +7,6 @@
 script = ExtResource("1_wpjsa")
 action_name = "debuff"
 base_damage = 5.0
-parry_action = false
+parry = false
+area = false
 ui_texture = ExtResource("2_o7kei")

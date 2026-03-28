@@ -521,8 +521,6 @@ special_action = NodePath("Eggshell")
 [node name="Heal" parent="ActionManager" instance=ExtResource("16_rwt3y")]
 
 [node name="Debuff" parent="ActionManager" instance=ExtResource("17_eno0l")]
-freeze_time_scale = null
-freeze_duration = null
 
 [node name="Eggshell" parent="ActionManager" instance=ExtResource("19_n4qb8")]
 cool_time = 10.0

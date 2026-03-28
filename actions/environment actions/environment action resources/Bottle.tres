@@ -6,4 +6,5 @@
 script = ExtResource("1_mcfe7")
 action_name = "bottle"
 base_damage = 30.0
-parry_action = false
+parry = false
+area = false
