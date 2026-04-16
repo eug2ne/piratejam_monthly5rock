@@ -17,10 +17,11 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 		InteractionManager._register_area(self)
 
 func _on_body_exited(body: CharacterBody2D) -> void:
-	InteractionManager._unregister_area(self)
-	
+	if body is PlayableCharacter && body.current:
+		InteractionManager._unregister_area(self)
+
 func _set_action_available(new_val: bool) -> void:
 	action_available = new_val
-	
+
 func _get_action_available() -> bool:
 	return action_available
