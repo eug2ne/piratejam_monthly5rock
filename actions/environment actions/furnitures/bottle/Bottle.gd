@@ -46,11 +46,11 @@ func get_bottle_speed(bottle_pos: Vector2, target_pos: Vector2, DELTA: float) ->
 	var distance: float = bottle_pos.distance_to(target_pos)
 	return distance / DELTA
 
-func get_intercept(initial_pos: Vector2, bottle_speed: float, taret_position: Vector2, target_velocity: Vector2) -> Vector2:
+func get_intercept(initial_pos: Vector2, bottle_speed: float, target_position: Vector2, target_velocity: Vector2) -> Vector2:
 	# parabola trajectory calculation
 	var a: float = bottle_speed*bottle_speed - target_velocity.dot(target_velocity)
 	var b: float = 2*target_velocity.dot(target_pos - initial_pos)
-	var c: float = (target_pos - initial_position).dot(target_pos - initial_pos)
+	var c: float = (target_position - initial_position).dot(target_position - initial_pos)
 	
 	if bottle_speed > target_velocity.length():
 		THROW_TIME = (b+sqrt(b*b + 4*a*c)) / (2*a)
@@ -107,6 +107,8 @@ func _on_target_area_body_entered(body: Node2D) -> void:
 		
 		# apply damage to target
 		var damage: float = action_resource._deal_damage(target_agility, target_defense, parent_accuracy, parent_power, critical)
+		if damage < 0:
+			damage = 0
 		body._take_damage(damage, critical, parent)
 
 func _on_anim_started(anim_name: String) -> void:

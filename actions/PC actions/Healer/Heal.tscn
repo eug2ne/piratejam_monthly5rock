@@ -215,7 +215,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_cdd63"]
 resource_name = "throw"
-length = 0.5
+length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -236,10 +236,10 @@ tracks/1/path = NodePath("AnimatableBody2D/AnimatedSprite2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.0472, 2.0944, 3.14159, 4.18879, 6.28319]
+"values": [0.0, 1.0472, 2.0944, 3.14159, 4.18879, 5.23599, 6.28319]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -313,8 +313,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D/Area2D"]
 shape = SubResource("CircleShape2D_3s3rl")
-
-[node name="RayCast2D" type="RayCast2D" parent="AnimatableBody2D"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

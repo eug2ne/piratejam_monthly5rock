@@ -3,7 +3,7 @@ extends InteractionArea
 @export var parent: Character
 
 func _ready() -> void:
-	_set_action_available(parent._is_dead())
+	_set_action_available(false)
 
 func _on_body_entered(body: CharacterBody2D) -> void:
 	if !action_available:

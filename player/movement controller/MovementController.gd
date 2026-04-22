@@ -31,7 +31,7 @@ func _handle_input(event) -> void:
 func _handle_physics(_delta) -> void:
 	parent.velocity = direction * SPEED
 	parent.move_and_slide()
-	
+
 func _handle_process(_delta) -> void:
 	# FIXME: when player take damage, damage animation interrupted by movement animation
 		## need to play both animations at the same time

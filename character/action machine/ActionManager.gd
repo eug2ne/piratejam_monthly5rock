@@ -13,7 +13,7 @@ var actions: Dictionary = {}
 
 func _ready():
 	if parent is PlayableCharacter:
-		input_disabled = !parent.current && parent.character_resource.hp > 0
+		input_disabled = !parent.current && parent.character_resource.hp == 0
 	
 	for child in get_children():
 		if child is Action:

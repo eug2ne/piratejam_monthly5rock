@@ -20,7 +20,7 @@ signal _end_alert
 func _ready():
 	parent = get_parent()
 
-func _process(delta):
+func _process(_delta):
 	global_position = parent.global_position
 
 func _start_alert():

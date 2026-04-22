@@ -30,5 +30,4 @@ func _set_current(new_current: bool) -> void:
 # TODO: convert eggshell into buff module
 func _start_eggshell() -> void:
 	# start eggshell
-	var effects_anim: AnimationPlayer = get_node("EffectsAnimationPlayer")
 	effects_anim.play("eggshell")

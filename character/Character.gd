@@ -16,7 +16,7 @@ func _ready() -> void:
 	indicator.healthbar.value = character_resource.hp
 	indicator.healthbar.visible = character_resource.hp < character_resource.max_hp
 
-func _take_damage(damage: float, critical: bool, _from: Character) -> void:
+func _take_damage(damage: int, critical: bool, _from: Character) -> void:
 	# TODO: add screenshake when character take/deal damage
 	# apply damage to character hp
 	character_resource._apply_damage(damage)
@@ -31,7 +31,7 @@ func _take_damage(damage: float, critical: bool, _from: Character) -> void:
 		# character death
 		_take_death()
 
-func _take_heal(recover: float, critical: bool, _from: Character) -> void:
+func _take_heal(recover: int, critical: bool, _from: Character) -> void:
 	if state_manager.current_state.name.to_lower() == "dead":
 		return
 	
@@ -45,7 +45,7 @@ func _take_heal(recover: float, critical: bool, _from: Character) -> void:
 	# play heal animation
 	effects_anim.play("heal")
 
-func _take_debuff(debuff: float, debuff_stat: String) -> void:
+func _take_debuff(debuff: int, debuff_stat: String) -> void:
 	# debuff character stat
 	character_resource[debuff_stat] -= debuff
 	# pass debuff to indicator
@@ -63,7 +63,7 @@ func _take_death() -> void:
 	# disable input
 	action_manager.input_disabled = true
 
-func _revive(recover: float, critical: bool) -> void:
+func _revive(recover: int, critical: bool) -> void:
 	if state_manager.current_state.name.to_lower() == "dead":
 		print("revive")
 		character_resource._apply_heal(recover)
