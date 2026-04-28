@@ -25,6 +25,8 @@ func _ready() -> void:
 	target_area.get_node("CollisionShape2D").disabled = true
 
 func _start() -> void:
+	if audio:
+		audio.pitch_scale = randf_range(0.8, 1.4)
 	# play action animation
 	anim.play("action")
 	# set cool-time

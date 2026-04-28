@@ -33,7 +33,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tm6ol"]
-radius = 40.0
+radius = 20.0
 
 [sub_resource type="Animation" id="Animation_vi81u"]
 length = 0.001
@@ -145,6 +145,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AnimatableBody2D/Area2D/CollisionShape2D:shape:radius")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [20.0]
+}
 
 [sub_resource type="Animation" id="Animation_icayo"]
 resource_name = "action"
@@ -244,6 +256,18 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimatableBody2D/Area2D/CollisionShape2D:shape:radius")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [40.0, 20.0]
 }
 
 [sub_resource type="Animation" id="Animation_dbbbd"]
@@ -354,6 +378,7 @@ amount = 12
 emission_sphere_radius = 30.0
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
 position = Vector2(0, 9)

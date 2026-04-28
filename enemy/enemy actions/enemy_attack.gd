@@ -26,6 +26,8 @@ func _deal_damage() -> void:
 	
 	var critical: bool = parent.character_resource._check_critical()
 	var damage: float = action_resource._deal_damage(target_agility, target_defense, parent_accuracy, parent_power, critical)
+	if damage < 0:
+		damage = 0
 	# frame freeze
 	if critical:
 		_frame_freeze(freeze_time_scale * 1.5, freeze_duration)

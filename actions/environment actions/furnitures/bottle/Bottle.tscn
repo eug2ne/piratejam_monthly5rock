@@ -1,11 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://djhobbciaxa7j"]
+[gd_scene load_steps=19 format=3 uid="uid://djhobbciaxa7j"]
 
 [ext_resource type="Script" path="res://actions/environment actions/furnitures/bottle/Bottle.gd" id="1_cqc7q"]
 [ext_resource type="Resource" uid="uid://xpt3qlcxcl1u" path="res://actions/environment actions/environment action resources/Bottle.tres" id="2_37yq8"]
 [ext_resource type="Texture2D" uid="uid://decgwa01km7fa" path="res://assets/spriteframes/action spriteframes/Bottle.png" id="2_hg0on"]
 [ext_resource type="PackedScene" uid="uid://35q61c7qk8st" path="res://actions/environment actions/furnitures/bottle/BottleParticle.tscn" id="2_u75qu"]
-[ext_resource type="AudioStream" uid="uid://28rwfaj2wgp6" path="res://assets/sfx/glass_breaking.wav" id="4_cydug"]
-[ext_resource type="Script" path="res://actions/ActionAudio.gd" id="5_a1ex7"]
+[ext_resource type="AudioStream" uid="uid://byi2tcsrn62iw" path="res://assets/sfx/Bjorn Lynne - Metals  Glasses - Wine Bottle Smash.wav" id="5_1mrer"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5h4yk"]
 radius = 4.0
@@ -114,6 +113,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ActionAudio:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_5bqe2"]
 resource_name = "action"
@@ -121,73 +132,47 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ActionAudio:playing")
+tracks/0/path = NodePath("AnimatableBody2D/AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ActionAudio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_randomize_pitch"
-}]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ActionAudio:volume_db")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.3, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [-10.0, -1.0, 1.66533e-15]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatableBody2D/AnimatedSprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 3, 4, 5, 5]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AnimatableBody2D/Area2D/CollisionShape2D:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatableBody2D/Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("BottleParticle:emitting")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BottleParticle:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ActionAudio:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -270,16 +255,15 @@ shape = SubResource("CircleShape2D_44f2w")
 [node name="RayCast2D" type="RayCast2D" parent="AnimatableBody2D"]
 collision_mask = 2
 
+[node name="ActionAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1mrer")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_wk8sb")
 }
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="ActionAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_cydug")
-script = ExtResource("5_a1ex7")
 
 [connection signal="body_entered" from="AnimatableBody2D/Area2D" to="." method="_on_target_area_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_anim_finished"]
