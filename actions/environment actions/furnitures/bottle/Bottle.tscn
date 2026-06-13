@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://djhobbciaxa7j"]
+[gd_scene load_steps=20 format=3 uid="uid://djhobbciaxa7j"]
 
 [ext_resource type="Script" path="res://actions/environment actions/furnitures/bottle/Bottle.gd" id="1_cqc7q"]
 [ext_resource type="Resource" uid="uid://xpt3qlcxcl1u" path="res://actions/environment actions/environment action resources/Bottle.tres" id="2_37yq8"]
 [ext_resource type="Texture2D" uid="uid://decgwa01km7fa" path="res://assets/spriteframes/action spriteframes/Bottle.png" id="2_hg0on"]
 [ext_resource type="PackedScene" uid="uid://35q61c7qk8st" path="res://actions/environment actions/furnitures/bottle/BottleParticle.tscn" id="2_u75qu"]
-[ext_resource type="AudioStream" uid="uid://byi2tcsrn62iw" path="res://assets/sfx/Bjorn Lynne - Metals  Glasses - Wine Bottle Smash.wav" id="5_1mrer"]
+[ext_resource type="AudioStream" uid="uid://c17jdols0uo6e" path="res://assets/sfx/bottle/bottle_throw.mp3" id="5_cje2a"]
+[ext_resource type="AudioStream" uid="uid://dmylm4r7k6pe2" path="res://assets/sfx/bottle/bottle_break.mp3" id="6_4onwm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5h4yk"]
 radius = 4.0
@@ -218,6 +219,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ThrowAudio:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_cje2a")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ThrowAudio:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wk8sb"]
 _data = {
@@ -255,8 +280,11 @@ shape = SubResource("CircleShape2D_44f2w")
 [node name="RayCast2D" type="RayCast2D" parent="AnimatableBody2D"]
 collision_mask = 2
 
+[node name="ThrowAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_cje2a")
+
 [node name="ActionAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_1mrer")
+stream = ExtResource("6_4onwm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

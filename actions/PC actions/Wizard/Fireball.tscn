@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://m68cprrbwc2n"]
+[gd_scene load_steps=21 format=3 uid="uid://m68cprrbwc2n"]
 
 [ext_resource type="Script" path="res://actions/PC actions/Wizard/Fireball.gd" id="1_o8ulm"]
 [ext_resource type="Resource" uid="uid://cdiep22y4rite" path="res://actions/PC actions/action resources/Wizard/Fireball.tres" id="2_j24se"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://48024yqm2gib" path="res://assets/vfx/explosion/Explosion/10.png" id="12_g74p3"]
 [ext_resource type="Texture2D" uid="uid://bt8ij6keyqdda" path="res://assets/vfx/explosion/Explosion/11.png" id="13_wwv7l"]
 [ext_resource type="Texture2D" uid="uid://ppu1r2c14wmo" path="res://assets/vfx/explosion/Explosion/12.png" id="14_vfqaw"]
+[ext_resource type="AudioStream" uid="uid://dlskiy3vd03s8" path="res://assets/sfx/pc actions/wizard/Wizard-Fireball.mp3" id="15_e6p3a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f04c5"]
 radius = 112.0
@@ -164,6 +165,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ActionAudio:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_e6p3a")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ActionAudio:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ueye2"]
 _data = {
@@ -190,6 +215,9 @@ disabled = true
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_44tdq")
 animation = &"action"
+
+[node name="ActionAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_e6p3a")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://blvlehvuw5oji"]
+[gd_scene load_steps=16 format=3 uid="uid://blvlehvuw5oji"]
 
 [ext_resource type="Script" path="res://enemy/enemy actions/enemy_attack.gd" id="1_dbar0"]
 [ext_resource type="Resource" uid="uid://ln7ux561bqcx" path="res://enemy/enemy actions/enemy action resources/enemy_attack.tres" id="2_bjib1"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://coee788y2nqs" path="res://assets/vfx/SFX400_nyknck/SFX401_nyknck/SFX401_05.png" id="6_q3eq0"]
 [ext_resource type="Texture2D" uid="uid://ddc4bie3prgvw" path="res://assets/vfx/SFX400_nyknck/SFX401_nyknck/SFX401_06.png" id="7_e2o4j"]
 [ext_resource type="Texture2D" uid="uid://gc3nrs8r1qe0" path="res://assets/vfx/SFX400_nyknck/SFX401_nyknck/SFX401_07.png" id="8_6iay2"]
+[ext_resource type="AudioStream" uid="uid://bldgblq5ywonu" path="res://assets/sfx/enemy/enemy_alert.mp3" id="10_0eiyu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vstui"]
 size = Vector2(48, 48)
@@ -132,6 +133,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ActionAudio:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_0eiyu")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ActionAudio:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fn5tp"]
 _data = {
@@ -161,6 +186,9 @@ scale = Vector2(1.33333, 1.5)
 sprite_frames = SubResource("SpriteFrames_j2tkj")
 animation = &"action"
 frame = 6
+
+[node name="ActionAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_0eiyu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

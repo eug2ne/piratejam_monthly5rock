@@ -1,5 +1,16 @@
 extends Action
 
+@onready var hit_audio: AudioStreamPlayer = $HitAudio
+
+
+func _on_target_area_body_entered(body) -> void:
+	if body is Character && body.is_in_group(target_group):
+		# play hit_audio
+		hit_audio.pitch_scale = randf_range(0.8, 1.4)
+		hit_audio.play()
+	
+	super(body)
+
 func _process(_delta) -> void:
 	if parent.velocity == Vector2(0,0):
 		return

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2p4lpdcnk2ml"]
+[gd_scene load_steps=13 format=3 uid="uid://c2p4lpdcnk2ml"]
 
 [ext_resource type="Script" path="res://actions/PC actions/Wizard/ThunderWave.gd" id="1_yac6q"]
 [ext_resource type="Resource" uid="uid://bswmrs3u6vbgv" path="res://actions/PC actions/action resources/Wizard/Thunderwave.tres" id="2_c8ksq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dhg54jxr020vk" path="res://assets/vfx/npt_nyknck/NPT101.png" id="4_a6jhq"]
 [ext_resource type="Texture2D" uid="uid://dk6blmrmiq0qa" path="res://assets/vfx/npt_nyknck/NPT102.png" id="5_5o1y7"]
 [ext_resource type="Texture2D" uid="uid://23jr6mmsx0xh" path="res://assets/vfx/npt_nyknck/NPT103.png" id="6_tlcub"]
+[ext_resource type="AudioStream" uid="uid://btkihbt1oq7ic" path="res://assets/sfx/pc actions/wizard/Wizard-Wind.mp3" id="7_etfmf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jqkwj"]
 radius = 56.0
@@ -132,6 +133,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../ActionAudio:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_etfmf")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../ActionAudio:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p3r0s"]
 _data = {
@@ -157,6 +182,9 @@ shape = SubResource("CircleShape2D_jqkwj")
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_4524x")
 animation = &"action"
+
+[node name="ActionAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_etfmf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Timer")

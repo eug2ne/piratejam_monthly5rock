@@ -1,5 +1,8 @@
 extends Action
 
+@onready var hit_audio: AudioStreamPlayer = $HitAudio
+
+
 func _process(_delta) -> void:
 	if parent.velocity == Vector2(0,0):
 		return
@@ -16,6 +19,10 @@ func _on_target_area_area_entered(area: Area2D) -> void:
 	# FIXME: make character not take damage when parry successful
 	# get target
 	if area.get_parent() is EnemyAction:
+		# play hit audio
+		hit_audio.pitch_scale = randf_range(0.8, 1.4)
+		hit_audio.play()
+		
 		var enemy_attack: EnemyAction = area.get_parent()
 		var enemy: Character = enemy_attack.parent
 		

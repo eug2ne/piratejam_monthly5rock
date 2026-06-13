@@ -17,7 +17,7 @@ var action_available: bool = true
 @export var cool_time: float = 0
 @onready var timer: Timer = $Timer
 @onready var anim: AnimationPlayer = $AnimationPlayer
-@onready var audio: AudioStreamPlayer = $ActionAudio
+@onready var action_audio: AudioStreamPlayer = $ActionAudio
 
 func _ready() -> void:
 	# disable target_area
@@ -25,8 +25,8 @@ func _ready() -> void:
 	target_area.get_node("CollisionShape2D").disabled = true
 
 func _start() -> void:
-	if audio:
-		audio.pitch_scale = randf_range(0.8, 1.4)
+	if action_audio:
+		action_audio.pitch_scale = randf_range(0.8, 1.4)
 	# play action animation
 	anim.play("action")
 	# set cool-time

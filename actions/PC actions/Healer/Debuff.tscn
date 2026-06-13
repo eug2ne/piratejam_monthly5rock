@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://rtl00mnxctx6"]
+[gd_scene load_steps=17 format=3 uid="uid://rtl00mnxctx6"]
 
 [ext_resource type="Script" path="res://actions/PC actions/Healer/Debuff.gd" id="1_kmj4t"]
 [ext_resource type="Resource" uid="uid://dpg16kylyo5mp" path="res://actions/PC actions/action resources/Healer/Debuff.tres" id="2_qxhtr"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bdacilhaxk0oq" path="res://assets/vfx/SP600_nyknck/SP601_nyknck/SP601_02.png" id="4_gqric"]
 [ext_resource type="Texture2D" uid="uid://0xdsubjdip0i" path="res://assets/vfx/SP600_nyknck/SP601_nyknck/SP601_03.png" id="5_okniq"]
 [ext_resource type="Texture2D" uid="uid://cs11g080a1gxj" path="res://assets/vfx/SP600_nyknck/SP601_nyknck/SP601_04.png" id="6_7b6ry"]
+[ext_resource type="AudioStream" uid="uid://c17jdols0uo6e" path="res://assets/sfx/bottle/bottle_throw.mp3" id="8_d41qt"]
+[ext_resource type="AudioStream" uid="uid://dmylm4r7k6pe2" path="res://assets/sfx/bottle/bottle_break.mp3" id="9_jsnfe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3nu7"]
 radius = 7.0
@@ -269,6 +271,30 @@ tracks/8/keys = {
 "update": 0,
 "values": [40.0, 20.0]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ActionAudio:stream")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_jsnfe")]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("ActionAudio:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_dbbbd"]
 resource_name = "throw"
@@ -358,6 +384,30 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ThrowAudio:stream")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_d41qt")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ThrowAudio:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fv6vw"]
 _data = {
@@ -397,6 +447,12 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D/Area2D"]
 shape = SubResource("CircleShape2D_tm6ol")
+
+[node name="ThrowAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_d41qt")
+
+[node name="ActionAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_jsnfe")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

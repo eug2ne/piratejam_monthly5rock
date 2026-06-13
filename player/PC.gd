@@ -8,6 +8,7 @@ class_name PlayableCharacter
 func _ready() -> void:
 	super()
 	effects_sprite.visible = false
+	action_manager.input_disabled = !current || _is_dead()
 
 func _get_actions() -> Dictionary:
 	return action_manager.actions

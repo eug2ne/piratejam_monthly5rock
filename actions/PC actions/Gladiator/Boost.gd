@@ -2,6 +2,8 @@ extends Action
 
 @onready var boost_timer: Timer = $BoostTimer
 var boost_time: float = 5
+var base_power: float
+var base_critical: float
 
 
 func _process(_delta) -> void:
@@ -10,6 +12,8 @@ func _process(_delta) -> void:
 
 func _start() -> void:
 	super()
+	base_power = parent.character_resource.power
+	base_critical = parent.character_resource.critical
 	# add bonus ap, critical rate
 	parent.character_resource.power *= 1.2
 	parent.character_resource.critical *= 1.2
@@ -21,5 +25,7 @@ func _on_boost_timer_timeout():
 	anim.stop()
 	target_area.visible = false
 	# reset bonus ap, critical rate
-	parent.character_resource.bonus_ap = 0
-	parent.character_resource.bonus_critical_rate = 0
+	parent.character_resource.bonus_ap = base_power
+	parent.character_resource.bonus_critical_rate = base_critical
+	base_power = 0
+	base_critical = 0

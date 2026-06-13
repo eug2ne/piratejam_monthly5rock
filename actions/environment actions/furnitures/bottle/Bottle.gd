@@ -94,7 +94,7 @@ func _on_target_area_body_entered(body: Node2D) -> void:
 		
 		# play action animation
 		if (anim.current_animation != "action"):
-			audio.pitch_scale = randf_range(0.8, 1.4)
+			action_audio.pitch_scale = randf_range(0.8, 1.4)
 			anim.play("action")
 		
 		var parent_accuracy: float = parent.character_resource.accuracy

@@ -1,5 +1,4 @@
 extends Action
-# TODO: create fireball action
 
 
 func _start() -> void:
