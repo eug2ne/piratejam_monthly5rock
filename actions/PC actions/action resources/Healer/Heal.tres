@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_c20bb")
 action_name = "heal"
+default_damage = null
 base_damage = 20.0
-parry_action = false
+parry = null
+area = null
 ui_texture = ExtResource("2_2e4lj")

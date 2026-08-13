@@ -1,30 +1,31 @@
 [gd_scene load_steps=27 format=3 uid="uid://dr4d5i7gefy27"]
 
-[ext_resource type="Material" uid="uid://cb32io5ggyuly" path="res://character/character shaders/enemy_material.tres" id="1_eecfb"]
-[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_goek2"]
-[ext_resource type="Texture2D" uid="uid://ckk50b1g4byk4" path="res://assets/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png" id="1_ps2qc"]
-[ext_resource type="Resource" uid="uid://cow7glarm0pg6" path="res://enemy/enemy resource/enemy_resource.tres" id="2_7ruep"]
-[ext_resource type="Script" path="res://enemy/enemy states/Enemy_Idle.gd" id="2_hvxsh"]
-[ext_resource type="PackedScene" uid="uid://coo8juutpxbgw" path="res://character/character indicator/Indicator.tscn" id="4_4ru7d"]
-[ext_resource type="Script" path="res://character/action machine/ActionManager.gd" id="5_27nab"]
-[ext_resource type="PackedScene" uid="uid://blvlehvuw5oji" path="res://enemy/enemy actions/enemy_attack.tscn" id="5_c24k4"]
-[ext_resource type="Script" path="res://character/state machine/State Manager.gd" id="6_ksiyd"]
-[ext_resource type="AudioStream" uid="uid://gxbcokh8j605" path="res://assets/sfx/enemy/enemy_damage.mp3" id="6_r62a2"]
-[ext_resource type="Script" path="res://enemy/enemy states/Attack.gd" id="8_qspbk"]
-[ext_resource type="Script" path="res://character/state machine/character states/Dead.gd" id="10_b7h0l"]
+[ext_resource type="Material" uid="uid://cb32io5ggyuly" path="res://character/character shaders/enemy_material.tres" id="1_lu0ja"]
+[ext_resource type="Script" path="res://character/enemy/enemy.gd" id="2_7dloy"]
+[ext_resource type="Resource" uid="uid://cow7glarm0pg6" path="res://character/enemy/enemy resource/enemy_resource.tres" id="3_apln4"]
+[ext_resource type="PackedScene" uid="uid://coo8juutpxbgw" path="res://character/character indicator/Indicator.tscn" id="4_sbbw0"]
+[ext_resource type="Texture2D" uid="uid://ckk50b1g4byk4" path="res://assets/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png" id="5_iah8y"]
+[ext_resource type="AudioStream" uid="uid://gxbcokh8j605" path="res://assets/sfx/enemy/enemy_damage.mp3" id="6_kxjpi"]
+[ext_resource type="Script" path="res://character/action machine/ActionManager.gd" id="7_530ja"]
+[ext_resource type="AudioStream" uid="uid://cauc0krqkclcf" path="res://assets/sfx/enemy/enemy_death.mp3" id="7_22358"]
+[ext_resource type="PackedScene" uid="uid://blvlehvuw5oji" path="res://character/enemy/enemy actions/enemy_attack.tscn" id="8_ouk2h"]
+[ext_resource type="Script" path="res://character/state machine/State Manager.gd" id="9_ano3f"]
+[ext_resource type="Script" path="res://character/enemy/enemy states/Enemy_Idle.gd" id="10_e0qw8"]
+[ext_resource type="Script" path="res://character/enemy/enemy states/Attack.gd" id="11_6ge1p"]
+[ext_resource type="Script" path="res://character/state machine/character states/Dead.gd" id="12_g4hox"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sv66i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k75u8"]
-atlas = ExtResource("1_ps2qc")
+atlas = ExtResource("5_iah8y")
 region = Rect2(64, 120, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d43cf"]
-atlas = ExtResource("1_ps2qc")
+atlas = ExtResource("5_iah8y")
 region = Rect2(64, 144, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kg1wi"]
-atlas = ExtResource("1_ps2qc")
+atlas = ExtResource("5_iah8y")
 region = Rect2(64, 168, 16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3x00m"]
@@ -107,34 +108,6 @@ tracks/4/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_4rlb1"]
-resource_name = "damage"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/flash_modifier")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [1.0, 0.5, 1.0, 0.5, 1.0, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:material:shader_parameter/flash_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_vlj1f"]
 resource_name = "death"
 tracks/0/type = "value"
@@ -209,6 +182,42 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DeathAudio:stream")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_22358")]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DeathAudio:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("DeathAudio:volume_db")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-5.0]
+}
 
 [sub_resource type="Animation" id="Animation_vh3k3"]
 resource_name = "default"
@@ -254,13 +263,48 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6cjlg"]
 _data = {
 "RESET": SubResource("Animation_hjdij"),
-"damage": SubResource("Animation_4rlb1"),
 "death": SubResource("Animation_vlj1f"),
 "default": SubResource("Animation_vh3k3")
 }
 
 [sub_resource type="Animation" id="Animation_t0u7c"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageAudio:stream")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_kxjpi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ejts7"]
 resource_name = "damage"
@@ -289,6 +333,42 @@ tracks/1/keys = {
 "update": 0,
 "values": [1.0, 0.5, 1.0, 0.5, 1.0, 0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DamageAudio:stream")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_kxjpi")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DamageAudio:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2.08165e-12, -3), Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tdry2"]
 _data = {
@@ -300,14 +380,15 @@ _data = {
 radius = 56.0
 
 [node name="Enemy" type="CharacterBody2D"]
-material = ExtResource("1_eecfb")
+material = ExtResource("1_lu0ja")
+position = Vector2(2.08165e-12, -3)
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_goek2")
+script = ExtResource("2_7dloy")
 target_group = "pc"
-character_resource = ExtResource("2_7ruep")
+character_resource = ExtResource("3_apln4")
 
-[node name="Indicator" parent="." instance=ExtResource("4_4ru7d")]
+[node name="Indicator" parent="." instance=ExtResource("4_sbbw0")]
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
@@ -322,7 +403,11 @@ sprite_frames = SubResource("SpriteFrames_3x00m")
 frame = 1
 
 [node name="DamageAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_r62a2")
+stream = ExtResource("6_kxjpi")
+
+[node name="DeathAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_22358")
+volume_db = -5.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -342,31 +427,31 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_x6odc")
 
 [node name="ActionManager" type="Node" parent="." node_paths=PackedStringArray("parent", "indicator", "basic_action")]
-script = ExtResource("5_27nab")
+script = ExtResource("7_530ja")
 parent = NodePath("..")
 indicator = NodePath("../Indicator")
 input_disabled = true
 basic_action = NodePath("Attack")
 
-[node name="Attack" parent="ActionManager" instance=ExtResource("5_c24k4")]
+[node name="Attack" parent="ActionManager" instance=ExtResource("8_ouk2h")]
 
 [node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent", "action_manager", "indicator")]
-script = ExtResource("6_ksiyd")
+script = ExtResource("9_ano3f")
 initial_state = NodePath("Idle")
 parent = NodePath("..")
 action_manager = NodePath("../ActionManager")
 indicator = NodePath("../Indicator")
 
 [node name="Idle" type="Node" parent="StateManager"]
-script = ExtResource("2_hvxsh")
+script = ExtResource("10_e0qw8")
 anim_key = "default"
 
 [node name="Attack" type="Node" parent="StateManager"]
-script = ExtResource("8_qspbk")
+script = ExtResource("11_6ge1p")
 anim_key = "default"
 
 [node name="Dead" type="Node" parent="StateManager"]
-script = ExtResource("10_b7h0l")
+script = ExtResource("12_g4hox")
 anim_key = "death"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateManager/Dead" method="_on_animation_player_animation_finished"]

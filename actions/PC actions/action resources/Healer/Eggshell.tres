@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_0ws5f")
 action_name = "eggshell"
+default_damage = null
 base_damage = 40.0
-parry_action = false
+parry = null
+area = null
 ui_texture = ExtResource("2_3co2i")

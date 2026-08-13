@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://byhckvb3sjobr" path="res://character/character indicator/label/IndicatorLabel.tscn" id="5_3fj4k"]
 [ext_resource type="AudioStream" uid="uid://bajhiiiuup0j8" path="res://assets/sfx/enemy/enemy_lockon.mp3" id="5_impvy"]
 [ext_resource type="Texture2D" uid="uid://d16ddegast8pa" path="res://assets/ui/healthbar/healthbar_uner.png" id="5_itn1s"]
-[ext_resource type="AudioStream" uid="uid://bldgblq5ywonu" path="res://assets/sfx/enemy/enemy_alert.mp3" id="5_s0dg8"]
+[ext_resource type="AudioStream" uid="uid://ddxpom4bifsr8" path="res://assets/sfx/enemy/enemy_alert.mp3" id="5_s0dg8"]
 [ext_resource type="Texture2D" uid="uid://sqhlwhatwrka" path="res://assets/ui/healthbar/healthbar_over.png" id="6_iy3d7"]
 [ext_resource type="Texture2D" uid="uid://donuk4yf0r0nn" path="res://assets/ui/healthbar/healthbar_progress.png" id="7_gnbsb"]
 
@@ -67,18 +67,6 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_rn2y0"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AlertAudio:stream")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_s0dg8")]
-}
 
 [sub_resource type="Animation" id="Animation_uoirg"]
 resource_name = "alert"
@@ -205,7 +193,19 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LockonAudio:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-10.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4ngnn"]
@@ -293,8 +293,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -8.0
-offset_top = -16.0
+offset_top = -20.0
 offset_right = 8.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -303,14 +304,14 @@ size_flags_vertical = 4
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer"]
 position = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_q0nbl")
-animation = &"alert"
-frame = 4
+animation = &"lockon"
 
 [node name="AlertAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_s0dg8")
 
 [node name="LockonAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_impvy")
+volume_db = -10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

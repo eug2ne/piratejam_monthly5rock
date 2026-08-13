@@ -6,8 +6,6 @@ extends State
 @export var default_state: State
 
 func _on_enter() -> void:
-	# disable input on action_manager
-	action_manager.input_disabled = true
 	# disable collision
 	parent.get_node("CollisionShape2D").disabled = true
 	# set movement_controller speed to dash-speed
@@ -19,8 +17,6 @@ func _on_exit() -> void:
 	parent.get_node("CollisionShape2D").disabled = false
 	# set next_state
 	next_state = default_state
-	# enable input on action_manager
-	action_manager.input_disabled = false
 	
 func _update_physics(delta):
 	movement_controller._handle_physics(delta)

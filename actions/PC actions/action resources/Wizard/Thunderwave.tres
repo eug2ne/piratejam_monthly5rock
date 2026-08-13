@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_dm4yo")
 action_name = "thunderwave"
+default_damage = 0.0
 base_damage = 10.0
 parry = false
 area = false

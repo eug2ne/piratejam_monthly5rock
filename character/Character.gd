@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Character
 
+var revivable: bool
 @export var character_resource: CharacterResource
 
 @onready var indicator: CharacterIndicator = $Indicator

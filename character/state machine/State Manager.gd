@@ -47,7 +47,7 @@ func _set_current_state(state_key: String = ""):
 	if current_state.name.to_lower() == state_key:
 		return
 	# not revivable
-	if current_state.name.to_lower() == "dead" && !current_state.revive:
+	if current_state.name.to_lower() == "dead" && !parent.revivable:
 		return
 	
 	# exit current_state

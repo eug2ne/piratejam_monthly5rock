@@ -1,11 +1,11 @@
 [gd_scene load_steps=47 format=3 uid="uid://ccx8e1l6enf1q"]
 
 [ext_resource type="Material" uid="uid://b5sfgjat7dyv0" path="res://character/character shaders/pc_material.tres" id="1_0fjw8"]
-[ext_resource type="Script" path="res://player/PC.gd" id="2_x2sak"]
-[ext_resource type="Resource" uid="uid://dwuj7frrx4j6s" path="res://player/PC resources/Healer.tres" id="3_4u1n8"]
+[ext_resource type="Script" path="res://character/player/PC.gd" id="2_x2sak"]
+[ext_resource type="Resource" uid="uid://dwuj7frrx4j6s" path="res://character/player/PC resources/Healer.tres" id="3_4u1n8"]
 [ext_resource type="PackedScene" uid="uid://coo8juutpxbgw" path="res://character/character indicator/Indicator.tscn" id="4_5gsxr"]
 [ext_resource type="Texture2D" uid="uid://ckk50b1g4byk4" path="res://assets/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png" id="5_nctyh"]
-[ext_resource type="Script" path="res://player/movement controller/MovementController.gd" id="6_5u4s8"]
+[ext_resource type="Script" path="res://character/player/movement controller/MovementController.gd" id="6_5u4s8"]
 [ext_resource type="Texture2D" uid="uid://cx41f8macyfwv" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_idle_anim_f0.png" id="6_crxju"]
 [ext_resource type="Script" path="res://character/action machine/ActionManager.gd" id="7_q1rhv"]
 [ext_resource type="Texture2D" uid="uid://du4sfnf60vafd" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_idle_anim_f1.png" id="7_yaakl"]
@@ -13,10 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://msdvc7m1ygrw" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_idle_anim_f3.png" id="9_geqyt"]
 [ext_resource type="Texture2D" uid="uid://cvt3ae87bnrq1" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_run_anim_f0.png" id="10_j7dhn"]
 [ext_resource type="Script" path="res://character/state machine/State Manager.gd" id="10_riig8"]
-[ext_resource type="Script" path="res://player/PC states/Default.gd" id="11_2gs2x"]
+[ext_resource type="Script" path="res://character/player/PC states/Default.gd" id="11_2gs2x"]
 [ext_resource type="Texture2D" uid="uid://cm7xu3g8t7kic" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_run_anim_f1.png" id="11_jm8av"]
-[ext_resource type="Script" path="res://player/PC states/PC_Idle.gd" id="12_6hq5k"]
-[ext_resource type="Script" path="res://character/state machine/State.gd" id="12_kd7ml"]
+[ext_resource type="Script" path="res://character/player/PC states/PC_Idle.gd" id="12_6hq5k"]
 [ext_resource type="Texture2D" uid="uid://chpy2tqin0wdm" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_run_anim_f2.png" id="12_u7gj1"]
 [ext_resource type="Texture2D" uid="uid://cralw8n0gdb6t" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/elf_m_run_anim_f3.png" id="13_2ejol"]
 [ext_resource type="Script" path="res://character/state machine/character states/Dash.gd" id="13_mqdbx"]
@@ -24,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://csrb08pqiv4ot" path="res://actions/PC actions/Healer/Heal.tscn" id="16_rwt3y"]
 [ext_resource type="PackedScene" uid="uid://rtl00mnxctx6" path="res://actions/PC actions/Healer/Debuff.tscn" id="17_eno0l"]
 [ext_resource type="PackedScene" uid="uid://dvcjhff7dqr4b" path="res://actions/PC actions/Healer/Eggshell.tscn" id="19_n4qb8"]
+[ext_resource type="Script" path="res://character/state machine/character states/Dead.gd" id="22_y5m3c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0djip"]
 radius = 40.0
@@ -473,6 +473,7 @@ material = ExtResource("1_0fjw8")
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("2_x2sak")
+current = null
 character_resource = ExtResource("3_4u1n8")
 
 [node name="Indicator" parent="." instance=ExtResource("4_5gsxr")]
@@ -539,9 +540,8 @@ dash_state = NodePath("../Dash")
 dead_state = NodePath("../Dead")
 
 [node name="Dead" type="Node" parent="StateManager"]
-script = ExtResource("12_kd7ml")
+script = ExtResource("22_y5m3c")
 anim_key = "death"
-revive = true
 
 [node name="Dash" type="Node" parent="StateManager" node_paths=PackedStringArray("movement_controller", "default_state")]
 script = ExtResource("13_mqdbx")

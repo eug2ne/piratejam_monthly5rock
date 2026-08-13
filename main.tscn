@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_tuq5s"]
 [ext_resource type="PackedScene" uid="uid://b15kbyg7k4fwd" path="res://map/bar_map.tscn" id="1_yokby"]
-[ext_resource type="PackedScene" uid="uid://dvpthewkuttia" path="res://player/PCs/Gladiator.tscn" id="2_l72q6"]
+[ext_resource type="PackedScene" uid="uid://dvpthewkuttia" path="res://character/player/PCs/Gladiator.tscn" id="2_l72q6"]
 [ext_resource type="PackedScene" uid="uid://cqkd670a24rn" path="res://UI/Combat_UI.tscn" id="2_v70x6"]
 [ext_resource type="Shader" path="res://character/character shaders/character_flash.gdshader" id="3_ga1au"]
-[ext_resource type="PackedScene" uid="uid://ccx8e1l6enf1q" path="res://player/PCs/Healer.tscn" id="5_poar1"]
-[ext_resource type="PackedScene" uid="uid://c44b2lj3ngcko" path="res://player/PCs/Wizard.tscn" id="6_c2o31"]
+[ext_resource type="PackedScene" uid="uid://ccx8e1l6enf1q" path="res://character/player/PCs/Healer.tscn" id="5_poar1"]
+[ext_resource type="PackedScene" uid="uid://c44b2lj3ngcko" path="res://character/player/PCs/Wizard.tscn" id="6_c2o31"]
 [ext_resource type="Script" path="res://UI/MainCamera/MainCamera.gd" id="8_585he"]
 [ext_resource type="PackedScene" uid="uid://cvr7q7vlcvax7" path="res://interaction/InteractionArea.tscn" id="8_qabv7"]
 [ext_resource type="Script" path="res://interaction/spawn areas/bottle_spawn_area.gd" id="9_iy6bl"]
@@ -68,14 +68,17 @@ y_sort_enabled = true
 [node name="Gladiator" parent="PCs" groups=["pc"] instance=ExtResource("2_l72q6")]
 material = SubResource("ShaderMaterial_4gvr3")
 position = Vector2(368, 560)
+current = null
 
 [node name="Wizard" parent="PCs" groups=["pc"] instance=ExtResource("6_c2o31")]
 material = SubResource("ShaderMaterial_6vexe")
 position = Vector2(560, 560)
+current = null
 
 [node name="Healer" parent="PCs" groups=["pc"] instance=ExtResource("5_poar1")]
 material = SubResource("ShaderMaterial_wjyme")
 position = Vector2(736, 560)
+current = null
 
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true

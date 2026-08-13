@@ -2,6 +2,9 @@ extends State
 
 
 func _on_enter() -> void:
+	# disable input
+	if action_manager:
+		action_manager.input_disabled = true
 	# stop character
 	parent.velocity = Vector2(0,0)
 	

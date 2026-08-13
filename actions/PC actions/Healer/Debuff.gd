@@ -10,10 +10,15 @@ var SPEED: float
 var THROW_TIME: float = 2 # default: 2 seconds
 var TIMESTAMP: float = 0.0
 @onready var throw_timer: Timer = $ThrowTimer
+# debuff
+var DEFAULT_BASE_DEBUFF: float = 5
 
 @onready var animatable_body: AnimatableBody2D = $AnimatableBody2D
 @onready var raycast: RayCast2D = $RayCast2D
 signal target_hit
+
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
 
 func _ready():
 	# hide animatable_body
@@ -133,9 +138,11 @@ func _on_target_area_body_entered(body) -> void:
 		var parent_accuracy: float = parent.character_resource.accuracy
 		var parent_power: float = parent.character_resource.power
 		
-		# apply debuff to target
+		# apply debuff + damage to target
 		var critical: bool = parent.character_resource._check_critical()
-		var debuff: int = action_resource._deal_damage(target_agility, target_defense, parent_accuracy, parent_power, critical)
+		var debuff: int = roundi(DEFAULT_BASE_DEBUFF * (1 - rng.randf_range((target_defense-5) / 30, (target_defense+5) / 30)))
+		var damage: int = action_resource._deal_damage(target_agility, target_defense, parent_accuracy, parent_power, critical)
+		body._take_damage(damage, critical, parent)
 		body._take_debuff(debuff, "power")
 
 func _on_throw_timer_timeout():

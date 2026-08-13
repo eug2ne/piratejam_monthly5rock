@@ -9,6 +9,8 @@ var hit: bool = false
 var SPEED: float
 var THROW_TIME: float = 2 # default: 2 seconds
 var TIMESTAMP: float = 0.0
+# damage
+var DEFAULT_BASE_DAMAGE: float = 30
 
 @onready var animatable_body: AnimatableBody2D = $AnimatableBody2D
 @onready var raycast: RayCast2D = $AnimatableBody2D/RayCast2D
@@ -67,11 +69,13 @@ func _throw():
 	if parent.character_resource.character_name.to_lower() == "gladiator" && initial_position.distance_to(target.global_position) < 50:
 		# increase base_damage
 		# TODO: add special animation for bottle swing
-		action_resource.base_damage *= 1.5
-	if parent.character_resource.character_name.to_lower() == "healer" && initial_position.distance_to(target.global_position) > 180:
+		action_resource.base_damage = DEFAULT_BASE_DAMAGE * 1.5
+	elif parent.character_resource.character_name.to_lower() == "healer" && initial_position.distance_to(target.global_position) > 180:
 		# increase base_damage
 		# TODO: add special animation for bottle launch
-		action_resource.base_damage *= 1.5
+		action_resource.base_damage = DEFAULT_BASE_DAMAGE * 1.5
+	else:
+		action_resource.base_damage = DEFAULT_BASE_DAMAGE
 	
 	# enable raycast
 	raycast.enabled = true
@@ -129,6 +133,9 @@ func _physics_process(delta: float) -> void:
 	# FIXME: move toward target in parabola trajectory
 	TIMESTAMP += delta
 	
+	if !target:
+		# get new target
+		target = _get_target()
 	SPEED = get_bottle_speed(animatable_body.global_position, target.global_position, THROW_TIME-TIMESTAMP)
 	var vector = (target.global_position - animatable_body.global_position).normalized()
 	if hit:

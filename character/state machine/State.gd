@@ -2,7 +2,6 @@ extends Node
 class_name State
 
 @export var anim_key: String
-@export var revive: bool
 # reference to parent
 var parent: CharacterBody2D
 var anim: AnimationPlayer
@@ -15,7 +14,6 @@ signal Transition
 func _on_enter() -> void:
 	# play state animation
 	anim.play(anim_key)
-	action_manager.input_disabled = true
 
 func _on_exit() -> void:
 	# define next_state

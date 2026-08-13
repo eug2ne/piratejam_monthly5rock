@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b820yc1j2s0yh"]
 
-[ext_resource type="Script" path="res://player/Skilltrees/Skilltree.gd" id="1_5ccm4"]
+[ext_resource type="Script" path="res://character/player/Skilltrees/Skilltree.gd" id="1_5ccm4"]
 
 [node name="Skilltree" type="Node"]
 script = ExtResource("1_5ccm4")

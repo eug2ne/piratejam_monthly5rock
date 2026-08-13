@@ -12,7 +12,7 @@
 extends Node
 
 # enemy spawn
-@onready var enemy_ps: PackedScene = preload("res://enemy/enemy.tscn")
+@onready var enemy_ps: PackedScene = preload("res://character/enemy/enemy.tscn")
 @onready var enemy_spawn_timer: Timer = $EnemySpawnTimer
 #bottle spawn
 @onready var bottle_spawn_areas: Array[Node] = get_tree().get_nodes_in_group("bottle_spawn_areas")

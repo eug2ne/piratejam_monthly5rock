@@ -1,33 +1,31 @@
-[gd_scene load_steps=49 format=3 uid="uid://dvpthewkuttia"]
+[gd_scene load_steps=47 format=3 uid="uid://c44b2lj3ngcko"]
 
-[ext_resource type="Script" path="res://player/PC.gd" id="1_fhjl8"]
-[ext_resource type="Material" uid="uid://b5sfgjat7dyv0" path="res://character/character shaders/pc_material.tres" id="1_tkqss"]
-[ext_resource type="Texture2D" uid="uid://ckk50b1g4byk4" path="res://assets/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png" id="2_c4731"]
-[ext_resource type="Resource" uid="uid://dhlms7hwnjm" path="res://player/PC resources/Gladiator.tres" id="2_pipyw"]
-[ext_resource type="Script" path="res://player/movement controller/MovementController.gd" id="3_bxr2l"]
-[ext_resource type="PackedScene" uid="uid://coo8juutpxbgw" path="res://character/character indicator/Indicator.tscn" id="4_0yxy1"]
-[ext_resource type="Script" path="res://character/action machine/ActionManager.gd" id="4_tfyyi"]
-[ext_resource type="PackedScene" uid="uid://cndercnoyvxu3" path="res://actions/PC actions/Gladiator/Attack.tscn" id="5_52j7o"]
-[ext_resource type="Script" path="res://player/PCs/DetectionArea.gd" id="5_d5qet"]
-[ext_resource type="Texture2D" uid="uid://mno3hwmdd5th" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f0.png" id="6_36fan"]
-[ext_resource type="PackedScene" uid="uid://bftq7opuyn0au" path="res://actions/PC actions/Gladiator/Parry.tscn" id="7_aqu00"]
-[ext_resource type="Texture2D" uid="uid://dq1eonvsbsfm2" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f1.png" id="7_lntjo"]
-[ext_resource type="Texture2D" uid="uid://l6e02162gct7" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f2.png" id="8_jvllg"]
-[ext_resource type="Script" path="res://player/PC states/Default.gd" id="9_2uo28"]
-[ext_resource type="Script" path="res://character/state machine/State Manager.gd" id="9_biyni"]
-[ext_resource type="Texture2D" uid="uid://duk3a728e5wyb" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_idle_anim_f3.png" id="9_o4lem"]
-[ext_resource type="Texture2D" uid="uid://dk1us4wxb7ab8" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f0.png" id="10_oyttj"]
-[ext_resource type="Script" path="res://character/state machine/State.gd" id="10_wvem7"]
-[ext_resource type="Texture2D" uid="uid://b1vnjab72v8lq" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f1.png" id="11_4s4f8"]
-[ext_resource type="Texture2D" uid="uid://bbacjgfm1f6hd" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f2.png" id="12_8dbj7"]
-[ext_resource type="Script" path="res://character/state machine/character states/Dash.gd" id="12_fgoqn"]
-[ext_resource type="Texture2D" uid="uid://cg276xwxjs0t" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/knight_f_run_anim_f3.png" id="13_gcvg5"]
-[ext_resource type="SpriteFrames" uid="uid://b0686be3mwgj8" path="res://assets/spriteframes/action spriteframes/Eggshell.tres" id="14_6ls5k"]
-[ext_resource type="Script" path="res://player/PC states/PC_Idle.gd" id="14_umevl"]
-[ext_resource type="AudioStream" uid="uid://ctjswfjqog60d" path="res://assets/sfx/pc actions/dash.mp3" id="16_kwm5w"]
-[ext_resource type="PackedScene" uid="uid://dufbyrveswvnq" path="res://actions/PC actions/Gladiator/Boost.tscn" id="18_rj0lb"]
+[ext_resource type="Material" uid="uid://b5sfgjat7dyv0" path="res://character/character shaders/pc_material.tres" id="1_wrfyk"]
+[ext_resource type="Script" path="res://character/player/PC.gd" id="2_frjc6"]
+[ext_resource type="Resource" uid="uid://10qy4oful0rp" path="res://character/player/PC resources/Wizard.tres" id="3_fu2wq"]
+[ext_resource type="PackedScene" uid="uid://coo8juutpxbgw" path="res://character/character indicator/Indicator.tscn" id="4_r42m2"]
+[ext_resource type="Texture2D" uid="uid://ckk50b1g4byk4" path="res://assets/Small-8-Direction-Characters_by_AxulArt/Small-8-Direction-Characters_by_AxulArt.png" id="5_t01cb"]
+[ext_resource type="Texture2D" uid="uid://bomn0kj40hkmx" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/wizzard_m_idle_anim_f0.png" id="6_3w4op"]
+[ext_resource type="Script" path="res://character/player/movement controller/MovementController.gd" id="6_ercm0"]
+[ext_resource type="Texture2D" uid="uid://qx6l5xce30u6" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/wizzard_m_idle_anim_f1.png" id="7_1e64p"]
+[ext_resource type="Script" path="res://character/action machine/ActionManager.gd" id="7_mm6dj"]
+[ext_resource type="Texture2D" uid="uid://c7ic5ccaans25" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/wizzard_m_idle_anim_f2.png" id="8_1585h"]
+[ext_resource type="Script" path="res://character/state machine/State Manager.gd" id="8_u23y0"]
+[ext_resource type="Texture2D" uid="uid://cvpf570cbg1jk" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/wizzard_m_idle_anim_f3.png" id="9_8nnc6"]
+[ext_resource type="Script" path="res://character/player/PC states/Default.gd" id="9_asuuq"]
+[ext_resource type="Texture2D" uid="uid://do1mcerx2aw2g" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/wizzard_m_run_anim_f0.png" id="10_yqi5j"]
+[ext_resource type="Texture2D" uid="uid://dd28v7hdh5rs3" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/wizzard_m_run_anim_f1.png" id="11_af0jn"]
+[ext_resource type="Script" path="res://character/state machine/character states/Dash.gd" id="11_iwo28"]
+[ext_resource type="Script" path="res://character/player/PC states/PC_Idle.gd" id="12_8iq2o"]
+[ext_resource type="Texture2D" uid="uid://df3nl2bqjar4w" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/wizzard_m_run_anim_f2.png" id="12_aeilh"]
+[ext_resource type="Texture2D" uid="uid://b2fw5183tiweh" path="res://assets/0x72_DungeonTilesetII_v1.7/frames/wizzard_m_run_anim_f3.png" id="13_ba3jw"]
+[ext_resource type="SpriteFrames" uid="uid://b0686be3mwgj8" path="res://assets/spriteframes/action spriteframes/Eggshell.tres" id="14_hqlq8"]
+[ext_resource type="PackedScene" uid="uid://c2p4lpdcnk2ml" path="res://actions/PC actions/Wizard/ThunderWave.tscn" id="16_kbodc"]
+[ext_resource type="PackedScene" uid="uid://ccwlcsho8wqxb" path="res://actions/PC actions/Wizard/Lightning.tscn" id="17_jycb6"]
+[ext_resource type="PackedScene" uid="uid://m68cprrbwc2n" path="res://actions/PC actions/Wizard/Fireball.tscn" id="18_18qr8"]
+[ext_resource type="Script" path="res://character/state machine/character states/Dead.gd" id="22_wan1k"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0m35v"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ynfcu"]
 radius = 40.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0n5gx"]
@@ -35,35 +33,35 @@ radius = 8.0
 height = 16.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_40f7g"]
-atlas = ExtResource("2_c4731")
+atlas = ExtResource("5_t01cb")
 region = Rect2(0, 48, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8xmhf"]
-atlas = ExtResource("2_c4731")
+atlas = ExtResource("5_t01cb")
 region = Rect2(16, 48, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_csi4p"]
-atlas = ExtResource("2_c4731")
+atlas = ExtResource("5_t01cb")
 region = Rect2(32, 48, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ekloh"]
-atlas = ExtResource("2_c4731")
+atlas = ExtResource("5_t01cb")
 region = Rect2(48, 48, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iwoll"]
-atlas = ExtResource("2_c4731")
+atlas = ExtResource("5_t01cb")
 region = Rect2(64, 48, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2dxi7"]
-atlas = ExtResource("2_c4731")
+atlas = ExtResource("5_t01cb")
 region = Rect2(80, 48, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_og1b2"]
-atlas = ExtResource("2_c4731")
+atlas = ExtResource("5_t01cb")
 region = Rect2(96, 48, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3vtx3"]
-atlas = ExtResource("2_c4731")
+atlas = ExtResource("5_t01cb")
 region = Rect2(112, 48, 16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qrtjn"]
@@ -99,16 +97,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_36fan")
+"texture": ExtResource("6_3w4op")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_lntjo")
+"texture": ExtResource("7_1e64p")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_jvllg")
+"texture": ExtResource("8_1585h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_o4lem")
+"texture": ExtResource("9_8nnc6")
 }],
 "loop": true,
 "name": &"idle",
@@ -116,16 +114,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_oyttj")
+"texture": ExtResource("10_yqi5j")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_4s4f8")
+"texture": ExtResource("11_af0jn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_8dbj7")
+"texture": ExtResource("12_aeilh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_gcvg5")
+"texture": ExtResource("13_ba3jw")
 }],
 "loop": true,
 "name": &"move",
@@ -210,30 +208,6 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(0.0823529, 0.811765, 1, 1)]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("DashAudio:stream")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("16_kwm5w")]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("DashAudio:playing")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_6ljb5"]
 resource_name = "death"
@@ -298,8 +272,8 @@ tracks/4/keys = {
 "values": [0.0, 0.0, 0.785398, 1.5708]
 }
 
-[sub_resource type="Animation" id="Animation_wt80u"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_nu7pu"]
+resource_name = "idlke"
 length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
@@ -339,7 +313,7 @@ tracks/2/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_3y3sg"]
+[sub_resource type="Animation" id="Animation_w2olh"]
 resource_name = "move"
 length = 0.4
 loop_mode = 1
@@ -373,14 +347,14 @@ _data = {
 "RESET": SubResource("Animation_l80gf"),
 "dash": SubResource("Animation_xbyvt"),
 "death": SubResource("Animation_6ljb5"),
-"idle": SubResource("Animation_wt80u"),
-"move": SubResource("Animation_3y3sg")
+"idle": SubResource("Animation_nu7pu"),
+"move": SubResource("Animation_w2olh")
 }
 
-[sub_resource type="Animation" id="Animation_we80j"]
+[sub_resource type="Animation" id="Animation_c3p8w"]
 length = 0.001
 
-[sub_resource type="Animation" id="Animation_6y6ht"]
+[sub_resource type="Animation" id="Animation_po2bc"]
 resource_name = "damage"
 length = 0.5
 tracks/0/type = "value"
@@ -408,7 +382,7 @@ tracks/1/keys = {
 "values": [1.0, 0.5, 1.0, 0.5, 1.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_ylo1a"]
+[sub_resource type="Animation" id="Animation_yl0wv"]
 resource_name = "eggshell"
 length = 5.0
 tracks/0/type = "value"
@@ -460,7 +434,7 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_6bx8b"]
+[sub_resource type="Animation" id="Animation_l13wj"]
 resource_name = "heal"
 length = 0.4
 tracks/0/type = "value"
@@ -488,31 +462,28 @@ tracks/1/keys = {
 "values": [1.0, 0.0, 1.0, 0.0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3pg2o"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ejjp"]
 _data = {
-"RESET": SubResource("Animation_we80j"),
-"damage": SubResource("Animation_6y6ht"),
-"eggshell": SubResource("Animation_ylo1a"),
-"heal": SubResource("Animation_6bx8b")
+"RESET": SubResource("Animation_c3p8w"),
+"damage": SubResource("Animation_po2bc"),
+"eggshell": SubResource("Animation_yl0wv"),
+"heal": SubResource("Animation_l13wj")
 }
 
-[node name="Gladiator" type="CharacterBody2D"]
-material = ExtResource("1_tkqss")
+[node name="Wizard" type="CharacterBody2D"]
+material = ExtResource("1_wrfyk")
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_fhjl8")
-character_resource = ExtResource("2_pipyw")
+script = ExtResource("2_frjc6")
+current = null
+character_resource = ExtResource("3_fu2wq")
 
-[node name="Indicator" parent="." instance=ExtResource("4_0yxy1")]
+[node name="Indicator" parent="." instance=ExtResource("4_r42m2")]
 
-[node name="DetectionArea" type="Area2D" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("5_d5qet")
-parent = NodePath("..")
-action_name = "revive"
-action_available = false
+[node name="DetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-shape = SubResource("CircleShape2D_0m35v")
+shape = SubResource("CircleShape2D_ynfcu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0n5gx")
@@ -524,11 +495,8 @@ sprite_frames = SubResource("SpriteFrames_qrtjn")
 animation = &"idle"
 
 [node name="EffectsAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("14_6ls5k")
+sprite_frames = ExtResource("14_hqlq8")
 animation = &"eggshell"
-
-[node name="DashAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_kwm5w")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -537,60 +505,55 @@ libraries = {
 
 [node name="EffectsAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_3pg2o")
+"": SubResource("AnimationLibrary_6ejjp")
 }
 
 [node name="MovementController" type="Node" parent="." node_paths=PackedStringArray("parent", "anim")]
-script = ExtResource("3_bxr2l")
+script = ExtResource("6_ercm0")
 parent = NodePath("..")
 anim = NodePath("../AnimationPlayer")
 
 [node name="ActionManager" type="Node" parent="." node_paths=PackedStringArray("parent", "indicator", "basic_action", "secondary_action", "special_action")]
-script = ExtResource("4_tfyyi")
+script = ExtResource("7_mm6dj")
 parent = NodePath("..")
 indicator = NodePath("../Indicator")
-basic_action = NodePath("Attack")
-secondary_action = NodePath("Parry")
-special_action = NodePath("Boost")
+basic_action = NodePath("ThunderWave")
+secondary_action = NodePath("Lightning")
+special_action = NodePath("Fireball")
 
-[node name="Attack" parent="ActionManager" instance=ExtResource("5_52j7o")]
+[node name="ThunderWave" parent="ActionManager" instance=ExtResource("16_kbodc")]
 
-[node name="Parry" parent="ActionManager" instance=ExtResource("7_aqu00")]
+[node name="Lightning" parent="ActionManager" instance=ExtResource("17_jycb6")]
 
-[node name="Boost" parent="ActionManager" instance=ExtResource("18_rj0lb")]
+[node name="Fireball" parent="ActionManager" instance=ExtResource("18_18qr8")]
 
 [node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state", "parent", "action_manager", "indicator")]
-script = ExtResource("9_biyni")
+script = ExtResource("8_u23y0")
 initial_state = NodePath("Default")
 parent = NodePath("..")
 action_manager = NodePath("../ActionManager")
 indicator = NodePath("../Indicator")
 
 [node name="Default" type="Node" parent="StateManager" node_paths=PackedStringArray("movement_controller", "dash_state", "dead_state")]
-script = ExtResource("9_2uo28")
+script = ExtResource("9_asuuq")
 movement_controller = NodePath("../../MovementController")
 dash_state = NodePath("../Dash")
 dead_state = NodePath("../Dead")
 
 [node name="Dead" type="Node" parent="StateManager"]
-script = ExtResource("10_wvem7")
+script = ExtResource("22_wan1k")
 anim_key = "death"
-revive = true
 
 [node name="Dash" type="Node" parent="StateManager" node_paths=PackedStringArray("movement_controller", "default_state")]
-script = ExtResource("12_fgoqn")
+script = ExtResource("11_iwo28")
 movement_controller = NodePath("../../MovementController")
 default_state = NodePath("../Default")
 anim_key = "dash"
 
 [node name="Idle" type="Node" parent="StateManager" node_paths=PackedStringArray("movement_controller")]
-script = ExtResource("14_umevl")
+script = ExtResource("12_8iq2o")
 movement_controller = NodePath("../../MovementController")
 
-[connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
-[connection signal="body_entered" from="DetectionArea" to="StateManager/Idle" method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]
-[connection signal="body_exited" from="DetectionArea" to="StateManager/Idle" method="_on_detection_area_body_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateManager/Dash" method="_on_animation_player_animation_finished"]
 [connection signal="Transition" from="StateManager/Default" to="StateManager" method="_set_current_state"]
 [connection signal="Transition" from="StateManager/Dead" to="StateManager" method="_set_current_state"]

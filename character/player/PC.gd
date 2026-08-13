@@ -7,6 +7,7 @@ class_name PlayableCharacter
 
 func _ready() -> void:
 	super()
+	revivable = true
 	effects_sprite.visible = false
 	action_manager.input_disabled = !current || _is_dead()
 

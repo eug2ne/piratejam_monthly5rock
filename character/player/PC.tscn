@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://dhjyjxc2sam4v"]
 
-[ext_resource type="Script" path="res://player/PC.gd" id="1_clrec"]
-[ext_resource type="SpriteFrames" uid="uid://peko1prd6id0" path="res://player/PC resources/PC_base_spriteframe.tres" id="2_ipx0c"]
-[ext_resource type="Script" path="res://player/movement controller/MovementController.gd" id="2_smws6"]
+[ext_resource type="Script" path="res://character/player/PC.gd" id="1_clrec"]
+[ext_resource type="SpriteFrames" uid="uid://peko1prd6id0" path="res://character/player/PC resources/PC_base_spriteframe.tres" id="2_ipx0c"]
+[ext_resource type="Script" path="res://character/player/movement controller/MovementController.gd" id="2_smws6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0n5gx"]
 radius = 8.0
@@ -282,6 +282,7 @@ _data = {
 
 [node name="PC" type="CharacterBody2D"]
 script = ExtResource("1_clrec")
+current = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_0n5gx")

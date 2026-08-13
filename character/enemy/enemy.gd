@@ -2,6 +2,11 @@ extends Character
 
 @export var target_group: String
 
+
+func _ready():
+	super()
+	revivable = false
+
 func _physics_process(_delta) -> void:
 	move_and_slide()
 	

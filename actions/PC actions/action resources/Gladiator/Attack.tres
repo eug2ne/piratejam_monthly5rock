@@ -6,7 +6,8 @@
 [resource]
 script = ExtResource("1_w60bm")
 action_name = "attack"
+default_damage = null
 base_damage = 70.0
-parry = false
-area = false
+parry = null
+area = null
 ui_texture = ExtResource("2_wyows")

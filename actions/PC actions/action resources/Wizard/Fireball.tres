@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_n0ths")
 action_name = "fireball"
+default_damage = null
 base_damage = 50.0
-parry_action = false
+parry = null
+area = null
 ui_texture = ExtResource("2_rhhj3")
